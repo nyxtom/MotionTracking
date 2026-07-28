@@ -442,7 +442,8 @@
       "rank": "family",
       "aliases": [
         "parrot fish",
-        "parrotfishes"
+        "parrotfishes",
+        "bumphead parrotfish"
       ],
       "description": "Beak-mouthed herbivores that scrape algae and produce sand.",
       "id_tips": "Fused beak teeth, bright colors, often scraping coral rock; night mucus cocoons.",
@@ -629,7 +630,8 @@
       "aliases": [
         "white tip reef shark",
         "whitetip",
-        "white-tip reef shark"
+        "white-tip reef shark",
+        "whitetip reef sharks"
       ],
       "description": "Common tropical reef shark resting in caves and under ledges by day.",
       "id_tips": "White tips on dorsal and caudal fins; slender body; often in pairs in caves.",
@@ -1772,6 +1774,110 @@
       "tags": [
         "pelagic",
         "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "mandarinfish",
+      "common_name": "Mandarinfish",
+      "scientific_name": "Synchiropus splendidus",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "mandarin fish",
+        "mandarin dragonet"
+      ],
+      "description": "Tiny psychedelic dragonet \u2014 dusk house-reef classic.",
+      "id_tips": "Look at dusk in rubble; males display.",
+      "size_cm_typical": 6,
+      "habitat": "rubble / house reef",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "flamboyant-cuttlefish",
+      "common_name": "Flamboyant cuttlefish",
+      "scientific_name": "Metasepia pfefferi",
+      "taxon_group": "invert",
+      "rank": "species",
+      "aliases": [
+        "flamboyant cuttle"
+      ],
+      "description": "Walking toxic cuttlefish of muck sites (Mabul, Lembeh, etc.).",
+      "id_tips": "Small, vivid pulsing colors, walks on arms over sand.",
+      "size_cm_typical": 8,
+      "habitat": "muck / sand",
+      "danger_notes": "Toxic \u2014 observe only.",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bumphead-parrotfish",
+      "common_name": "Bumphead parrotfish",
+      "scientific_name": "Bolbometopon muricatum",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "bumphead",
+        "bumpheads"
+      ],
+      "description": "Huge schooling parrotfish that sleep in caves and crunch coral.",
+      "id_tips": "Massive forehead bump, green body, often in groups at dusk.",
+      "size_cm_typical": 100,
+      "habitat": "reef / cave",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bull-shark",
+      "common_name": "Bull shark",
+      "scientific_name": "Carcharhinus leucas",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "bull sharks"
+      ],
+      "description": "Stocky coastal shark; famous at places like Beqa, Playa del Carmen.",
+      "id_tips": "Stout body, short snout, no distinct fin markings.",
+      "size_cm_typical": 250,
+      "habitat": "reef / blue water",
+      "tags": [
+        "shark",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "silvertip-shark",
+      "common_name": "Silvertip shark",
+      "scientific_name": "Carcharhinus albimarginatus",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "silvertip",
+        "silvertip sharks",
+        "silver tip shark"
+      ],
+      "description": "Indo-Pacific reef/pelagic shark with white-edged fins.",
+      "id_tips": "White margins on all fins; larger than reef whitetips.",
+      "size_cm_typical": 250,
+      "habitat": "pass / seamount",
+      "tags": [
+        "shark",
+        "pelagic",
         "card"
       ],
       "card_worthy": true

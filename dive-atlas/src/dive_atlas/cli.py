@@ -100,6 +100,7 @@ def ingest_cmd(
         "seed-raja-ampat": 5,
         "seed-komodo": 5,
         "seed-palau-truk": 5,
+        "seed-sipadan": 5,
         "seed-famous": 6,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
@@ -184,7 +185,7 @@ def search_cmd(
 @app.command("dense")
 def dense_cmd(
     hotspot: Optional[str] = typer.Option(
-        None, "--hotspot", "-h", help="Comma-separated hotspot slugs (default: all)"
+        None, "--hotspot", help="Comma-separated hotspot slugs (default: all)"
     ),
     skip: Optional[str] = typer.Option(
         None, "--skip", help="Comma-separated hotspot slugs to skip"

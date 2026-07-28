@@ -80,3 +80,13 @@ class SeedPalauTrukAdapter(SeedAtlasAdapter):
 
     def __init__(self, path: Path | None = None) -> None:
         super().__init__(path=path or (SEED_DIR / "palau_truk_sites.json"))
+
+
+@register_adapter
+class SeedSipadanAdapter(SeedAtlasAdapter):
+    slug = "seed-sipadan"
+    name = "Sipadan / Mabul dive sites seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "sipadan_sites.json"))

@@ -11,15 +11,27 @@ from sqlalchemy import func, select, text
 from dive_atlas import __version__
 from dive_atlas.db import ensure_extensions, get_engine, session_scope
 from dive_atlas.ingest import get_adapter, list_adapters, load_all_adapters
-from dive_atlas.models import Base, DiveSite, Operator, Region
+from dive_atlas.models import (
+    Base,
+    DiveSite,
+    Magazine,
+    MagazineArticle,
+    MagazineIssue,
+    Operator,
+    Region,
+)
 from dive_atlas.services.ingest import ingest_batch
+from dive_atlas.services.magazines import ingest_magazine_crawl, sync_registry
 from dive_atlas.services.search import search_sites
+from dive_atlas.ingest.magazines import MagazineWebCrawler, load_magazine_registry
 
 app = typer.Typer(
     name="dive-atlas",
     help="Global dive site atlas — PostGIS knowledge graph (no website required).",
     no_args_is_help=True,
 )
+mag_app = typer.Typer(help="Dive magazine registry + issue/article harvest")
+app.add_typer(mag_app, name="magazines")
 console = Console()
 
 
@@ -152,6 +164,9 @@ def stats_cmd() -> None:
         sites = session.scalar(select(func.count()).select_from(DiveSite)) or 0
         regions = session.scalar(select(func.count()).select_from(Region)) or 0
         operators = session.scalar(select(func.count()).select_from(Operator)) or 0
+        magazines = session.scalar(select(func.count()).select_from(Magazine)) or 0
+        issues = session.scalar(select(func.count()).select_from(MagazineIssue)) or 0
+        articles = session.scalar(select(func.count()).select_from(MagazineArticle)) or 0
         by_type = session.execute(
             text(
                 """
@@ -162,13 +177,108 @@ def stats_cmd() -> None:
                 """
             )
         ).all()
-    console.print(f"Regions:   {regions}")
-    console.print(f"Sites:     {sites}")
-    console.print(f"Operators: {operators} (enrich later via GIS)")
+    console.print(f"Regions:    {regions}")
+    console.print(f"Sites:      {sites}")
+    console.print(f"Operators:  {operators} (enrich later via GIS)")
+    console.print(f"Magazines:  {magazines}")
+    console.print(f"Issues:     {issues}")
+    console.print(f"Articles:   {articles}")
     if by_type:
         console.print("\nBy type:")
         for t, n in by_type:
             console.print(f"  {t}: {n}")
+
+
+@mag_app.command("sync")
+def magazines_sync() -> None:
+    """Load dive_magazines.json registry into PostGIS."""
+    mags = load_magazine_registry()
+    with session_scope() as session:
+        n = sync_registry(session, mags)
+    console.print(f"[green]Synced[/green] {n} magazines from registry.")
+
+
+@mag_app.command("list")
+def magazines_list(
+    language: Optional[str] = typer.Option(None, "--lang", "-l"),
+    limit: int = typer.Option(100, "--limit", "-n"),
+) -> None:
+    """List registered magazines."""
+    mags = load_magazine_registry()
+    if language:
+        mags = [m for m in mags if language in (m.languages or [m.language])]
+    table = Table(title="Dive magazines")
+    table.add_column("Prio")
+    table.add_column("Slug")
+    table.add_column("Name")
+    table.add_column("Lang")
+    table.add_column("Countries")
+    table.add_column("Focus")
+    for m in mags[:limit]:
+        table.add_row(
+            str(m.priority),
+            m.slug,
+            m.name_local or m.name,
+            m.language,
+            ",".join(m.countries),
+            ",".join(m.focus[:4]),
+        )
+    console.print(table)
+    console.print(f"{len(mags)} magazine(s)")
+
+
+@mag_app.command("harvest")
+def magazines_harvest(
+    years: int = typer.Option(15, "--years", "-y", help="Lookback years for dated content"),
+    max_articles: int = typer.Option(80, "--max-articles", help="Max articles per magazine"),
+    priority_max: int = typer.Option(2, "--priority-max", help="Only magazines with priority <= N"),
+    slug: Optional[str] = typer.Option(None, "--slug", help="Harvest a single magazine slug"),
+    limit_magazines: Optional[int] = typer.Option(
+        None, "--limit-magazines", help="Cap number of magazines this run"
+    ),
+) -> None:
+    """Crawl magazine web archives and ingest issues/articles (multi-language).
+
+    Designed to scale to full issue archives: start with HTML web content,
+    then add per-publisher PDF/OCR adapters without changing the schema.
+    """
+    mags = load_magazine_registry()
+    if slug:
+        mags = [m for m in mags if m.slug == slug]
+    else:
+        mags = [m for m in mags if m.priority <= priority_max and m.base_url]
+    if limit_magazines is not None:
+        mags = mags[:limit_magazines]
+
+    with session_scope() as session:
+        sync_registry(session, load_magazine_registry())
+
+    total_articles = 0
+    total_issues = 0
+    for mag in mags:
+        console.print(
+            f"[cyan]Crawling[/cyan] {mag.slug} ({mag.language}) {mag.archive_url or mag.base_url}"
+        )
+        crawler = MagazineWebCrawler(
+            mag, max_articles=max_articles, lookback_years=years
+        )
+        try:
+            issues, articles = crawler.crawl()
+        except Exception as exc:  # noqa: BLE001
+            console.print(f"[red]Failed[/red] {mag.slug}: {exc}")
+            continue
+        with session_scope() as session:
+            stats = ingest_magazine_crawl(session, mag, issues, articles)
+        total_issues += stats["issues"]
+        total_articles += stats["articles"]
+        places = sum(1 for a in articles if a.place_mentions)
+        console.print(
+            f"  → {stats['issues']} issues, {stats['articles']} articles "
+            f"({places} with place mentions)"
+        )
+    console.print(
+        f"[bold]Magazine harvest done.[/bold] issues={total_issues} articles={total_articles}"
+    )
 
 
 @app.command("export-geojson")

@@ -93,13 +93,23 @@ See `dive_atlas.services.enrich.link_nearby_operators`. Pull shops from Google
 Places / OSM *after* the atlas has sites everywhere — don't let booking
 inventory define which reefs exist.
 
-## Roadmap (atlas-first)
+## Magazines (every region / language)
 
-1. Expand open-data ingest (Wikidata dive sites, OSM `sport=scuba_diving`, marine parks)
-2. Dedup / merge by fuzzy name + distance
-3. Magazine & travel-site adapters behind the same interface (ToS-aware)
-4. Seasonality models per region defaults
-5. Flight / fare APIs on top of seasonality + nearest airports
+Registry: `data/sources/dive_magazines.json` — JA/KO/ZH/ES/PT/DE/FR/IT/NL/SV/NO/PL/RU/TR/EN titles.
+
+Schema stores **magazines → issues → articles** with `place_mentions` mined for later site linking.
+The web crawler pulls HTML archives now; per-publisher PDF/OCR issue scrapers plug into the same tables.
+
+```bash
+dive-atlas init-db
+dive-atlas magazines sync
+dive-atlas magazines list --lang ja
+dive-atlas magazines harvest --years 15 --priority-max 2 --max-articles 100
+dive-atlas magazines harvest --slug x-ray-mag --years 20 --max-articles 500
+dive-atlas stats
+```
+
+Plan for “every issue for last X years”: registry sync → HTML archive harvest → publisher-specific PDF/Issuu/OCR adapters → NLP link `place_mentions` → `dive_sites`.
 
 ## Layout
 

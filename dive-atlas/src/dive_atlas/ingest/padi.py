@@ -53,6 +53,23 @@ def _country_from_travel_url(travel_url: str | None) -> str | None:
     return None
 
 
+def _as_depth_m(value: object) -> float | None:
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value.replace("m", "").strip())
+        except ValueError:
+            return None
+    if isinstance(value, dict):
+        for key in ("meters", "m", "max", "maximum", "value", "depth"):
+            if key in value:
+                return _as_depth_m(value[key])
+    return None
+
+
 @register_adapter
 class PadiTravelAdapter(CrawlerAdapter):
     """Full PADI Travel dive-site catalog (~5k) via public travel API."""
@@ -69,7 +86,7 @@ class PadiTravelAdapter(CrawlerAdapter):
         *,
         max_pages: int | None = None,
         min_tile_span: float = 0.5,
-        html_backfill_limit: int = 5000,
+        html_backfill_limit: int = 0,
     ) -> None:
         self.max_pages = max_pages
         self.min_tile_span = min_tile_span
@@ -111,8 +128,7 @@ class PadiTravelAdapter(CrawlerAdapter):
                         properties={"source": "padi-travel"},
                     )
             types = normalize_site_types(*(meta_row.get("types") or []))
-            depth = meta_row.get("maximumDepth")
-            depth_m = float(depth) if depth is not None else None
+            depth_m = _as_depth_m(meta_row.get("maximumDepth"))
             abs_url = (
                 f"https://travel.padi.com{travel_url}"
                 if travel_url.startswith("/")
@@ -189,8 +205,12 @@ class PadiTravelAdapter(CrawlerAdapter):
         for lat in range(-50, 60, 10):
             for lng in range(-180, 180, 10):
                 seeds.append(_Bounds(float(lat), float(lng), float(lat + 10), float(lng + 10)))
-        for bounds in seeds:
+        for i, bounds in enumerate(seeds, start=1):
             self._collect_pins(http, bounds, store)
+            if i % 36 == 0:
+                # ~one latitude band
+                print(f"  padi map tiles: band done ({i}/{len(seeds)}), pins={len(store.pins)} req={store.requests}", flush=True)
+        print(f"  padi map complete: pins={len(store.pins)} req={store.requests}", flush=True)
         return store.pins
 
     def _collect_pins(self, http: HttpFetcher, bounds: _Bounds, store: _PinStore) -> None:

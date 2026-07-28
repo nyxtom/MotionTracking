@@ -27,6 +27,7 @@ from dive_atlas.models import (
     Taxon,
 )
 from dive_atlas.services.dedupe import dedupe_sites
+from dive_atlas.services.quality import purge_non_diveable_wikidata_caves
 from dive_atlas.services.fauna import (
     export_id_cards,
     fauna_for_area,
@@ -343,6 +344,34 @@ def dedupe_cmd(
     with session_scope() as session:
         stats = dedupe_sites(session, max_distance_m=distance_m, dry_run=dry_run)
     console.print(f"[green]Dedupe[/green] {stats}")
+
+
+@app.command("purge-junk-caves")
+def purge_junk_caves_cmd(
+    dry_run: bool = typer.Option(
+        False, "--dry-run", help="List terrestrial Wikidata caves without deleting"
+    ),
+) -> None:
+    """Remove Wikidata-only terrestrial caves (not diveable).
+
+    Generic Wikidata cave (Q35509) ingest previously pulled archaeology and dry
+    show caves (e.g. Amud / Tabun). Keeps PADI/OSM/seed/dense caves and any
+    Wikidata sea cave / flooded / underwater-named caves.
+    """
+    with session_scope() as session:
+        stats = purge_non_diveable_wikidata_caves(session, dry_run=dry_run)
+    verb = "Would delete" if dry_run else "Deleted"
+    n = stats.candidates if dry_run else stats.deleted_sites
+    console.print(
+        f"[green]Purge junk caves[/green] candidates={stats.candidates} "
+        f"{verb.lower()}={n} "
+        f"source_records={stats.deleted_source_records} "
+        f"kept_diveable≈{stats.kept_diveable}"
+    )
+    if stats.sample_deleted:
+        console.print("Sample:")
+        for name in stats.sample_deleted:
+            console.print(f"  - {name}")
 
 
 @fauna_app.command("mine")

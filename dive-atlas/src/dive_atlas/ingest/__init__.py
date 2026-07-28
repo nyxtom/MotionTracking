@@ -1,3 +1,4 @@
+from dive_atlas.ingest import dense as dense  # noqa: F401
 from dive_atlas.ingest import osm as osm  # noqa: F401
 from dive_atlas.ingest import open_data_stub as open_data_stub  # noqa: F401
 from dive_atlas.ingest import padi as padi  # noqa: F401
@@ -26,4 +27,5 @@ __all__ = [
     "padi",
     "osm",
     "wikidata",
+    "dense",
 ]

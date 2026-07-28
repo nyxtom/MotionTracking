@@ -95,8 +95,10 @@ def ingest_cmd(
         "open-data-stub": 0,
         "wikidata": 1,
         "osm-overpass": 2,
-        "padi-travel": 3,
-        "seed-famous": 4,
+        "dense-hotspots": 3,
+        "padi-travel": 4,
+        "seed-raja-ampat": 5,
+        "seed-famous": 6,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
     total_sites = 0

@@ -1,0 +1,111 @@
+{
+  "hotspots": [
+    {
+      "slug": "raja-ampat",
+      "name": "Raja Ampat",
+      "country_code": "ID",
+      "locality": "Raja Ampat",
+      "south": -2.85,
+      "west": 129.35,
+      "north": 0.95,
+      "east": 132.05,
+      "subtiles": [
+        {"slug": "dampier-strait", "name": "Dampier Strait", "south": -0.75, "west": 130.40, "north": -0.35, "east": 130.90},
+        {"slug": "fam-penemu", "name": "Fam / Penemu", "south": -0.70, "west": 130.15, "north": -0.45, "east": 130.40},
+        {"slug": "misool", "name": "Misool", "south": -2.45, "west": 129.55, "north": -1.85, "east": 131.10},
+        {"slug": "wayag-kawe", "name": "Wayag / Kawe", "south": 0.05, "west": 130.00, "north": 0.55, "east": 130.55},
+        {"slug": "batanta", "name": "Batanta", "south": -0.95, "west": 130.40, "north": -0.70, "east": 130.85}
+      ]
+    },
+    {
+      "slug": "komodo",
+      "name": "Komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "south": -8.90,
+      "west": 119.20,
+      "north": -8.20,
+      "east": 119.90
+    },
+    {
+      "slug": "bunaken-lembeh",
+      "name": "Bunaken / Lembeh",
+      "country_code": "ID",
+      "locality": "Bunaken / Lembeh",
+      "south": 1.20,
+      "west": 124.40,
+      "north": 1.90,
+      "east": 125.40
+    },
+    {
+      "slug": "roatan-utila",
+      "name": "Roatán / Utila",
+      "country_code": "HN",
+      "locality": "Bay Islands",
+      "south": 15.95,
+      "west": -87.20,
+      "north": 16.55,
+      "east": -85.70
+    },
+    {
+      "slug": "cozumel",
+      "name": "Cozumel",
+      "country_code": "MX",
+      "locality": "Cozumel",
+      "south": 20.20,
+      "west": -87.10,
+      "north": 20.60,
+      "east": -86.70
+    },
+    {
+      "slug": "bonaire",
+      "name": "Bonaire",
+      "country_code": "BQ",
+      "locality": "Bonaire",
+      "south": 12.00,
+      "west": -68.45,
+      "north": 12.35,
+      "east": -68.15
+    },
+    {
+      "slug": "maldives",
+      "name": "Maldives",
+      "country_code": "MV",
+      "locality": "Maldives",
+      "south": -1.00,
+      "west": 72.60,
+      "north": 7.20,
+      "east": 73.80
+    },
+    {
+      "slug": "red-sea-egypt",
+      "name": "Egypt Red Sea",
+      "country_code": "EG",
+      "locality": "Red Sea",
+      "south": 23.50,
+      "west": 33.50,
+      "north": 28.50,
+      "east": 35.50
+    },
+    {
+      "slug": "palau",
+      "name": "Palau",
+      "country_code": "PW",
+      "locality": "Palau",
+      "south": 6.80,
+      "west": 134.00,
+      "north": 8.20,
+      "east": 134.80
+    },
+    {
+      "slug": "truk-chuuk",
+      "name": "Chuuk / Truk Lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "south": 7.20,
+      "west": 151.60,
+      "north": 7.60,
+      "east": 152.10
+    }
+  ]
+}

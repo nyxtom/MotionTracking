@@ -194,7 +194,12 @@ DIVE_AREAS: list[DiveArea] = [
     DiveArea("Izu / Osezaki", "JP", 34.70, 138.70, 35.20, 139.20),
     DiveArea("Jeju / Seogwipo", "KR", 33.10, 126.15, 33.55, 126.95, ("jeju", "seogwipo")),
     # Indonesia / SE Asia
-    DiveArea("Raja Ampat", "ID", -1.20, 130.00, 0.20, 131.20, ("raja ampat",)),
+    DiveArea("Raja Ampat", "ID", -2.85, 129.35, 0.95, 132.05, ("raja ampat", "raja-ampat")),
+    DiveArea("Dampier Strait", "ID", -0.75, 130.40, -0.35, 130.90, ("dampier", "kri", "mansuar", "arborek")),
+    DiveArea("Fam / Penemu", "ID", -0.70, 130.15, -0.45, 130.40, ("fam", "penemu", "melissa")),
+    DiveArea("Misool", "ID", -2.45, 129.55, -1.85, 131.10, ("misool", "boo", "fiabacet")),
+    DiveArea("Wayag / Kawe", "ID", 0.05, 130.00, 0.55, 130.55, ("wayag", "kawe")),
+    DiveArea("Batanta", "ID", -0.95, 130.40, -0.70, 130.85, ("batanta",)),
     DiveArea("Komodo", "ID", -8.90, 119.20, -8.20, 119.90),
     DiveArea("Bali", "ID", -8.90, 114.40, -8.05, 115.80),
     DiveArea("Nusa Penida", "ID", -8.85, 115.40, -8.65, 115.75),
@@ -323,6 +328,7 @@ _VAGUE_LOCALITIES = {
     "california",
     "maldives",
     "south_africa",
+    "raja ampat",  # allow sub-locality upgrade to Dampier/Misool/Wayag
 }
 
 

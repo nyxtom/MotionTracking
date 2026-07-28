@@ -8,6 +8,7 @@ from dive_atlas.schemas import DiveSiteIn, RegionIn, SeasonalityIn
 from dive_atlas.taxonomy import SourceKind
 
 SEED_PATH = Path(__file__).resolve().parents[3] / "data" / "seeds" / "famous_sites.json"
+SEED_DIR = Path(__file__).resolve().parents[3] / "data" / "seeds"
 
 
 @register_adapter
@@ -18,24 +19,44 @@ class SeedAtlasAdapter(CrawlerAdapter):
     name = "Famous dive sites seed corpus"
     kind = SourceKind.SEED
 
-    def __init__(self, path: Path | None = None) -> None:
-        self.path = path or SEED_PATH
+    def __init__(self, path: Path | None = None, glob: str = "famous_sites.json") -> None:
+        self.path = path
+        self.glob = glob
 
     def fetch(self) -> IngestBatch:
-        data = json.loads(self.path.read_text(encoding="utf-8"))
-        regions = [RegionIn.model_validate(r) for r in data.get("regions", [])]
+        paths = [self.path] if self.path else sorted(SEED_DIR.glob(self.glob))
+        if not paths:
+            paths = [SEED_PATH]
+        regions: dict[str, RegionIn] = {}
         sites: list[DiveSiteIn] = []
-        for raw in data.get("sites", []):
-            item = dict(raw)
-            seasons = [SeasonalityIn.model_validate(s) for s in item.pop("seasonality", [])]
-            site = DiveSiteIn.model_validate({**item, "seasonality": seasons})
-            site.raw = raw
-            sites.append(site)
+        for path in paths:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            for r in data.get("regions", []):
+                region = RegionIn.model_validate(r)
+                regions[region.slug] = region
+            for raw in data.get("sites", []):
+                item = dict(raw)
+                seasons = [SeasonalityIn.model_validate(s) for s in item.pop("seasonality", [])]
+                site = DiveSiteIn.model_validate({**item, "seasonality": seasons})
+                site.raw = raw
+                sites.append(site)
         return IngestBatch(
             source_slug=self.slug,
             source_name=self.name,
             source_kind=self.kind,
-            regions=regions,
+            regions=list(regions.values()),
             sites=sites,
-            meta={"path": str(self.path)},
+            meta={"paths": [str(p) for p in paths], "sites": len(sites)},
         )
+
+
+@register_adapter
+class SeedRajaAmpatAdapter(SeedAtlasAdapter):
+    """Raja Ampat curated boat-drop / liveaboard site seed."""
+
+    slug = "seed-raja-ampat"
+    name = "Raja Ampat dive sites seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "raja_ampat_sites.json"))

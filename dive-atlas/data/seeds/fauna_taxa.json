@@ -11,7 +11,10 @@
         "nudibranch",
         "nudi",
         "sea slug",
-        "sea slugs"
+        "sea slugs",
+        "seaslug",
+        "flatworms",
+        "flatworm"
       ],
       "description": "Soft-bodied marine gastropods; huge diversity on tropical reefs and temperate walls.",
       "id_tips": "Look for bright colors, rhinophores on the head, and gill tufts on the back. Often on sponges or hydroid.",
@@ -755,7 +758,8 @@
         "zebra (leopard) shark",
         "wobbygong shark",
         "wobbegong",
-        "bamboo shark"
+        "bamboo shark",
+        "wobbegongs"
       ],
       "description": "Spotted/banded bottom sharks resting on sand (taxonomy labels often mixed in field reports).",
       "id_tips": "Zebra/leopard (Stegostoma): ridges on body, long tail. Wobbegongs: ornate dermal lobes.",
@@ -777,7 +781,9 @@
       "aliases": [
         "seahorses",
         "sea horse",
-        "sea horses"
+        "sea horses",
+        "pygmy sea hose",
+        "pygmy seahorse"
       ],
       "description": "Iconic macro subjects clinging to seagrass, hydroid, and man-made debris.",
       "id_tips": "Scan carefully \u2014 cryptic. Males have brood pouch.",
@@ -1699,6 +1705,72 @@
       "id_tips": "Barbels at mouth, large scales, bronze color.",
       "habitat": "lake / quarry / river",
       "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "wobbegong",
+      "common_name": "Wobbegong",
+      "scientific_name": "Orectolobidae",
+      "taxon_group": "shark",
+      "rank": "family",
+      "aliases": [
+        "wobbegongs",
+        "wobbegong shark",
+        "wobbegong sharks",
+        "wobbygong shark"
+      ],
+      "description": "Carpet sharks common on Indo-Pacific reefs and under ledges in Raja Ampat/Misool.",
+      "id_tips": "Flattened ornate head with dermal lobes; rests on sand and under overhangs.",
+      "size_cm_typical": 150,
+      "habitat": "reef / ledge / sand",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "pygmy-seahorse",
+      "common_name": "Pygmy seahorse",
+      "scientific_name": "Hippocampus bargibanti",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "pygmy seahorses",
+        "bargibant",
+        "Denise's pygmy seahorse"
+      ],
+      "description": "Tiny seahorses on gorgonian sea fans \u2014 classic Misool / Raja Ampat macro.",
+      "id_tips": "Scan Muricella sea fans carefully; match color to the fan.",
+      "size_cm_typical": 2,
+      "habitat": "gorgonian / soft coral",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "oceanic-manta",
+      "common_name": "Oceanic manta",
+      "scientific_name": "Mobula birostris",
+      "taxon_group": "ray",
+      "rank": "species",
+      "aliases": [
+        "oceanic manta ray",
+        "giant oceanic manta"
+      ],
+      "description": "Larger of the two manta species; visits Misool Magic Mountain with reef mantas.",
+      "id_tips": "Larger disc, black/white ventral morphs, dorsal spot pattern differs from reef manta.",
+      "size_cm_typical": 500,
+      "habitat": "blue water / cleaning station",
+      "tags": [
+        "pelagic",
+        "charismatic",
         "card"
       ],
       "card_worthy": true

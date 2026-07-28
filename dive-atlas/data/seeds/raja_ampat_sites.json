@@ -1,0 +1,414 @@
+{
+  "regions": [
+    {
+      "slug": "raja-ampat",
+      "name": "Raja Ampat",
+      "kind": "archipelago",
+      "country_code": "ID",
+      "aliases": ["raja ampat", "four kings", "papua diving"],
+      "description": "World's richest reef biodiversity; Dampier Strait, Misool, Fam, Wayag."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "raja-cape-kri",
+      "name": "Cape Kri",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "World-record single-dive fish species count site on the tip of Kri Island.",
+      "depth_min_m": 5,
+      "depth_max_m": 30,
+      "lon": 130.6915,
+      "lat": -0.5563,
+      "tags": ["raja ampat", "dampier", "pelagic", "record"],
+      "confidence": 0.95,
+      "properties": {
+        "marine_life": [
+          "Barracuda", "Trevally", "Fusilier", "Reef fish", "Sharks",
+          "Sweetlips", "Snapper", "Wrasse", "Turtle"
+        ]
+      },
+      "seasonality": [
+        {"month": 10, "score": 0.9, "highlights": ["pelagics", "fish schools"]},
+        {"month": 11, "score": 0.9, "highlights": ["pelagics"]},
+        {"month": 3, "score": 0.85, "highlights": ["fish schools"]}
+      ]
+    },
+    {
+      "slug": "raja-blue-magic",
+      "name": "Blue Magic",
+      "site_types": ["reef", "pinnacle", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Offshore pinnacle with pelagics, schooling fish, and occasional mantas.",
+      "depth_min_m": 10,
+      "depth_max_m": 40,
+      "lon": 130.7368,
+      "lat": -0.5074,
+      "tags": ["raja ampat", "dampier", "pelagic", "manta"],
+      "confidence": 0.95,
+      "properties": {
+        "marine_life": ["Manta ray", "Barracuda", "Trevally", "Sharks", "Fusilier", "Tuna"]
+      }
+    },
+    {
+      "slug": "raja-manta-sandy",
+      "name": "Manta Sandy",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Shallow manta cleaning station on sand near Arborek.",
+      "depth_min_m": 5,
+      "depth_max_m": 18,
+      "lon": 130.5410,
+      "lat": -0.5809,
+      "tags": ["raja ampat", "manta", "cleaning station"],
+      "confidence": 0.95,
+      "properties": {
+        "marine_life": ["Manta ray", "Cleaner shrimp", "Reef fish", "Remora"]
+      },
+      "seasonality": [
+        {"month": 11, "score": 0.95, "highlights": ["mantas"]},
+        {"month": 12, "score": 0.95, "highlights": ["mantas"]},
+        {"month": 1, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 2, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 3, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 4, "score": 0.85, "highlights": ["mantas"]}
+      ]
+    },
+    {
+      "slug": "raja-manta-ridge",
+      "name": "Manta Ridge",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Current-swept ridge cleaning station for reef mantas.",
+      "depth_min_m": 5,
+      "depth_max_m": 25,
+      "lon": 130.5351,
+      "lat": -0.5580,
+      "tags": ["raja ampat", "manta"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Manta ray", "Trevally", "Fusilier"]}
+    },
+    {
+      "slug": "raja-sardine-reef",
+      "name": "Sardine Reef",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Fish-packed bommie — baitballs, sweetlips, sharks in current.",
+      "depth_min_m": 8,
+      "depth_max_m": 35,
+      "lon": 130.7151,
+      "lat": -0.5342,
+      "tags": ["raja ampat", "dampier", "pelagic"],
+      "confidence": 0.9,
+      "properties": {
+        "marine_life": ["Fusilier", "Sweetlips", "Barracuda", "Sharks", "Snapper", "Trevally"]
+      }
+    },
+    {
+      "slug": "raja-mikes-point",
+      "name": "Mike's Point",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.6736,
+      "lat": -0.5156,
+      "tags": ["raja ampat", "dampier"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Sharks", "Trevally", "Fusilier", "Soft Coral"]}
+    },
+    {
+      "slug": "raja-friwen-wall",
+      "name": "Friwen Wall",
+      "site_types": ["wall", "reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Soft-coral wall near Friwen with abundant reef life.",
+      "lon": 130.6975,
+      "lat": -0.4759,
+      "tags": ["raja ampat", "wall"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Soft Coral", "Nudibranch", "Reef fish", "Turtle"]}
+    },
+    {
+      "slug": "raja-the-passage",
+      "name": "The Passage",
+      "site_types": ["drift", "reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Mangrove channel drift between Gam and Waigeo — unique brackish reef.",
+      "depth_min_m": 2,
+      "depth_max_m": 18,
+      "lon": 130.605,
+      "lat": -0.448,
+      "tags": ["raja ampat", "mangrove", "drift"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Arches", "Soft Coral", "Nudibranch", "Juvenile fish"]}
+    },
+    {
+      "slug": "raja-melissas-garden",
+      "name": "Melissa's Garden",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Fam / Penemu",
+      "description": "Hard-coral garden among Fam islands — classic Raja postcard reef.",
+      "depth_min_m": 5,
+      "depth_max_m": 25,
+      "lon": 130.3152,
+      "lat": -0.5899,
+      "tags": ["raja ampat", "fam", "coral garden"],
+      "confidence": 0.95,
+      "properties": {
+        "marine_life": ["Hard Coral", "Reef fish", "Turtle", "Wrasse", "Angelfish", "Butterflyfish"]
+      }
+    },
+    {
+      "slug": "raja-arborek-jetty",
+      "name": "Arborek Jetty",
+      "site_types": ["reef", "pier"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "Village jetty night/day dive — schooling fish and easy conditions.",
+      "depth_min_m": 3,
+      "depth_max_m": 18,
+      "lon": 130.5186,
+      "lat": -0.5634,
+      "tags": ["raja ampat", "jetty", "night"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Schooling fish", "Nudibranch", "Crab", "Octopus"]}
+    },
+    {
+      "slug": "raja-boo-windows",
+      "name": "Boo Windows",
+      "site_types": ["reef", "cavern"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "description": "Iconic Misool swim-throughs / windows in limestone reef.",
+      "depth_min_m": 5,
+      "depth_max_m": 25,
+      "lon": 130.6111,
+      "lat": -2.2217,
+      "tags": ["raja ampat", "misool", "swim-through"],
+      "confidence": 0.95,
+      "properties": {
+        "marine_life": ["Soft Coral", "Wobbegong", "Reef fish", "Nudibranch", "Turtle"]
+      }
+    },
+    {
+      "slug": "raja-magic-mountain",
+      "name": "Magic Mountain",
+      "site_types": ["reef", "pinnacle"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "description": "Misool manta cleaning station — reef and oceanic mantas possible together.",
+      "depth_min_m": 8,
+      "depth_max_m": 30,
+      "lon": 130.55,
+      "lat": -2.15,
+      "tags": ["raja ampat", "misool", "manta", "cleaning station"],
+      "confidence": 0.85,
+      "properties": {
+        "marine_life": ["Manta ray", "Oceanic manta", "Reef fish", "Sharks", "Trevally"]
+      },
+      "seasonality": [
+        {"month": 10, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 11, "score": 0.95, "highlights": ["mantas"]},
+        {"month": 12, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 3, "score": 0.85, "highlights": ["mantas"]},
+        {"month": 4, "score": 0.85, "highlights": ["mantas"]}
+      ]
+    },
+    {
+      "slug": "raja-four-kings",
+      "name": "Four Kings",
+      "site_types": ["reef", "pinnacle"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "description": "Misool pinnacles with dense fish aggregations.",
+      "lon": 130.58,
+      "lat": -2.18,
+      "tags": ["raja ampat", "misool", "pelagic"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Fusilier", "Trevally", "Barracuda", "Sharks", "Soft Coral"]}
+    },
+    {
+      "slug": "raja-fiabacet",
+      "name": "Fiabacet",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "description": "Soft coral and pygmy seahorse territory in Misool.",
+      "lon": 130.5540,
+      "lat": -2.2205,
+      "tags": ["raja ampat", "misool", "macro"],
+      "confidence": 0.9,
+      "properties": {
+        "marine_life": ["Pygmy seahorse", "Soft Coral", "Nudibranch", "Frogfish", "Ghost Pipefish"]
+      }
+    },
+    {
+      "slug": "raja-andiamo",
+      "name": "Andiamo",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "lon": 130.8562,
+      "lat": -2.0992,
+      "tags": ["raja ampat", "misool"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Soft Coral", "Reef fish", "Wobbegong"]}
+    },
+    {
+      "slug": "raja-nudi-rock",
+      "name": "Nudi Rock",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Misool",
+      "lon": 130.5642,
+      "lat": -2.2191,
+      "tags": ["raja ampat", "misool", "macro"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Nudibranch", "Soft Coral", "Frogfish"]}
+    },
+    {
+      "slug": "raja-eagle-rock",
+      "name": "Eagle Rock",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Wayag / Kawe",
+      "description": "Northern Raja Ampat site near the iconic Wayag karsts.",
+      "lon": 130.15,
+      "lat": 0.25,
+      "tags": ["raja ampat", "wayag"],
+      "confidence": 0.7,
+      "properties": {"marine_life": ["Reef fish", "Sharks", "Turtle", "Soft Coral"]}
+    },
+    {
+      "slug": "raja-black-rock-wayag",
+      "name": "Black Rock",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Wayag / Kawe",
+      "description": "Wayag/Kawe site — mantas possible on good current days.",
+      "lon": 130.20,
+      "lat": 0.30,
+      "tags": ["raja ampat", "wayag", "manta"],
+      "confidence": 0.7,
+      "properties": {"marine_life": ["Manta ray", "Reef fish", "Sharks"]}
+    },
+    {
+      "slug": "raja-kawe",
+      "name": "Kawe",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Wayag / Kawe",
+      "lon": 130.25,
+      "lat": 0.15,
+      "tags": ["raja ampat", "wayag"],
+      "confidence": 0.7,
+      "properties": {"marine_life": ["Reef fish", "Soft Coral", "Turtle"]}
+    },
+    {
+      "slug": "raja-chicken-reef",
+      "name": "Chicken Reef",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.7025,
+      "lat": -0.5466,
+      "tags": ["raja ampat", "dampier"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Fusilier", "Sweetlips", "Sharks", "Trevally"]}
+    },
+    {
+      "slug": "raja-mioskon",
+      "name": "Mioskon",
+      "site_types": ["reef"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.7270,
+      "lat": -0.4974,
+      "tags": ["raja ampat", "dampier"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Wobbegong", "Reef fish", "Soft Coral"]}
+    },
+    {
+      "slug": "raja-citrus-ridge",
+      "name": "Citrus Ridge",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.4546,
+      "lat": -0.5100,
+      "tags": ["raja ampat", "dampier"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Soft Coral", "Fusilier", "Trevally", "Sharks"]}
+    },
+    {
+      "slug": "raja-mayhem",
+      "name": "Mayhem",
+      "site_types": ["reef", "drift"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.4466,
+      "lat": -0.5111,
+      "tags": ["raja ampat", "dampier", "pelagic"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Fusilier", "Trevally", "Barracuda", "Sharks"]}
+    },
+    {
+      "slug": "raja-yenbuba-jetty",
+      "name": "Yenbuba Jetty",
+      "site_types": ["reef", "pier"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "lon": 130.6581,
+      "lat": -0.5694,
+      "tags": ["raja ampat", "jetty"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Schooling fish", "Barracuda", "Turtle"]}
+    },
+    {
+      "slug": "raja-p47-wreck",
+      "name": "P47 Plane Wreck",
+      "site_types": ["wreck"],
+      "region_slug": "raja-ampat",
+      "country_code": "ID",
+      "locality": "Dampier Strait",
+      "description": "WWII P-47 wreck dive in Raja Ampat.",
+      "lon": 130.70,
+      "lat": -0.703,
+      "tags": ["raja ampat", "wreck", "wwii"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Reef fish", "Soft Coral"]}
+    }
+  ]
+}

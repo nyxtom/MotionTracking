@@ -27,7 +27,13 @@ from dive_atlas.models import (
     Taxon,
 )
 from dive_atlas.services.dedupe import dedupe_sites
-from dive_atlas.services.quality import purge_non_diveable_wikidata_caves
+from dive_atlas.services.quality import (
+    analyze_corpus,
+    demote_wikidata_reef_confidence,
+    purge_all_junk,
+    purge_junk_wikidata_wrecks,
+    purge_non_diveable_wikidata_caves,
+)
 from dive_atlas.services.fauna import (
     export_id_cards,
     fauna_for_area,
@@ -346,18 +352,78 @@ def dedupe_cmd(
     console.print(f"[green]Dedupe[/green] {stats}")
 
 
+@app.command("analyze-quality")
+def analyze_quality_cmd(
+    sample: int = typer.Option(6, "--sample", help="Sample names per bucket"),
+) -> None:
+    """Audit the atlas for non-diveable / misclassified sites."""
+    with session_scope() as session:
+        report = analyze_corpus(session, sample=sample)
+    console.print(f"[bold]Sites[/bold] {report.total_sites:,}")
+    console.print(
+        f"[bold]Issues[/bold] critical={report.critical_count:,}  warn={report.warn_count:,}"
+    )
+    table = Table(title="Quality buckets")
+    table.add_column("Sev")
+    table.add_column("Bucket")
+    table.add_column("Count", justify="right")
+    table.add_column("Action")
+    table.add_column("Samples")
+    for b in report.buckets:
+        color = {"critical": "red", "warn": "yellow", "info": "cyan"}.get(b.severity, "white")
+        table.add_row(
+            f"[{color}]{b.severity}[/{color}]",
+            b.key,
+            f"{b.count:,}",
+            b.action,
+            "; ".join(b.samples[:3]),
+        )
+    console.print(table)
+    console.print("\nBy source:")
+    for slug, n in report.by_source.items():
+        console.print(f"  {slug}: {n:,}")
+
+
+@app.command("purge-junk")
+def purge_junk_cmd(
+    dry_run: bool = typer.Option(False, "--dry-run", help="Report without deleting"),
+    demote_reefs: bool = typer.Option(
+        True, "--demote-reefs/--no-demote-reefs", help="Tag Wikidata-only reefs as geo_feature"
+    ),
+) -> None:
+    """Remove critical junk: terrestrial caves, Canmore wrecks, OSM shops, pools, Q-ids."""
+    with session_scope() as session:
+        results = purge_all_junk(session, dry_run=dry_run)
+        demoted = 0
+        if demote_reefs and not dry_run:
+            demoted = demote_wikidata_reef_confidence(session)
+        elif demote_reefs and dry_run:
+            demoted = -1  # signal dry
+    for key, stats in results.items():
+        n = stats.candidates if dry_run else stats.deleted_sites
+        extra = ""
+        if key == "operators" and stats.migrated_operators:
+            extra = f" migrated_ops={stats.migrated_operators}"
+        console.print(
+            f"[green]{key}[/green] candidates={stats.candidates} "
+            f"{'would_delete' if dry_run else 'deleted'}={n}{extra}"
+        )
+        for name in stats.sample_deleted[:5]:
+            console.print(f"    - {name}")
+    if demote_reefs:
+        console.print(
+            f"[green]wikidata reefs[/green] "
+            + ("would demote geo_feature" if dry_run else f"demoted={demoted}")
+        )
+
+
 @app.command("purge-junk-caves")
 def purge_junk_caves_cmd(
     dry_run: bool = typer.Option(
         False, "--dry-run", help="List terrestrial Wikidata caves without deleting"
     ),
 ) -> None:
-    """Remove Wikidata-only terrestrial caves (not diveable).
-
-    Generic Wikidata cave (Q35509) ingest previously pulled archaeology and dry
-    show caves (e.g. Amud / Tabun). Keeps PADI/OSM/seed/dense caves and any
-    Wikidata sea cave / flooded / underwater-named caves.
-    """
+    """Remove Wikidata-only terrestrial caves (not diveable)."""
     with session_scope() as session:
         stats = purge_non_diveable_wikidata_caves(session, dry_run=dry_run)
     verb = "Would delete" if dry_run else "Deleted"
@@ -372,6 +438,20 @@ def purge_junk_caves_cmd(
         console.print("Sample:")
         for name in stats.sample_deleted:
             console.print(f"  - {name}")
+
+
+@app.command("purge-junk-wrecks")
+def purge_junk_wrecks_cmd(
+    dry_run: bool = typer.Option(False, "--dry-run"),
+) -> None:
+    """Remove Wikidata Canmore / Unnamed / Unknown heritage wrecks."""
+    with session_scope() as session:
+        stats = purge_junk_wikidata_wrecks(session, dry_run=dry_run)
+    n = stats.candidates if dry_run else stats.deleted_sites
+    console.print(
+        f"[green]Purge junk wrecks[/green] candidates={stats.candidates} "
+        f"{'would_delete' if dry_run else 'deleted'}={n}"
+    )
 
 
 @fauna_app.command("mine")

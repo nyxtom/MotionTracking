@@ -55,7 +55,8 @@ dive-atlas harvest          # all live adapters
 dive-atlas ingest padi-travel
 dive-atlas ingest osm-overpass
 dive-atlas ingest wikidata
-dive-atlas purge-junk-caves   # drop terrestrial Wikidata caves (Amud, Tabun, …)
+dive-atlas analyze-quality          # corpus diveability audit
+dive-atlas purge-junk               # caves / Canmore wrecks / OSM shops / pools
 dive-atlas stats
 ```
 

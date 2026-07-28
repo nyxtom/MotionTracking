@@ -12,6 +12,10 @@ from pathlib import Path
 from slugify import slugify
 
 from dive_atlas.ingest.base import CrawlerAdapter, IngestBatch, register_adapter
+from dive_atlas.ingest.diveability import (
+    is_osm_non_scuba_diving_tags,
+    is_osm_operator_tags,
+)
 from dive_atlas.ingest.http_util import HttpFetcher
 from dive_atlas.ingest.osm import OVERPASS_ENDPOINTS, _float_or_none
 from dive_atlas.ingest.padi import MAP_CAP, _Bounds, _as_depth_m, _country_from_travel_url
@@ -41,12 +45,11 @@ def _scuba_query(south: float, west: float, north: float, east: float) -> str:
       way["scuba_diving"]({bbox});
       node["leisure"="diving"]({bbox});
       node["sport"="diving"]({bbox});
-      node["tourism"="dive_centre"]({bbox});
-      node["amenity"="dive_centre"]({bbox});
       node["scuba_diving:divespot"="yes"]({bbox});
     );
     out center tags;
     """
+    # dive_centre nodes are operators — excluded on purpose.
 
 
 def _tiles_for_hotspot(hot: dict) -> list[dict]:
@@ -217,6 +220,8 @@ class DenseHotspotsAdapter(CrawlerAdapter):
 
     def _osm_element_to_site(self, el: dict, *, hot: dict, tile_name: str) -> DiveSiteIn | None:
         tags = el.get("tags") or {}
+        if is_osm_operator_tags(tags) or is_osm_non_scuba_diving_tags(tags):
+            return None
         if el.get("type") == "way" and "center" in el:
             lat = float(el["center"]["lat"])
             lon = float(el["center"]["lon"])

@@ -5,7 +5,10 @@ import re
 from slugify import slugify
 
 from dive_atlas.ingest.base import CrawlerAdapter, IngestBatch, register_adapter
-from dive_atlas.ingest.diveability import is_diveable_wikidata_cave
+from dive_atlas.ingest.diveability import (
+    is_diveable_wikidata_cave,
+    is_junk_wikidata_wreck_name,
+)
 from dive_atlas.ingest.http_util import HttpFetcher
 from dive_atlas.ingest.type_map import normalize_site_types
 from dive_atlas.schemas import DiveSiteIn
@@ -113,6 +116,9 @@ class WikidataAdapter(CrawlerAdapter):
             blob = name.lower()
             if not any(k in blob for k in ("dive", "scuba", "reef", "wreck", "cenote")):
                 return None
+        if site_type == "wreck" and is_junk_wikidata_wreck_name(name):
+            # Skip Canmore / Unnamed / Unknown heritage catalog rows
+            return None
         if site_type == "cave" or require_diveable_cave:
             # Sea caves (Q1052919) pass via class; generic caves need name evidence.
             if not is_diveable_wikidata_cave(

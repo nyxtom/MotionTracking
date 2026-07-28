@@ -3,6 +3,10 @@ from __future__ import annotations
 from slugify import slugify
 
 from dive_atlas.ingest.base import CrawlerAdapter, IngestBatch, register_adapter
+from dive_atlas.ingest.diveability import (
+    is_osm_non_scuba_diving_tags,
+    is_osm_operator_tags,
+)
 from dive_atlas.ingest.http_util import HttpFetcher
 from dive_atlas.ingest.type_map import osm_tags_to_types
 from dive_atlas.schemas import DiveSiteIn
@@ -121,11 +125,11 @@ def _scuba_query(south: float, west: float, north: float, east: float) -> str:
       node["sport"="diving"]({bbox});
       node["historic"="wreck"]["scuba_diving"]({bbox});
       node["seamark:type"="wreck"]["scuba_diving"]({bbox});
-      node["tourism"="dive_centre"]({bbox});
-      node["amenity"="dive_centre"]({bbox});
+      node["scuba_diving:divespot"="yes"]({bbox});
     );
     out center tags;
     """
+    # Note: tourism/amenity=dive_centre intentionally omitted — those are operators.
 
 
 @register_adapter
@@ -199,6 +203,9 @@ class OsmOverpassAdapter(CrawlerAdapter):
 
     def _element_to_site(self, el: dict, *, region_hint: str) -> DiveSiteIn | None:
         tags = el.get("tags") or {}
+        # Dive shops / springboards are operators or non-scuba — not atlas sites.
+        if is_osm_operator_tags(tags) or is_osm_non_scuba_diving_tags(tags):
+            return None
         if el.get("type") == "way" and "center" in el:
             lat = el["center"]["lat"]
             lon = el["center"]["lon"]

@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from slugify import slugify
-from sqlalchemy import delete, select, text
+from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
 from dive_atlas.ingest.diveability import (
@@ -72,8 +72,9 @@ def _delete_sites(session: Session, sites: list[DiveSite], stats: PurgeStats, *,
             stats.sample_deleted.append(site.name)
         if dry_run:
             continue
-        res = session.execute(delete(SourceRecord).where(SourceRecord.site_id == site.id))
-        stats.deleted_source_records += res.rowcount or 0
+        # Cascade delete-orphan on DiveSite.source_records removes provenance.
+        n_recs = len(site.source_records or [])
+        stats.deleted_source_records += n_recs
         session.delete(site)
         stats.deleted_sites += 1
     if not dry_run:
@@ -527,8 +528,8 @@ def migrate_osm_operators(
             )
             session.add(op)
             stats.migrated_operators += 1
-        res = session.execute(delete(SourceRecord).where(SourceRecord.site_id == site.id))
-        stats.deleted_source_records += res.rowcount or 0
+        n_recs = len(site.source_records or [])
+        stats.deleted_source_records += n_recs
         session.delete(site)
         stats.deleted_sites += 1
     if not dry_run:

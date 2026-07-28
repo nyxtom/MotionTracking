@@ -60,3 +60,23 @@ class SeedRajaAmpatAdapter(SeedAtlasAdapter):
 
     def __init__(self, path: Path | None = None) -> None:
         super().__init__(path=path or (SEED_DIR / "raja_ampat_sites.json"))
+
+
+@register_adapter
+class SeedKomodoAdapter(SeedAtlasAdapter):
+    slug = "seed-komodo"
+    name = "Komodo dive sites seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "komodo_sites.json"))
+
+
+@register_adapter
+class SeedPalauTrukAdapter(SeedAtlasAdapter):
+    slug = "seed-palau-truk"
+    name = "Palau + Truk Lagoon dive sites seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "palau_truk_sites.json"))

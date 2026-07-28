@@ -98,6 +98,8 @@ def ingest_cmd(
         "dense-hotspots": 3,
         "padi-travel": 4,
         "seed-raja-ampat": 5,
+        "seed-komodo": 5,
+        "seed-palau-truk": 5,
         "seed-famous": 6,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
@@ -177,6 +179,33 @@ def search_cmd(
         )
     console.print(table)
     console.print(f"{len(results)} result(s)")
+
+
+@app.command("dense")
+def dense_cmd(
+    hotspot: Optional[str] = typer.Option(
+        None, "--hotspot", "-h", help="Comma-separated hotspot slugs (default: all)"
+    ),
+    skip: Optional[str] = typer.Option(
+        None, "--skip", help="Comma-separated hotspot slugs to skip"
+    ),
+    include_padi: bool = typer.Option(True, "--padi/--no-padi"),
+) -> None:
+    """Fine-tile crawl of dive hotspots (OSM + optional PADI map pins)."""
+    load_all_adapters()
+    kwargs: dict = {"include_padi": include_padi}
+    if hotspot:
+        kwargs["hotspot"] = hotspot
+    if skip:
+        kwargs["skip"] = [s.strip() for s in skip.split(",") if s.strip()]
+    console.print(f"[cyan]Dense crawl[/cyan] {kwargs or 'all hotspots'}…")
+    batch = get_adapter("dense-hotspots", **kwargs).fetch()
+    with session_scope() as session:
+        stats = ingest_batch(session, batch)
+    console.print(
+        f"[green]Ingested[/green] {stats['regions']} regions, {stats['sites']} sites "
+        f"meta={batch.meta}"
+    )
 
 
 @app.command("enrich-geo")

@@ -318,8 +318,14 @@ REGION_CHILDREN: dict[str, tuple[str, ...]] = {
         "kawe",
         "batanta",
     ),
+    "komodo": ("komodo", "rinca", "padar", "banta"),
+    "palau": ("palau", "palau rock islands", "rock islands", "peleliu"),
+    "chuuk / truk lagoon": ("chuuk / truk lagoon", "chuuk", "truk", "truk lagoon"),
     "bay islands": ("bay islands", "roatán", "roatan", "utila", "guanaja"),
     "florida keys": ("florida keys", "key largo", "key west"),
+    "maldives": ("maldives", "ari atoll", "baa atoll", "north malé atoll", "male atoll"),
+    "egypt red sea": ("red sea", "sharm / ras mohammed", "hurghada", "dahab", "brothers / daedalus"),
+    "bunaken / lembeh": ("bunaken / lembeh", "bunaken", "lembeh"),
 }
 
 

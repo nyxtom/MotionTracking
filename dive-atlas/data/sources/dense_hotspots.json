@@ -22,10 +22,15 @@
       "name": "Komodo",
       "country_code": "ID",
       "locality": "Komodo",
-      "south": -8.90,
-      "west": 119.20,
-      "north": -8.20,
-      "east": 119.90
+      "south": -8.95,
+      "west": 119.15,
+      "north": -8.15,
+      "east": 119.95,
+      "subtiles": [
+        {"slug": "komodo-central", "name": "Komodo Central", "south": -8.65, "west": 119.35, "north": -8.40, "east": 119.65},
+        {"slug": "rinca-padar", "name": "Rinca / Padar", "south": -8.75, "west": 119.50, "north": -8.45, "east": 119.80},
+        {"slug": "banta-north", "name": "Banta / North", "south": -8.45, "west": 119.20, "north": -8.20, "east": 119.50}
+      ]
     },
     {
       "slug": "bunaken-lembeh",
@@ -35,7 +40,11 @@
       "south": 1.20,
       "west": 124.40,
       "north": 1.90,
-      "east": 125.40
+      "east": 125.40,
+      "subtiles": [
+        {"slug": "bunaken", "name": "Bunaken", "south": 1.40, "west": 124.60, "north": 1.80, "east": 125.00},
+        {"slug": "lembeh", "name": "Lembeh", "south": 1.40, "west": 125.15, "north": 1.55, "east": 125.30}
+      ]
     },
     {
       "slug": "roatan-utila",
@@ -45,7 +54,12 @@
       "south": 15.95,
       "west": -87.20,
       "north": 16.55,
-      "east": -85.70
+      "east": -85.70,
+      "subtiles": [
+        {"slug": "roatan", "name": "Roatán", "south": 16.20, "west": -86.80, "north": 16.45, "east": -86.35},
+        {"slug": "utila", "name": "Utila", "south": 16.05, "west": -87.05, "north": 16.15, "east": -86.85},
+        {"slug": "guanaja", "name": "Guanaja", "south": 16.40, "west": -86.00, "north": 16.55, "east": -85.80}
+      ]
     },
     {
       "slug": "cozumel",
@@ -56,6 +70,16 @@
       "west": -87.10,
       "north": 20.60,
       "east": -86.70
+    },
+    {
+      "slug": "tulum-cenotes",
+      "name": "Tulum Cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "south": 20.05,
+      "west": -87.60,
+      "north": 20.50,
+      "east": -87.25
     },
     {
       "slug": "bonaire",
@@ -75,7 +99,12 @@
       "south": -1.00,
       "west": 72.60,
       "north": 7.20,
-      "east": 73.80
+      "east": 73.80,
+      "subtiles": [
+        {"slug": "ari-atoll", "name": "Ari Atoll", "south": 3.20, "west": 72.60, "north": 4.20, "east": 73.00},
+        {"slug": "baa-atoll", "name": "Baa Atoll", "south": 4.80, "west": 72.70, "north": 5.40, "east": 73.20},
+        {"slug": "north-male", "name": "North Malé Atoll", "south": 4.00, "west": 73.30, "north": 4.60, "east": 73.70}
+      ]
     },
     {
       "slug": "red-sea-egypt",
@@ -85,7 +114,13 @@
       "south": 23.50,
       "west": 33.50,
       "north": 28.50,
-      "east": 35.50
+      "east": 35.50,
+      "subtiles": [
+        {"slug": "sharm", "name": "Sharm / Ras Mohammed", "south": 27.60, "west": 34.00, "north": 28.10, "east": 34.50},
+        {"slug": "hurghada", "name": "Hurghada", "south": 26.80, "west": 33.70, "north": 27.60, "east": 34.20},
+        {"slug": "dahab", "name": "Dahab", "south": 28.40, "west": 34.45, "north": 28.55, "east": 34.60},
+        {"slug": "brothers", "name": "Brothers / Daedalus", "south": 24.80, "west": 34.80, "north": 26.50, "east": 35.20}
+      ]
     },
     {
       "slug": "palau",
@@ -95,7 +130,11 @@
       "south": 6.80,
       "west": 134.00,
       "north": 8.20,
-      "east": 134.80
+      "east": 134.80,
+      "subtiles": [
+        {"slug": "rock-islands", "name": "Rock Islands", "south": 7.00, "west": 134.20, "north": 7.40, "east": 134.55},
+        {"slug": "peleliu", "name": "Peleliu", "south": 6.95, "west": 134.20, "north": 7.10, "east": 134.30}
+      ]
     },
     {
       "slug": "truk-chuuk",
@@ -106,6 +145,117 @@
       "west": 151.60,
       "north": 7.60,
       "east": 152.10
+    },
+    {
+      "slug": "galapagos",
+      "name": "Galápagos",
+      "country_code": "EC",
+      "locality": "Galápagos",
+      "south": -1.50,
+      "west": -92.10,
+      "north": 1.50,
+      "east": -89.00,
+      "subtiles": [
+        {"slug": "darwin-wolf", "name": "Darwin / Wolf", "south": 1.30, "west": -92.05, "north": 1.70, "east": -91.95},
+        {"slug": "isabela-fernandina", "name": "Isabela / Fernandina", "south": -1.00, "west": -91.70, "north": 0.20, "east": -90.80}
+      ]
+    },
+    {
+      "slug": "sipadan-mabul",
+      "name": "Sipadan / Mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "south": 4.00,
+      "west": 118.45,
+      "north": 4.35,
+      "east": 118.85
+    },
+    {
+      "slug": "coron-busuanga",
+      "name": "Coron / Busuanga",
+      "country_code": "PH",
+      "locality": "Coron / Busuanga",
+      "south": 11.80,
+      "west": 119.90,
+      "north": 12.25,
+      "east": 120.45
+    },
+    {
+      "slug": "scapa-flow",
+      "name": "Scapa Flow",
+      "country_code": "GB",
+      "locality": "Scapa Flow",
+      "south": 58.80,
+      "west": -3.30,
+      "north": 58.98,
+      "east": -2.70
+    },
+    {
+      "slug": "gbr-cairns",
+      "name": "Great Barrier Reef - Cairns",
+      "country_code": "AU",
+      "locality": "Great Barrier Reef - Cairns",
+      "south": -17.20,
+      "west": 145.80,
+      "north": -16.00,
+      "east": 146.80
+    },
+    {
+      "slug": "similan-richelieu",
+      "name": "Similan / Richelieu",
+      "country_code": "TH",
+      "locality": "Similan / Richelieu",
+      "south": 8.40,
+      "west": 97.50,
+      "north": 9.50,
+      "east": 98.10
+    },
+    {
+      "slug": "jeju-seogwipo",
+      "name": "Jeju / Seogwipo",
+      "country_code": "KR",
+      "locality": "Jeju / Seogwipo",
+      "south": 33.10,
+      "west": 126.15,
+      "north": 33.55,
+      "east": 126.95
+    },
+    {
+      "slug": "okinawa-kerama",
+      "name": "Okinawa / Kerama",
+      "country_code": "JP",
+      "locality": "Okinawa",
+      "south": 26.05,
+      "west": 127.15,
+      "north": 26.90,
+      "east": 128.35,
+      "subtiles": [
+        {"slug": "kerama", "name": "Kerama", "south": 26.10, "west": 127.15, "north": 26.30, "east": 127.45},
+        {"slug": "onna-naha", "name": "Okinawa Main", "south": 26.20, "west": 127.60, "north": 26.70, "east": 128.10}
+      ]
+    },
+    {
+      "slug": "florida-keys",
+      "name": "Florida Keys",
+      "country_code": "US",
+      "locality": "Florida Keys",
+      "south": 24.40,
+      "west": -82.00,
+      "north": 25.25,
+      "east": -80.20,
+      "subtiles": [
+        {"slug": "key-largo", "name": "Key Largo", "south": 24.95, "west": -80.55, "north": 25.25, "east": -80.20}
+      ]
+    },
+    {
+      "slug": "n-florida-springs",
+      "name": "North Florida Springs",
+      "country_code": "US",
+      "locality": "North Florida Springs",
+      "south": 29.50,
+      "west": -84.00,
+      "north": 30.50,
+      "east": -82.00
     }
   ]
 }

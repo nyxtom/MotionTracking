@@ -1,0 +1,179 @@
+{
+  "regions": [
+    {
+      "slug": "palau",
+      "name": "Palau",
+      "kind": "archipelago",
+      "country_code": "PW",
+      "aliases": ["belau", "rock islands"],
+      "description": "Micronesian walls, blue corners, jellyfish lake, WWII wrecks."
+    },
+    {
+      "slug": "truk-lagoon",
+      "name": "Chuuk / Truk Lagoon",
+      "kind": "lagoon",
+      "country_code": "FM",
+      "aliases": ["truk", "chuuk", "truk lagoon"],
+      "description": "World's densest WWII wreck diving lagoon."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "palau-blue-corner",
+      "name": "Blue Corner",
+      "site_types": ["reef", "wall", "drift"],
+      "region_slug": "palau",
+      "country_code": "PW",
+      "locality": "Palau Rock Islands",
+      "description": "World-famous hook-in wall corner — sharks and schooling fish in current.",
+      "depth_min_m": 5,
+      "depth_max_m": 40,
+      "lon": 134.35,
+      "lat": 7.15,
+      "tags": ["palau", "pelagic", "shark", "wall"],
+      "confidence": 0.9,
+      "properties": {
+        "marine_life": [
+          "Grey reef shark", "Whitetip reef shark", "Napolean fish",
+          "Trevally", "Fusilier", "Turtle", "Barracuda"
+        ]
+      }
+    },
+    {
+      "slug": "palau-blue-holes",
+      "name": "Blue Holes",
+      "site_types": ["reef", "cavern", "wall"],
+      "region_slug": "palau",
+      "country_code": "PW",
+      "locality": "Palau Rock Islands",
+      "lon": 134.36,
+      "lat": 7.14,
+      "tags": ["palau", "cavern"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Soft Coral", "Reef fish", "Sharks"]}
+    },
+    {
+      "slug": "palau-german-channel",
+      "name": "German Channel",
+      "site_types": ["reef", "drift"],
+      "region_slug": "palau",
+      "country_code": "PW",
+      "locality": "Palau Rock Islands",
+      "description": "Manta cleaning station channel.",
+      "lon": 134.38,
+      "lat": 7.08,
+      "tags": ["palau", "manta"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Manta ray", "Reef fish", "Turtle"]},
+      "seasonality": [
+        {"month": 12, "score": 0.85, "highlights": ["mantas"]},
+        {"month": 1, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 2, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 3, "score": 0.85, "highlights": ["mantas"]}
+      ]
+    },
+    {
+      "slug": "palau-chandelier-cave",
+      "name": "Chandelier Cave",
+      "site_types": ["cave", "cavern"],
+      "region_slug": "palau",
+      "country_code": "PW",
+      "locality": "Palau",
+      "description": "Limestone cave with air chambers and stalactites.",
+      "lon": 134.45,
+      "lat": 7.35,
+      "tags": ["palau", "cave"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Glass fish", "Reef fish"]}
+    },
+    {
+      "slug": "palau-peleliu-express",
+      "name": "Peleliu Express",
+      "site_types": ["drift", "reef", "wall"],
+      "region_slug": "palau",
+      "country_code": "PW",
+      "locality": "Peleliu",
+      "lon": 134.25,
+      "lat": 7.00,
+      "tags": ["palau", "drift", "pelagic"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Sharks", "Trevally", "Turtle", "Barracuda"]}
+    },
+    {
+      "slug": "truk-fujikawa-maru",
+      "name": "Fujikawa Maru",
+      "site_types": ["wreck"],
+      "region_slug": "truk-lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "description": "Signature Truk wreck — aircraft holds, soft coral gardens.",
+      "depth_min_m": 5,
+      "depth_max_m": 34,
+      "lon": 151.88,
+      "lat": 7.35,
+      "tags": ["truk", "chuuk", "wreck", "wwii"],
+      "confidence": 0.95,
+      "properties": {"marine_life": ["Soft Coral", "Lionfish", "Reef fish", "Anemone"]}
+    },
+    {
+      "slug": "truk-shinkoku-maru",
+      "name": "Shinkoku Maru",
+      "site_types": ["wreck"],
+      "region_slug": "truk-lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "description": "Engine-room and medical-bay wreck covered in soft coral.",
+      "depth_min_m": 12,
+      "depth_max_m": 40,
+      "lon": 151.85,
+      "lat": 7.38,
+      "tags": ["truk", "chuuk", "wreck", "wwii"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Soft Coral", "Anemone", "Reef fish", "Nudibranch"]}
+    },
+    {
+      "slug": "truk-san-francisco-maru",
+      "name": "San Francisco Maru",
+      "site_types": ["wreck"],
+      "region_slug": "truk-lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "description": "Deep tanks-and-mines wreck — advanced/tech.",
+      "depth_min_m": 45,
+      "depth_max_m": 65,
+      "lon": 151.90,
+      "lat": 7.32,
+      "tags": ["truk", "chuuk", "wreck", "wwii", "tech"],
+      "confidence": 0.9,
+      "skill_level": "technical",
+      "properties": {"marine_life": ["Soft Coral", "Reef fish"]}
+    },
+    {
+      "slug": "truk-nippon-maru",
+      "name": "Nippo Maru",
+      "site_types": ["wreck"],
+      "region_slug": "truk-lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "lon": 151.87,
+      "lat": 7.36,
+      "tags": ["truk", "chuuk", "wreck", "wwii"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Soft Coral", "Lionfish", "Reef fish"]}
+    },
+    {
+      "slug": "truk-heian-maru",
+      "name": "Heian Maru",
+      "site_types": ["wreck"],
+      "region_slug": "truk-lagoon",
+      "country_code": "FM",
+      "locality": "Chuuk / Truk Lagoon",
+      "description": "Largest wreck in the lagoon — submarine tender.",
+      "lon": 151.86,
+      "lat": 7.40,
+      "tags": ["truk", "chuuk", "wreck", "wwii"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Soft Coral", "Reef fish", "Barracuda"]}
+    }
+  ]
+}

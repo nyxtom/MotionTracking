@@ -21,6 +21,8 @@ from dive_atlas.services.geo_enrich import COUNTRY_SLUGS, area_for_point
 from dive_atlas.taxonomy import SourceKind, WaterType
 
 HOTSPOTS_PATH = Path(__file__).resolve().parents[3] / "data" / "sources" / "dense_hotspots.json"
+PADI_LIST = "https://travel.padi.com/api/v2/travel/dive-guide/world/all/dive-sites/"
+PADI_MAP = "https://travel.padi.com/api/v2/travel/dsl/dive-sites/map/"
 
 
 def _load_hotspots(path: Path | None = None) -> list[dict]:
@@ -47,6 +49,35 @@ def _scuba_query(south: float, west: float, north: float, east: float) -> str:
     """
 
 
+def _tiles_for_hotspot(hot: dict) -> list[dict]:
+    tiles = list(hot.get("subtiles") or [])
+    tiles.append(
+        {
+            "slug": f"{hot['slug']}-full",
+            "name": hot["name"],
+            "south": hot["south"],
+            "west": hot["west"],
+            "north": hot["north"],
+            "east": hot["east"],
+        }
+    )
+    # Dedupe identical bboxes
+    seen: set[tuple[float, float, float, float]] = set()
+    out: list[dict] = []
+    for t in tiles:
+        key = (
+            round(float(t["south"]), 4),
+            round(float(t["west"]), 4),
+            round(float(t["north"]), 4),
+            round(float(t["east"]), 4),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(t)
+    return out
+
+
 @register_adapter
 class DenseHotspotsAdapter(CrawlerAdapter):
     """Fine-tile OSM (+ PADI map pins) crawl for named dive hotspots."""
@@ -59,15 +90,24 @@ class DenseHotspotsAdapter(CrawlerAdapter):
         self,
         *,
         hotspot: str | None = None,
+        skip: list[str] | None = None,
         include_padi: bool = True,
         path: Path | None = None,
     ) -> None:
         all_hots = _load_hotspots(path)
         if hotspot:
-            all_hots = [h for h in all_hots if h["slug"] == hotspot or h["name"].lower() == hotspot.lower()]
+            wanted = {h.strip().lower() for h in hotspot.split(",") if h.strip()}
+            all_hots = [
+                h
+                for h in all_hots
+                if h["slug"] in wanted or h["name"].lower() in wanted
+            ]
             if not all_hots:
                 known = ", ".join(h["slug"] for h in _load_hotspots(path))
                 raise ValueError(f"Unknown hotspot {hotspot!r}. Known: {known}")
+        if skip:
+            skip_set = {s.strip().lower() for s in skip}
+            all_hots = [h for h in all_hots if h["slug"] not in skip_set]
         self.hotspots = all_hots
         self.include_padi = include_padi
 
@@ -78,7 +118,8 @@ class DenseHotspotsAdapter(CrawlerAdapter):
         errors: list[str] = []
         osm_n = padi_n = 0
 
-        with HttpFetcher(min_interval_s=1.0, timeout=100.0) as http:
+        with HttpFetcher(min_interval_s=0.9, timeout=100.0) as http:
+            # --- OSM fine tiles ---
             for hot in self.hotspots:
                 region_slug = f"hotspot-{hot['slug']}"
                 regions[region_slug] = RegionIn(
@@ -89,31 +130,7 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                     aliases=[hot["name"], hot["slug"].replace("-", " ")],
                     properties={"source": "dense-hotspots"},
                 )
-                tiles = list(hot.get("subtiles") or [])
-                if not tiles:
-                    tiles = [
-                        {
-                            "slug": hot["slug"],
-                            "name": hot["name"],
-                            "south": hot["south"],
-                            "west": hot["west"],
-                            "north": hot["north"],
-                            "east": hot["east"],
-                        }
-                    ]
-                # Always also crawl the full outer bbox once
-                tiles.append(
-                    {
-                        "slug": f"{hot['slug']}-full",
-                        "name": hot["name"],
-                        "south": hot["south"],
-                        "west": hot["west"],
-                        "north": hot["north"],
-                        "east": hot["east"],
-                    }
-                )
-
-                for tile in tiles:
+                for tile in _tiles_for_hotspot(hot):
                     try:
                         data = self._overpass(
                             http,
@@ -123,10 +140,13 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                             float(tile["east"]),
                         )
                     except Exception as exc:  # noqa: BLE001
-                        errors.append(f"osm:{hot['slug']}/{tile['slug']}: {exc}")
+                        errors.append(f"osm:{hot['slug']}/{tile.get('slug')}: {exc}")
                         continue
+                    added = 0
                     for el in data.get("elements") or []:
-                        site = self._osm_element_to_site(el, hot=hot, tile_name=tile["name"])
+                        site = self._osm_element_to_site(
+                            el, hot=hot, tile_name=tile.get("name") or hot["name"]
+                        )
                         if site is None:
                             continue
                         key = site.external_id or site.slug or site.name
@@ -136,17 +156,17 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                         site.region_slug = region_slug
                         sites.append(site)
                         osm_n += 1
+                        added += 1
                     print(
-                        f"  dense OSM {hot['slug']}/{tile['slug']}: sites_total={len(sites)}",
+                        f"  dense OSM {hot['slug']}/{tile.get('slug')}: +{added} "
+                        f"(total={len(sites)})",
                         flush=True,
                     )
 
-                if self.include_padi:
-                    try:
-                        padi_sites = self._padi_pins_for_hotspot(http, hot, region_slug)
-                    except Exception as exc:  # noqa: BLE001
-                        errors.append(f"padi:{hot['slug']}: {exc}")
-                        padi_sites = []
+            # --- PADI map pins (one world-list join) ---
+            if self.include_padi:
+                try:
+                    padi_sites = self._padi_all_hotspots(http, regions)
                     for site in padi_sites:
                         key = site.external_id or site.slug or site.name
                         if key in seen:
@@ -154,10 +174,9 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                         seen.add(key)
                         sites.append(site)
                         padi_n += 1
-                    print(
-                        f"  dense PADI {hot['slug']}: +{len(padi_sites)} pins → sites_total={len(sites)}",
-                        flush=True,
-                    )
+                    print(f"  dense PADI joined: +{padi_n} (total={len(sites)})", flush=True)
+                except Exception as exc:  # noqa: BLE001
+                    errors.append(f"padi: {exc}")
 
         return IngestBatch(
             source_slug=self.slug,
@@ -217,16 +236,12 @@ class DenseHotspotsAdapter(CrawlerAdapter):
             or hot.get("locality")
             or hot["name"]
         )
-        country = (
-            (area.country_code if area else None)
-            or hot.get("country_code")
-        )
+        country = (area.country_code if area else None) or hot.get("country_code")
         return DiveSiteIn(
             slug=f"osm-{slugify(osm_id)}-{slugify(name)}"[:240],
             name=name,
             site_types=types,
             water_type=WaterType.SALT.value,
-            region_slug=None,
             country_code=country,
             locality=locality,
             description=tags.get("description") or tags.get("note"),
@@ -245,44 +260,48 @@ class DenseHotspotsAdapter(CrawlerAdapter):
             raw={"type": el.get("type"), "id": el.get("id"), "tags": tags},
         )
 
-    def _padi_pins_for_hotspot(
-        self, http: HttpFetcher, hot: dict, region_slug: str
+    def _padi_all_hotspots(
+        self, http: HttpFetcher, regions: dict[str, RegionIn]
     ) -> list[DiveSiteIn]:
-        """Adaptive PADI map tiles + list meta join for a hotspot bbox."""
-        # Temporarily tighter throttle for PADI JSON
         old = http._min_interval
-        http._min_interval = 0.12
-        store: dict[int, dict] = {}
-        seeds = [
-            _Bounds(
-                float(hot["south"]),
-                float(hot["west"]),
-                float(hot["north"]),
-                float(hot["east"]),
-            )
-        ]
-        # Prefer subtile seeds when present for denser splits
-        for tile in hot.get("subtiles") or []:
-            seeds.append(
+        http._min_interval = 0.1
+        # pin_id -> (pin, hotspot)
+        owned: dict[int, tuple[dict, dict]] = {}
+        for hot in self.hotspots:
+            store: dict[int, dict] = {}
+            seeds = [
                 _Bounds(
-                    float(tile["south"]),
-                    float(tile["west"]),
-                    float(tile["north"]),
-                    float(tile["east"]),
+                    float(hot["south"]),
+                    float(hot["west"]),
+                    float(hot["north"]),
+                    float(hot["east"]),
                 )
+            ]
+            for tile in hot.get("subtiles") or []:
+                seeds.append(
+                    _Bounds(
+                        float(tile["south"]),
+                        float(tile["west"]),
+                        float(tile["north"]),
+                        float(tile["east"]),
+                    )
+                )
+            for bounds in seeds:
+                self._collect_padi(http, bounds, store, min_span=0.2)
+            for sid, pin in store.items():
+                if sid not in owned:
+                    owned[sid] = (pin, hot)
+            print(
+                f"  dense PADI map {hot['slug']}: pins={len(store)} "
+                f"(unique_all={len(owned)})",
+                flush=True,
             )
-        for bounds in seeds:
-            self._collect_padi(http, bounds, store, min_span=0.15)
 
-        # Build id→meta from world list (reuse pages if already warm; still OK)
+        wanted = set(owned)
         meta: dict[int, dict] = {}
         page = 1
-        wanted = set(store)
         while wanted - meta.keys():
-            data = http.get_json(
-                "https://travel.padi.com/api/v2/travel/dive-guide/world/all/dive-sites/",
-                params={"page": page, "page_size": 100},
-            )
+            data = http.get_json(PADI_LIST, params={"page": page, "page_size": 100})
             for row in data.get("results") or []:
                 sid = int(row["id"])
                 if sid in wanted:
@@ -292,9 +311,15 @@ class DenseHotspotsAdapter(CrawlerAdapter):
             page += 1
             if page > 80:
                 break
+            if page % 15 == 0:
+                print(
+                    f"  dense PADI list page={page} matched={len(meta)}/{len(wanted)}",
+                    flush=True,
+                )
+        print(f"  dense PADI meta matched {len(meta)}/{len(wanted)}", flush=True)
 
         sites: list[DiveSiteIn] = []
-        for sid, pin in store.items():
+        for sid, (pin, hot) in owned.items():
             lat = float(pin["latitude"])
             lon = float(pin["longitude"])
             row = meta.get(sid) or {}
@@ -312,13 +337,13 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                 if travel_url.startswith("/")
                 else travel_url or None
             )
-            marine = row.get("marineLife") or []
+            region_slug = f"hotspot-{hot['slug']}"
             sites.append(
                 DiveSiteIn(
                     slug=f"padi-{sid}-{slugify(title)}"[:240],
                     name=title,
                     site_types=types,
-                    region_slug=region_slug,
+                    region_slug=region_slug if region_slug in regions else None,
                     country_code=country_code,
                     locality=locality,
                     depth_max_m=_as_depth_m(row.get("maximumDepth")),
@@ -330,7 +355,7 @@ class DenseHotspotsAdapter(CrawlerAdapter):
                     external_url=abs_url,
                     properties={
                         "padi_id": sid,
-                        "marine_life": marine,
+                        "marine_life": row.get("marineLife") or [],
                         "hotspot": hot["slug"],
                         "map_only": not bool(row),
                     },
@@ -346,7 +371,7 @@ class DenseHotspotsAdapter(CrawlerAdapter):
         if bounds.span < 1e-4:
             return
         pins = http.get_json(
-            "https://travel.padi.com/api/v2/travel/dsl/dive-sites/map/",
+            PADI_MAP,
             params={
                 "bottom_left": f"{bounds.sw_lat},{bounds.sw_lng}",
                 "top_right": f"{bounds.ne_lat},{bounds.ne_lng}",

@@ -171,7 +171,14 @@ def compose_trip(session: Session, req: TripRequest) -> list[TripCandidate]:
                 score += 0.05
             req_certs = {c.lower() for c in (profile.cert_required or [])}
             hard = req_certs & {"full_cave", "intro_cave", "cave"}
-            if hard and not (hard & certs) and "cavern" not in certs:
+            if hard and not (hard & certs):
+                continue
+            # cavern-only sites: require cavern/cave cert unless open-water cavern tourism flagged beginner_ok
+            if (
+                profile.overhead_class == "cavern"
+                and not profile.beginner_ok
+                and not ({"cavern", "cave", "intro_cave", "full_cave"} & certs)
+            ):
                 continue
         else:
             if site.skill_level == "cave_trained" and not (

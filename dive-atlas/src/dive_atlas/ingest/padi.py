@@ -9,6 +9,7 @@ from dive_atlas.ingest.base import CrawlerAdapter, IngestBatch, register_adapter
 from dive_atlas.ingest.http_util import HttpFetcher
 from dive_atlas.ingest.type_map import normalize_site_types
 from dive_atlas.schemas import DiveSiteIn, RegionIn
+from dive_atlas.services.geo_enrich import COUNTRY_SLUGS, area_for_point
 from dive_atlas.taxonomy import SourceKind
 
 BASE = "https://travel.padi.com/api/v2/travel"
@@ -116,6 +117,13 @@ class PadiTravelAdapter(CrawlerAdapter):
             title = meta_row.get("title") or f"PADI site {site_id}"
             travel_url = meta_row.get("travelUrl") or ""
             country_slug = _country_from_travel_url(travel_url)
+            country_code = COUNTRY_SLUGS.get(country_slug.lower()) if country_slug else None
+            area = area_for_point(lat, lon)
+            if area and not country_code:
+                country_code = area.country_code
+            locality = area.name if area else None
+            if not locality and country_slug:
+                locality = country_slug.replace("-", " ").title()
             region_slug = None
             if country_slug:
                 region_slug = f"padi-{slugify(country_slug)}"
@@ -124,6 +132,7 @@ class PadiTravelAdapter(CrawlerAdapter):
                         slug=region_slug,
                         name=country_slug.replace("-", " ").title(),
                         kind="country",
+                        country_code=country_code,
                         aliases=[country_slug],
                         properties={"source": "padi-travel"},
                     )
@@ -134,17 +143,21 @@ class PadiTravelAdapter(CrawlerAdapter):
                 if travel_url.startswith("/")
                 else travel_url or None
             )
+            site_tags = ["padi", "padi-travel", *types]
+            if area:
+                site_tags.extend([a for a in (area.name.lower(), *area.aliases) if a])
             sites.append(
                 DiveSiteIn(
                     slug=f"padi-{site_id}-{slugify(title)}"[:240],
                     name=title,
                     site_types=types,
                     region_slug=region_slug,
-                    locality=country_slug.replace("-", " ").title() if country_slug else None,
+                    country_code=country_code,
+                    locality=locality,
                     depth_max_m=depth_m,
                     lon=lon,
                     lat=lat,
-                    tags=["padi", "padi-travel", *types],
+                    tags=site_tags,
                     confidence=0.85,
                     external_id=str(site_id),
                     external_url=abs_url,
@@ -152,6 +165,7 @@ class PadiTravelAdapter(CrawlerAdapter):
                         "padi_id": site_id,
                         "marine_life": meta_row.get("marineLife") or [],
                         "image_count": len(meta_row.get("images") or []),
+                        "padi_country_slug": country_slug,
                     },
                     raw={
                         k: meta_row.get(k)

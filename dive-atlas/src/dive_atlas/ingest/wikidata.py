@@ -8,6 +8,7 @@ from dive_atlas.ingest.base import CrawlerAdapter, IngestBatch, register_adapter
 from dive_atlas.ingest.http_util import HttpFetcher
 from dive_atlas.ingest.type_map import normalize_site_types
 from dive_atlas.schemas import DiveSiteIn
+from dive_atlas.services.geo_enrich import area_for_point, country_bbox_for_point
 from dive_atlas.taxonomy import SourceKind, WaterType
 
 SPARQL = "https://query.wikidata.org/sparql"
@@ -73,15 +74,27 @@ class WikidataAdapter(CrawlerAdapter):
                     lon, lat = point
                     seen.add(qid_item)
                     water = WaterType.FRESH.value if site_type in {"cenote", "cave"} else WaterType.SALT.value
+                    area = area_for_point(lat, lon)
+                    country = area.country_code if area else None
+                    locality = area.name if area else None
+                    if not country:
+                        bbox = country_bbox_for_point(lat, lon)
+                        if bbox:
+                            country = bbox.country_code
+                    site_tags = ["wikidata", site_type]
+                    if area:
+                        site_tags.extend([a for a in (area.name.lower(), *area.aliases) if a])
                     sites.append(
                         DiveSiteIn(
                             slug=f"wd-{qid_item}-{slugify(name)}"[:240],
                             name=name,
                             site_types=normalize_site_types(site_type),
                             water_type=water,
+                            country_code=country,
+                            locality=locality,
                             lon=lon,
                             lat=lat,
-                            tags=["wikidata", site_type],
+                            tags=site_tags,
                             confidence=0.65,
                             external_id=qid_item,
                             external_url=item,

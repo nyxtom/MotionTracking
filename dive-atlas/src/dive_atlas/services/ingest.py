@@ -100,13 +100,18 @@ def upsert_site(
     site.entry_type = payload.entry_type
     site.skill_level = payload.skill_level
     site.region_id = region_id
-    site.country_code = payload.country_code
-    site.locality = payload.locality
+    # Prefer non-null geo fields; keep richer locality over vague tile hints
+    if payload.country_code:
+        site.country_code = payload.country_code
+    if payload.locality:
+        site.locality = payload.locality
     site.description = payload.description
     site.depth_min_m = payload.depth_min_m
     site.depth_max_m = payload.depth_max_m
     site.typical_visibility_m = payload.typical_visibility_m
-    site.tags = payload.tags
+    # Merge tags rather than replace
+    merged_tags = list(dict.fromkeys([*(site.tags or []), *(payload.tags or [])]))
+    site.tags = merged_tags
     site.properties = {**(site.properties or {}), **payload.properties}
     session.flush()
 

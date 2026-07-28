@@ -24,6 +24,7 @@ from dive_atlas.models import (
     SiteBriefing,
     SiteProfile,
 )
+from dive_atlas.services.geo_enrich import enrich_sites_geo
 from dive_atlas.services.ingest import ingest_batch
 from dive_atlas.services.magazines import ingest_magazine_crawl, sync_registry
 from dive_atlas.services.ontology_seed import seed_product_ontology
@@ -161,6 +162,16 @@ def search_cmd(
         )
     console.print(table)
     console.print(f"{len(results)} result(s)")
+
+
+@app.command("enrich-geo")
+def enrich_geo_cmd(
+    limit: Optional[int] = typer.Option(None, "--limit", "-n", help="Cap sites scanned"),
+) -> None:
+    """Backfill country_code + locality from coords, PADI URLs, and dive-area bboxes."""
+    with session_scope() as session:
+        stats = enrich_sites_geo(session, limit=limit)
+    console.print(f"[green]Geo enrich[/green] {stats}")
 
 
 @app.command("seed-ontology")

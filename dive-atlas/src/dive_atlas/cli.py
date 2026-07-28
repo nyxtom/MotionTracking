@@ -23,6 +23,17 @@ from dive_atlas.models import (
     Region,
     SiteBriefing,
     SiteProfile,
+    SiteTaxon,
+    Taxon,
+)
+from dive_atlas.services.fauna import (
+    export_id_cards,
+    fauna_for_area,
+    fauna_for_site,
+    fauna_stats,
+    mine_padi_marine_life,
+    mine_seasonality_highlights,
+    sync_fauna_seed,
 )
 from dive_atlas.services.geo_enrich import enrich_sites_geo
 from dive_atlas.services.ingest import ingest_batch
@@ -38,7 +49,9 @@ app = typer.Typer(
     no_args_is_help=True,
 )
 mag_app = typer.Typer(help="Dive magazine registry + issue/article harvest")
+fauna_app = typer.Typer(help="Fish / animal atlas — taxa, site occurrences, ID cards")
 app.add_typer(mag_app, name="magazines")
+app.add_typer(fauna_app, name="fauna")
 console = Console()
 
 
@@ -245,6 +258,7 @@ def stats_cmd() -> None:
         briefings = session.scalar(select(func.count()).select_from(SiteBriefing)) or 0
         phenomena = session.scalar(select(func.count()).select_from(Phenomenon)) or 0
         routes = session.scalar(select(func.count()).select_from(DiveRoute)) or 0
+        fauna = fauna_stats(session)
         by_type = session.execute(
             text(
                 """
@@ -265,10 +279,143 @@ def stats_cmd() -> None:
     console.print(f"Briefings:  {briefings}")
     console.print(f"Phenomena:  {phenomena}")
     console.print(f"Routes:     {routes}")
+    console.print(
+        f"Fauna:      {fauna['taxa']} taxa · {fauna['site_taxon_links']} site links · "
+        f"{fauna['sites_with_fauna']} sites"
+    )
     if by_type:
         console.print("\nBy type:")
         for t, n in by_type:
             console.print(f"  {t}: {n}")
+
+
+@fauna_app.command("sync")
+def fauna_sync_cmd() -> None:
+    """Load data/seeds/fauna_taxa.json into the taxa catalog."""
+    with session_scope() as session:
+        # Ensure tables exist when fauna is added mid-flight
+        Base.metadata.create_all(session.get_bind())
+        stats = sync_fauna_seed(session)
+    console.print(f"[green]Fauna sync[/green] {stats}")
+
+
+@fauna_app.command("mine")
+def fauna_mine_cmd() -> None:
+    """Mine PADI marine_life labels + seasonality highlights into site_taxa."""
+    with session_scope() as session:
+        Base.metadata.create_all(session.get_bind())
+        padi = mine_padi_marine_life(session)
+        season = mine_seasonality_highlights(session)
+        totals = fauna_stats(session)
+    console.print(f"[green]PADI mine[/green] { {k: v for k, v in padi.items() if k != 'top_unresolved'} }")
+    if padi.get("top_unresolved"):
+        console.print("Top unresolved labels:")
+        for label, n in padi["top_unresolved"][:15]:
+            console.print(f"  {n:4d}  {label}")
+    console.print(f"[green]Seasonality mine[/green] {season}")
+    console.print(f"[bold]Fauna totals[/bold] {totals}")
+
+
+@fauna_app.command("at")
+def fauna_at_cmd(
+    locality: Optional[str] = typer.Option(None, "--locality", "-l", help="e.g. Roatán"),
+    country: Optional[str] = typer.Option(None, "--country", "-c"),
+    near: Optional[str] = typer.Option(None, "--near", help="lon,lat"),
+    radius_km: float = typer.Option(50.0, "--radius-km"),
+    site_slug: Optional[str] = typer.Option(None, "--site", help="Exact site slug"),
+    limit: int = typer.Option(30, "--limit", "-n"),
+) -> None:
+    """What you might see at a locality / country / radius / site."""
+    near_lon = near_lat = None
+    if near:
+        parts = near.split(",")
+        if len(parts) != 2:
+            raise typer.BadParameter("--near must be lon,lat")
+        near_lon, near_lat = float(parts[0]), float(parts[1])
+
+    with session_scope() as session:
+        if site_slug:
+            rows = fauna_for_site(session, site_slug=site_slug)
+            table = Table(title=f"Fauna @ {site_slug}")
+            table.add_column("Name")
+            table.add_column("Group")
+            table.add_column("Source")
+            table.add_column("Likely")
+            table.add_column("Raw")
+            for r in rows[:limit]:
+                table.add_row(
+                    r["common_name"],
+                    r["taxon_group"],
+                    r["source"],
+                    f"{float(r['likelihood']):.2f}",
+                    (r.get("raw_label") or "")[:40],
+                )
+            console.print(table)
+            console.print(f"{len(rows)} taxon link(s)")
+            return
+
+        hits = fauna_for_area(
+            session,
+            locality=locality,
+            country_code=country,
+            near_lon=near_lon,
+            near_lat=near_lat,
+            radius_m=radius_km * 1000,
+            limit=limit,
+        )
+    title_bits = [b for b in [locality, country, near and f"near {near}"] if b]
+    table = Table(title=f"Fauna — {', '.join(title_bits) or 'all'}")
+    table.add_column("Name")
+    table.add_column("Group")
+    table.add_column("Sites")
+    table.add_column("Likely")
+    table.add_column("Where")
+    for h in hits:
+        table.add_row(
+            h.common_name,
+            h.taxon_group,
+            str(h.sites),
+            f"{h.max_likelihood:.2f}",
+            ", ".join(h.sample_localities[:3]),
+        )
+    console.print(table)
+    console.print(f"{len(hits)} taxon(s)")
+
+
+@fauna_app.command("cards")
+def fauna_cards_cmd(
+    locality: Optional[str] = typer.Option(None, "--locality", "-l"),
+    country: Optional[str] = typer.Option(None, "--country", "-c"),
+    near: Optional[str] = typer.Option(None, "--near", help="lon,lat"),
+    radius_km: float = typer.Option(80.0, "--radius-km"),
+    limit: int = typer.Option(24, "--limit", "-n"),
+    out: str = typer.Option("fauna-cards.json", "--out", "-o"),
+) -> None:
+    """Export an ID-card deck JSON for an area (printout feedstock)."""
+    near_lon = near_lat = None
+    if near:
+        parts = near.split(",")
+        if len(parts) != 2:
+            raise typer.BadParameter("--near must be lon,lat")
+        near_lon, near_lat = float(parts[0]), float(parts[1])
+    with session_scope() as session:
+        cards = export_id_cards(
+            session,
+            locality=locality,
+            country_code=country,
+            near_lon=near_lon,
+            near_lat=near_lat,
+            radius_m=radius_km * 1000,
+            limit=limit,
+        )
+    payload = {
+        "area": {"locality": locality, "country_code": country, "near": near},
+        "count": len(cards),
+        "cards": cards,
+    }
+    with open(out, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, indent=2)
+    console.print(f"[green]Wrote[/green] {len(cards)} ID cards → {out}")
 
 
 @mag_app.command("sync")

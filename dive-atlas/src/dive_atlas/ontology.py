@@ -118,6 +118,17 @@ class EcoEventType(StrEnum):
     EROSION = "erosion"
     RECOVERY = "recovery"
     MPA_CHANGE = "mpa_change"
+
+
+class TaxonGroup(StrEnum):
+    FISH = "fish"
+    SHARK = "shark"
+    RAY = "ray"
+    MAMMAL = "mammal"
+    REPTILE = "reptile"
+    INVERT = "invert"
+    CORAL = "coral"
+    PLANT = "plant"
     OTHER = "other"
 
 

@@ -12,6 +12,7 @@ from dive_atlas.models.capabilities import (
     SiteProfile,
     SurveyAsset,
 )
+from dive_atlas.models.fauna import SiteTaxon, Taxon
 from dive_atlas.models.magazine import Magazine, MagazineArticle, MagazineIssue
 from dive_atlas.models.operator import Operator, SiteOperatorLink
 from dive_atlas.models.site import DiveSite, Region, SiteSeasonality
@@ -42,4 +43,6 @@ __all__ = [
     "SiteEncyclopedia",
     "SurveyAsset",
     "Sighting",
+    "Taxon",
+    "SiteTaxon",
 ]

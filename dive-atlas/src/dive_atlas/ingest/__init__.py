@@ -1,7 +1,8 @@
-"""Ingest package — import adapters for registry side effects."""
-
+from dive_atlas.ingest import osm as osm  # noqa: F401
 from dive_atlas.ingest import open_data_stub as open_data_stub  # noqa: F401
+from dive_atlas.ingest import padi as padi  # noqa: F401
 from dive_atlas.ingest import seed as seed  # noqa: F401
+from dive_atlas.ingest import wikidata as wikidata  # noqa: F401
 from dive_atlas.ingest.base import (
     ADAPTER_REGISTRY,
     CrawlerAdapter,
@@ -22,4 +23,7 @@ __all__ = [
     "register_adapter",
     "seed",
     "open_data_stub",
+    "padi",
+    "osm",
+    "wikidata",
 ]

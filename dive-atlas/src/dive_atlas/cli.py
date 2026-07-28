@@ -53,17 +53,40 @@ def adapters_cmd() -> None:
 
 @app.command("ingest")
 def ingest_cmd(
-    adapter: str = typer.Argument(..., help="Adapter slug, e.g. seed-famous"),
+    adapter: str = typer.Argument(..., help="Adapter slug, e.g. seed-famous | padi-travel | all"),
 ) -> None:
     """Run a crawler adapter and upsert into PostGIS."""
     load_all_adapters()
-    batch = get_adapter(adapter).fetch()
-    with session_scope() as session:
-        stats = ingest_batch(session, batch)
-    console.print(
-        f"[green]Ingested[/green] {stats['regions']} regions, {stats['sites']} sites "
-        f"from [bold]{adapter}[/bold]."
-    )
+    slugs = list_adapters() if adapter == "all" else [adapter]
+    # Prefer high-coverage sources last so higher-confidence seed/PADI can win on coords
+    priority = {
+        "open-data-stub": 0,
+        "wikidata": 1,
+        "osm-overpass": 2,
+        "padi-travel": 3,
+        "seed-famous": 4,
+    }
+    slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
+    total_sites = 0
+    for slug in slugs:
+        if slug == "open-data-stub":
+            continue
+        console.print(f"[cyan]Fetching[/cyan] {slug}…")
+        batch = get_adapter(slug).fetch()
+        with session_scope() as session:
+            stats = ingest_batch(session, batch)
+        total_sites += stats["sites"]
+        console.print(
+            f"[green]Ingested[/green] {stats['regions']} regions, {stats['sites']} sites "
+            f"from [bold]{slug}[/bold]  meta={batch.meta}"
+        )
+    console.print(f"[bold]Done.[/bold] Site upserts this run: {total_sites}")
+
+
+@app.command("harvest")
+def harvest_cmd() -> None:
+    """Pull everything from all live adapters (PADI + OSM + Wikidata + seed)."""
+    ingest_cmd("all")
 
 
 @app.command("search")

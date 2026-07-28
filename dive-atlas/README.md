@@ -44,8 +44,19 @@ They never write SQL directly — `services.ingest` upserts with provenance.
 
 | Slug | Status |
 |------|--------|
-| `seed-famous` | Curated world seed (Florida caves, Yucatán cenotes, Cozumel, Belize blue hole, Korea/Jeju, Okinawa, Raja Ampat, Maldives atoll, Red Sea wrecks, Truk, Scapa, Keys…) |
-| `open-data-stub` | Placeholder for Wikidata / OSM / MPA dumps |
+| `seed-famous` | Curated world seed (Florida caves, Yucatán cenotes, wrecks, atolls…) |
+| `padi-travel` | Full PADI Travel catalog (~4.8k) via public travel API + adaptive map tiles |
+| `osm-overpass` | OSM scuba / wreck / dive nodes by region (Overpass) |
+| `wikidata` | Wikidata wrecks, cenotes, reefs, caves, blue holes with coordinates |
+| `open-data-stub` | Placeholder |
+
+```bash
+dive-atlas harvest          # all live adapters
+dive-atlas ingest padi-travel
+dive-atlas ingest osm-overpass
+dive-atlas ingest wikidata
+dive-atlas stats
+```
 
 Add a new source:
 

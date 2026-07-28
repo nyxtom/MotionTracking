@@ -13,16 +13,22 @@ from dive_atlas.db import ensure_extensions, get_engine, session_scope
 from dive_atlas.ingest import get_adapter, list_adapters, load_all_adapters
 from dive_atlas.models import (
     Base,
+    DiveRoute,
     DiveSite,
     Magazine,
     MagazineArticle,
     MagazineIssue,
     Operator,
+    Phenomenon,
     Region,
+    SiteBriefing,
+    SiteProfile,
 )
 from dive_atlas.services.ingest import ingest_batch
 from dive_atlas.services.magazines import ingest_magazine_crawl, sync_registry
+from dive_atlas.services.ontology_seed import seed_product_ontology
 from dive_atlas.services.search import search_sites
+from dive_atlas.services.trip import TripRequest, compose_trip
 from dive_atlas.ingest.magazines import MagazineWebCrawler, load_magazine_registry
 
 app = typer.Typer(
@@ -157,6 +163,63 @@ def search_cmd(
     console.print(f"{len(results)} result(s)")
 
 
+@app.command("seed-ontology")
+def seed_ontology_cmd() -> None:
+    """Load phenomena, routes, skill profiles, and briefings seed data."""
+    with session_scope() as session:
+        stats = seed_product_ontology(session)
+    console.print(f"[green]Ontology seed[/green] {stats}")
+
+
+@app.command("trip-compose")
+def trip_compose_cmd(
+    days: int = typer.Option(10, "--days"),
+    cert: list[str] = typer.Option(["aow"], "--cert", help="Repeatable cert flags"),
+    want: list[str] = typer.Option([], "--want", "-w", help="caves, pelagics, wreck, ..."),
+    max_depth: float = typer.Option(30.0, "--max-depth"),
+    month: Optional[int] = typer.Option(None, "--month", "-m"),
+    avoid_monsoon: bool = typer.Option(True, "--avoid-monsoon/--allow-monsoon"),
+    allow_overhead: bool = typer.Option(False, "--allow-overhead"),
+    allow_deco: bool = typer.Option(False, "--allow-deco"),
+    country: Optional[str] = typer.Option(None, "--country", "-c"),
+    limit: int = typer.Option(15, "--limit", "-n"),
+) -> None:
+    """Rank itinerary candidates from trip intent (skill-gated)."""
+    req = TripRequest(
+        days=days,
+        certs=cert,
+        want=want,
+        max_depth_m=max_depth,
+        travel_month=month,
+        avoid_monsoon=avoid_monsoon,
+        allow_overhead=allow_overhead,
+        allow_deco=allow_deco,
+        country_codes=[country] if country else [],
+        limit=limit,
+    )
+    with session_scope() as session:
+        results = compose_trip(session, req)
+    table = Table(title=f"Trip candidates ({days}d, cert={','.join(cert)})")
+    table.add_column("Score")
+    table.add_column("Name")
+    table.add_column("Types")
+    table.add_column("Depth")
+    table.add_column("Where")
+    table.add_column("Why")
+    table.add_column("Backup")
+    for r in results:
+        table.add_row(
+            f"{r.score:.2f}",
+            r.name,
+            ",".join(r.site_types),
+            "" if r.depth_max_m is None else str(r.depth_max_m),
+            f"{r.country_code or ''} {r.locality or ''}".strip(),
+            "; ".join(r.reasons),
+            "yes" if r.backup else "",
+        )
+    console.print(table)
+
+
 @app.command("stats")
 def stats_cmd() -> None:
     """Show atlas counts."""
@@ -167,6 +230,10 @@ def stats_cmd() -> None:
         magazines = session.scalar(select(func.count()).select_from(Magazine)) or 0
         issues = session.scalar(select(func.count()).select_from(MagazineIssue)) or 0
         articles = session.scalar(select(func.count()).select_from(MagazineArticle)) or 0
+        profiles = session.scalar(select(func.count()).select_from(SiteProfile)) or 0
+        briefings = session.scalar(select(func.count()).select_from(SiteBriefing)) or 0
+        phenomena = session.scalar(select(func.count()).select_from(Phenomenon)) or 0
+        routes = session.scalar(select(func.count()).select_from(DiveRoute)) or 0
         by_type = session.execute(
             text(
                 """
@@ -183,6 +250,10 @@ def stats_cmd() -> None:
     console.print(f"Magazines:  {magazines}")
     console.print(f"Issues:     {issues}")
     console.print(f"Articles:   {articles}")
+    console.print(f"Profiles:   {profiles}")
+    console.print(f"Briefings:  {briefings}")
+    console.print(f"Phenomena:  {phenomena}")
+    console.print(f"Routes:     {routes}")
     if by_type:
         console.print("\nBy type:")
         for t, n in by_type:

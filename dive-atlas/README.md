@@ -111,17 +111,41 @@ dive-atlas stats
 
 Plan for “every issue for last X years”: registry sync → HTML archive harvest → publisher-specific PDF/Issuu/OCR adapters → NLP link `place_mentions` → `dive_sites`.
 
+## Product ontology (what the atlas powers)
+
+| Product surface | Atlas tables |
+|-----------------|--------------|
+| Trip composer | `site_profiles` + seasonality + `phenomenon_occurrences` → `trip-compose` |
+| Phenomena calendar | `phenomena`, `phenomenon_occurrences` |
+| Skill-gated exploration | `site_profiles` (certs, overhead, deco, gas, current) |
+| Living briefings | `site_briefings` (entry/exit, hazards, chamber, regs) |
+| Fleet / conditions | site geom + profiles + (forecast adapters later) |
+| Incident intelligence | `incidents` |
+| Reef health / MPA | `eco_events` |
+| Citizen science | `sightings` (stable `site_id`, not free text) |
+| Encyclopedia pages | `site_encyclopedia` |
+| Route storytelling | `dive_routes`, `dive_route_stops` |
+| AR / VR previews | `survey_assets` (cave surveys, bathymetry, meshes) |
+
+```bash
+dive-atlas seed-ontology
+dive-atlas trip-compose --days 10 --cert aow --want caves --want pelagics --max-depth 30 --month 2
+```
+
 ## Layout
 
 ```text
 dive-atlas/
   data/seeds/famous_sites.json
-  docker-compose.yml          # PostGIS 16
+  data/seeds/product_ontology.json
+  data/sources/dive_magazines.json
+  docker-compose.yml
   src/dive_atlas/
     taxonomy.py
-    models/                   # regions, sites, seasonality, sources, operators
-    ingest/                   # crawler adapters
-    services/                 # upsert, search, GIS enrich
+    ontology.py               # certs, hazards, phenomena, routes, …
+    models/                   # sites + capability layers
+    ingest/                   # crawlers
+    services/                 # ingest, search, trip composer, magazines
     cli.py
 ```
 

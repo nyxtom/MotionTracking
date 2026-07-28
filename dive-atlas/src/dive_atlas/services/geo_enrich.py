@@ -373,11 +373,13 @@ def enrich_sites_geo(session: Session, *, limit: int | None = None) -> dict[str,
             SourceRecord.external_url.is_not(None),
         )
     ):
-        if sid and url and sid not in url_by_site:
-            url_by_site[sid] = url
+        if sid and url:
+            key = str(sid)
+            if key not in url_by_site:
+                url_by_site[key] = url
 
     coords = {
-        row["id"]: (float(row["lat"]), float(row["lon"]))
+        str(row["id"]): (float(row["lat"]), float(row["lon"]))
         for row in session.execute(
             text(
                 """
@@ -395,13 +397,13 @@ def enrich_sites_geo(session: Session, *, limit: int | None = None) -> dict[str,
     tagged_area = 0
 
     for site in sites:
-        latlon = coords.get(site.id)
+        latlon = coords.get(str(site.id))
         if not latlon:
             continue
         lat, lon = latlon
 
         if not site.country_code:
-            cc = country_from_padi_url(url_by_site.get(site.id))
+            cc = country_from_padi_url(url_by_site.get(str(site.id)))
             if not cc:
                 area = area_for_point(lat, lon)
                 if area:

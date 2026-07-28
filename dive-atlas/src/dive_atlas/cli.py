@@ -26,11 +26,13 @@ from dive_atlas.models import (
     SiteTaxon,
     Taxon,
 )
+from dive_atlas.services.dedupe import dedupe_sites
 from dive_atlas.services.fauna import (
     export_id_cards,
     fauna_for_area,
     fauna_for_site,
     fauna_stats,
+    infer_region_fauna,
     mine_padi_marine_life,
     mine_seasonality_highlights,
     sync_fauna_seed,
@@ -101,6 +103,7 @@ def ingest_cmd(
         "seed-komodo": 5,
         "seed-palau-truk": 5,
         "seed-sipadan": 5,
+        "seed-galapagos-cenotes": 5,
         "seed-famous": 6,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
@@ -331,13 +334,29 @@ def fauna_sync_cmd() -> None:
     console.print(f"[green]Fauna sync[/green] {stats}")
 
 
+@app.command("dedupe")
+def dedupe_cmd(
+    distance_m: float = typer.Option(150.0, "--distance-m", help="Max distance for same-name merge"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Report clusters without merging"),
+) -> None:
+    """Merge near-duplicate sites (same normalized name within distance)."""
+    with session_scope() as session:
+        stats = dedupe_sites(session, max_distance_m=distance_m, dry_run=dry_run)
+    console.print(f"[green]Dedupe[/green] {stats}")
+
+
 @fauna_app.command("mine")
-def fauna_mine_cmd() -> None:
+def fauna_mine_cmd(
+    infer: bool = typer.Option(
+        True, "--infer/--no-infer", help="Also infer locality fauna onto unlabeled sites"
+    ),
+) -> None:
     """Mine PADI marine_life labels + seasonality highlights into site_taxa."""
     with session_scope() as session:
         Base.metadata.create_all(session.get_bind())
         padi = mine_padi_marine_life(session)
         season = mine_seasonality_highlights(session)
+        inferred = infer_region_fauna(session) if infer else {"skipped": True}
         totals = fauna_stats(session)
     console.print(f"[green]PADI mine[/green] { {k: v for k, v in padi.items() if k != 'top_unresolved'} }")
     if padi.get("top_unresolved"):
@@ -345,6 +364,22 @@ def fauna_mine_cmd() -> None:
         for label, n in padi["top_unresolved"][:15]:
             console.print(f"  {n:4d}  {label}")
     console.print(f"[green]Seasonality mine[/green] {season}")
+    console.print(f"[green]Region infer[/green] {inferred}")
+    console.print(f"[bold]Fauna totals[/bold] {totals}")
+
+
+@fauna_app.command("infer")
+def fauna_infer_cmd(
+    min_sites: int = typer.Option(2, "--min-sites", help="Min evidence sites per locality taxon"),
+    max_taxa: int = typer.Option(12, "--max-taxa", help="Max inferred taxa per site"),
+) -> None:
+    """Propagate locality fauna onto sites missing direct labels."""
+    with session_scope() as session:
+        stats = infer_region_fauna(
+            session, min_evidence_sites=min_sites, max_taxa_per_site=max_taxa
+        )
+        totals = fauna_stats(session)
+    console.print(f"[green]Region infer[/green] {stats}")
     console.print(f"[bold]Fauna totals[/bold] {totals}")
 
 

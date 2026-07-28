@@ -90,3 +90,13 @@ class SeedSipadanAdapter(SeedAtlasAdapter):
 
     def __init__(self, path: Path | None = None) -> None:
         super().__init__(path=path or (SEED_DIR / "sipadan_sites.json"))
+
+
+@register_adapter
+class SeedGalapagosCenotesAdapter(SeedAtlasAdapter):
+    slug = "seed-galapagos-cenotes"
+    name = "Galápagos + Tulum cenotes seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "galapagos_cenotes_sites.json"))

@@ -1099,7 +1099,8 @@
         "sunfish",
         "sunfish (mola mola)",
         "mola",
-        "ocean sunfish"
+        "ocean sunfish",
+        "mola mola"
       ],
       "description": "Giant oceanic fish often at cleaning stations in cold upwellings (e.g. Bali).",
       "id_tips": "Huge truncated body, tall dorsal/anal fins; usually near thermocline.",
@@ -1398,7 +1399,9 @@
       "aliases": [
         "guitar fish",
         "guitarfishes",
-        "shovelnose ray"
+        "shovelnose ray",
+        "guitar shark",
+        "guitar sharks"
       ],
       "description": "Ray with a shark-like body resting on sand.",
       "id_tips": "Pointed snout, ray-like pectoral disc fused to body.",
@@ -1563,7 +1566,9 @@
       "rank": "genus",
       "aliases": [
         "barrel sponges",
-        "giant barrel sponge"
+        "giant barrel sponge",
+        "sponges",
+        "sponge"
       ],
       "description": "Huge vase-shaped sponges that structure Caribbean and Indo-Pacific reefs.",
       "id_tips": "Barrel or vase shape large enough to swim beside (don't touch).",
@@ -1828,7 +1833,9 @@
       "rank": "species",
       "aliases": [
         "bumphead",
-        "bumpheads"
+        "bumpheads",
+        "humphead parrotfish",
+        "humphead parrot"
       ],
       "description": "Huge schooling parrotfish that sleep in caves and crunch coral.",
       "id_tips": "Massive forehead bump, green body, often in groups at dusk.",
@@ -1878,6 +1885,265 @@
       "tags": [
         "shark",
         "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "trout",
+      "common_name": "Trout",
+      "scientific_name": "Salmonidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "trouts",
+        "rainbow trout",
+        "brown trout"
+      ],
+      "description": "Freshwater salmonids common on quarry, lake, and river dives.",
+      "id_tips": "Spots along flanks; freshwater sites.",
+      "habitat": "lake / river / quarry",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sponge",
+      "common_name": "Sponge",
+      "scientific_name": "Porifera",
+      "taxon_group": "invert",
+      "rank": "phylum",
+      "aliases": [
+        "sponges",
+        "barrel sponge",
+        "giant barrel sponge"
+      ],
+      "description": "Filter-feeding sessile animals that structure reefs.",
+      "id_tips": "Vase, tube, or encrusting forms; barrel sponges can be huge.",
+      "habitat": "reef / wall",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "seal",
+      "common_name": "Seal",
+      "scientific_name": "Phocidae",
+      "taxon_group": "mammal",
+      "rank": "family",
+      "aliases": [
+        "seals",
+        "harbour seal",
+        "harbor seal",
+        "grey seal"
+      ],
+      "description": "True seals (no external ear flaps) in temperate/cold waters.",
+      "id_tips": "No external ears (vs sea lions); awkward on land.",
+      "habitat": "rocky coast / kelp / cold water",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "guitar-shark",
+      "common_name": "Guitar shark",
+      "scientific_name": "Rhinobatidae",
+      "taxon_group": "ray",
+      "rank": "family",
+      "aliases": [
+        "guitar sharks",
+        "shovelnose guitarfish"
+      ],
+      "description": "Often used interchangeably with guitarfish in field reports.",
+      "id_tips": "Shark-like body with ray pectoral disc.",
+      "habitat": "sand",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "cownose-ray",
+      "common_name": "Cownose ray",
+      "scientific_name": "Rhinoptera",
+      "taxon_group": "ray",
+      "rank": "genus",
+      "aliases": [
+        "cownose",
+        "cownose rays"
+      ],
+      "description": "Schooling eagle-ray relative with a indented snout.",
+      "id_tips": "Indented nose, migratory schools.",
+      "habitat": "sand / blue water",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sheepshead",
+      "common_name": "Sheepshead",
+      "scientific_name": "Archosargus probatocephalus",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "sheepsheads"
+      ],
+      "description": "Striped sparid of the western Atlantic \u2014 docks and reefs.",
+      "id_tips": "Black vertical bars, human-like teeth.",
+      "habitat": "reef / pier / wreck",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "staghorn-coral",
+      "common_name": "Staghorn coral",
+      "scientific_name": "Acropora",
+      "taxon_group": "coral",
+      "rank": "genus",
+      "aliases": [
+        "staghorn",
+        "staghorn corals",
+        "acropora"
+      ],
+      "description": "Branching reef-building coral.",
+      "id_tips": "Antler-like branches; fragile.",
+      "habitat": "reef",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "catfish",
+      "common_name": "Catfish",
+      "scientific_name": "Siluriformes",
+      "taxon_group": "fish",
+      "rank": "order",
+      "aliases": [
+        "catfishes",
+        "eel catfish",
+        "striped eel catfish"
+      ],
+      "description": "Includes reef eel-catfish schools and freshwater species.",
+      "id_tips": "Barbels around mouth; striped eel catfish school as juveniles.",
+      "habitat": "reef / sand / freshwater",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "tiger-shark",
+      "common_name": "Tiger shark",
+      "scientific_name": "Galeocerdo cuvier",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "tiger sharks"
+      ],
+      "description": "Large coastal shark with vertical flank bars (especially juveniles).",
+      "id_tips": "Blunt snout, tiger stripes fading with age.",
+      "size_cm_typical": 400,
+      "habitat": "reef / blue water",
+      "tags": [
+        "shark",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "reef-shark",
+      "common_name": "Reef shark",
+      "scientific_name": "Carcharhinus",
+      "taxon_group": "shark",
+      "rank": "species_group",
+      "aliases": [
+        "reef sharks"
+      ],
+      "description": "Generic field label when species not separated.",
+      "habitat": "reef",
+      "tags": [
+        "shark"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "humphead-parrotfish",
+      "common_name": "Humphead parrotfish",
+      "scientific_name": "Bolbometopon muricatum",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "humphead parrot"
+      ],
+      "description": "Same species as bumphead parrotfish \u2014 alternate common name.",
+      "id_tips": "Huge forehead bump, green body.",
+      "habitat": "reef",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "rainbow-wrasse",
+      "common_name": "Rainbow wrasse",
+      "scientific_name": "Thalassoma",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "rainbow wrasses"
+      ],
+      "description": "Colorful mid-sized wrasses of temperate and tropical reefs.",
+      "id_tips": "Elongated body, bright terminal-phase colors.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "freshwater-fish",
+      "common_name": "Freshwater fish",
+      "scientific_name": null,
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "fresh water fish"
+      ],
+      "description": "Generic assemblage for quarry/lake/cenote freshwater sites.",
+      "habitat": "lake / quarry / cenote",
+      "tags": [
+        "assemblage"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "galapagos-shark",
+      "common_name": "Galapagos shark",
+      "scientific_name": "Carcharhinus galapagensis",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "galapagos sharks"
+      ],
+      "description": "Large reef shark of oceanic islands including the Gal\u00e1pagos.",
+      "id_tips": "Uniform brown-grey, tall dorsal; often in schools at Darwin/Wolf.",
+      "size_cm_typical": 300,
+      "habitat": "island reef / seamount",
+      "tags": [
+        "shark",
+        "charismatic",
         "card"
       ],
       "card_worthy": true

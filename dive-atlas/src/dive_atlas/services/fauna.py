@@ -497,3 +497,116 @@ def fauna_stats(session: Session) -> dict[str, int]:
     links = session.scalar(select(func.count()).select_from(SiteTaxon)) or 0
     sites = session.scalar(select(func.count(func.distinct(SiteTaxon.site_id)))) or 0
     return {"taxa": int(taxa), "site_taxon_links": int(links), "sites_with_fauna": int(sites)}
+
+
+def infer_region_fauna(
+    session: Session,
+    *,
+    min_evidence_sites: int = 2,
+    max_taxa_per_site: int = 12,
+    likelihood: float = 0.4,
+    only_missing: bool = True,
+) -> dict[str, int]:
+    """Propagate common locality taxa onto sites that lack fauna links.
+
+    Book/app "what you might see here" needs coverage beyond the ~6% of sites
+    with direct PADI labels. Inference is tagged source=region_infer at lower
+    likelihood so evidence-backed links still win.
+    """
+    # Top taxa per locality (from non-inferred evidence)
+    locality_taxa = session.execute(
+        text(
+            """
+            SELECT s.locality,
+                   st.taxon_id,
+                   COUNT(DISTINCT st.site_id) AS n,
+                   MAX(st.likelihood) AS max_l
+            FROM site_taxa st
+            JOIN dive_sites s ON s.id = st.site_id
+            WHERE s.locality IS NOT NULL
+              AND s.locality <> ''
+              AND st.source <> 'region_infer'
+            GROUP BY s.locality, st.taxon_id
+            HAVING COUNT(DISTINCT st.site_id) >= :min_n
+            ORDER BY s.locality, n DESC, max_l DESC
+            """
+        ),
+        {"min_n": min_evidence_sites},
+    ).all()
+
+    by_loc: dict[str, list[tuple[str, int, float]]] = {}
+    for loc, taxon_id, n, max_l in locality_taxa:
+        bucket = by_loc.setdefault(loc, [])
+        if len(bucket) >= max_taxa_per_site:
+            continue
+        bucket.append((str(taxon_id), int(n), float(max_l or 0.6)))
+
+    if not by_loc:
+        return {"localities": 0, "sites_touched": 0, "links_created": 0}
+
+    sites_touched = 0
+    links_created = 0
+    for loc, taxa in by_loc.items():
+        site_rows = session.execute(
+            text(
+                """
+                SELECT s.id
+                FROM dive_sites s
+                WHERE s.locality = :loc
+                  AND (
+                    NOT :only_missing
+                    OR NOT EXISTS (
+                      SELECT 1 FROM site_taxa st
+                      WHERE st.site_id = s.id AND st.source <> 'region_infer'
+                    )
+                  )
+                """
+            ),
+            {"loc": loc, "only_missing": only_missing},
+        ).all()
+        if not site_rows:
+            continue
+        for (sid,) in site_rows:
+            sites_touched += 1
+            for taxon_id, n, max_l in taxa:
+                existing = session.scalar(
+                    select(SiteTaxon).where(
+                        SiteTaxon.site_id == str(sid),
+                        SiteTaxon.taxon_id == taxon_id,
+                        SiteTaxon.source == "region_infer",
+                    )
+                )
+                inferred_l = min(likelihood, 0.25 + 0.05 * min(n, 6))
+                if existing:
+                    existing.likelihood = max(float(existing.likelihood or 0), inferred_l)
+                    existing.evidence_count = max(existing.evidence_count or 1, n)
+                    continue
+                # Skip if stronger direct evidence already exists for this taxon
+                direct = session.scalar(
+                    select(SiteTaxon).where(
+                        SiteTaxon.site_id == str(sid),
+                        SiteTaxon.taxon_id == taxon_id,
+                        SiteTaxon.source != "region_infer",
+                    )
+                )
+                if direct:
+                    continue
+                session.add(
+                    SiteTaxon(
+                        site_id=str(sid),
+                        taxon_id=taxon_id,
+                        source="region_infer",
+                        likelihood=inferred_l,
+                        raw_label=f"inferred from {loc}",
+                        evidence_count=n,
+                        properties={"locality": loc},
+                    )
+                )
+                links_created += 1
+        session.flush()
+
+    return {
+        "localities": len(by_loc),
+        "sites_touched": sites_touched,
+        "links_created": links_created,
+    }

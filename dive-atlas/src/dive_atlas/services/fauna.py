@@ -304,6 +304,25 @@ class FaunaHit:
     tags: list[str]
 
 
+# Parent region → child locality names for area fauna rollups (book chapters)
+REGION_CHILDREN: dict[str, tuple[str, ...]] = {
+    "raja ampat": (
+        "raja ampat",
+        "dampier strait",
+        "misool",
+        "fam / penemu",
+        "fam",
+        "penemu",
+        "wayag / kawe",
+        "wayag",
+        "kawe",
+        "batanta",
+    ),
+    "bay islands": ("bay islands", "roatán", "roatan", "utila", "guanaja"),
+    "florida keys": ("florida keys", "key largo", "key west"),
+}
+
+
 def fauna_for_area(
     session: Session,
     *,
@@ -318,9 +337,23 @@ def fauna_for_area(
     site_filter_sql = ["TRUE"]
     params: dict[str, Any] = {"limit": limit}
     if locality:
-        site_filter_sql.append("(s.locality ILIKE :loc OR :loc_tag = ANY(s.tags))")
-        params["loc"] = f"%{locality}%"
-        params["loc_tag"] = locality.lower()
+        children = REGION_CHILDREN.get(locality.strip().lower())
+        if children:
+            loc_clauses = []
+            for i, child in enumerate(children):
+                key = f"loc{i}"
+                tag = f"tag{i}"
+                loc_clauses.append(
+                    f"(s.locality ILIKE :{key} OR :{tag} = ANY(s.tags) OR "
+                    f"REPLACE(LOWER(s.locality), ' ', '-') = :{tag})"
+                )
+                params[key] = f"%{child}%"
+                params[tag] = child.replace(" / ", "-").replace(" ", "-")
+            site_filter_sql.append("(" + " OR ".join(loc_clauses) + ")")
+        else:
+            site_filter_sql.append("(s.locality ILIKE :loc OR :loc_tag = ANY(s.tags))")
+            params["loc"] = f"%{locality}%"
+            params["loc_tag"] = locality.lower()
     if country_code:
         site_filter_sql.append("s.country_code = :cc")
         params["cc"] = country_code.upper()

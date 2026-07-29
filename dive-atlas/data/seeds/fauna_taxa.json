@@ -1,0 +1,2152 @@
+{
+  "taxa": [
+    {
+      "slug": "nudibranch",
+      "common_name": "Nudibranch",
+      "scientific_name": "Nudibranchia",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "nudibranchs",
+        "nudibranch",
+        "nudi",
+        "sea slug",
+        "sea slugs",
+        "seaslug",
+        "flatworms",
+        "flatworm"
+      ],
+      "description": "Soft-bodied marine gastropods; huge diversity on tropical reefs and temperate walls.",
+      "id_tips": "Look for bright colors, rhinophores on the head, and gill tufts on the back. Often on sponges or hydroid.",
+      "size_cm_typical": 4,
+      "habitat": "reef / wall / muck",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "octopus",
+      "common_name": "Octopus",
+      "scientific_name": "Octopoda",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "octopuses",
+        "octopi",
+        "common octopus"
+      ],
+      "description": "Intelligent cephalopods; day or night depending on species.",
+      "id_tips": "Eight arms, soft sack-like body, often under ledges or in bottles/cans on muck sites.",
+      "size_cm_typical": 40,
+      "habitat": "reef / wreck / muck",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "barracuda",
+      "common_name": "Barracuda",
+      "scientific_name": "Sphyraena",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "barracudas",
+        "great barracuda"
+      ],
+      "description": "Elongated predatory fish often hanging mid-water near reefs and wrecks.",
+      "id_tips": "Silver body, pointed snout, visible teeth; often solitary or in schools.",
+      "size_cm_typical": 100,
+      "habitat": "reef / wreck / blue water",
+      "tags": [
+        "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "grouper",
+      "common_name": "Grouper",
+      "scientific_name": "Epinephelidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "groupers",
+        "goliath grouper",
+        "potato grouper",
+        "nassau grouper",
+        "peacock grouper"
+      ],
+      "description": "Large reef predators; many species site-attached under ledges.",
+      "id_tips": "Heavy body, large mouth, often under overhangs. Pattern and size separate species.",
+      "size_cm_typical": 80,
+      "habitat": "reef / wreck / wall",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "moray-eel",
+      "common_name": "Moray eel",
+      "scientific_name": "Muraenidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "moray",
+        "morays",
+        "moray eels",
+        "giant moray",
+        "green moray",
+        "spotted moray",
+        "eels",
+        "honeycomb moray",
+        "honeycomb moray eel"
+      ],
+      "description": "Snake-like reef eels living in holes and crevices; constantly opening mouth to breathe.",
+      "id_tips": "Look into holes and under ledges for a patterned head and continuous dorsal fin.",
+      "size_cm_typical": 120,
+      "habitat": "reef / wreck",
+      "danger_notes": "Bite if provoked; do not feed or put hands in holes.",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "lionfish",
+      "common_name": "Lionfish",
+      "scientific_name": "Pterois",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "lion fish",
+        "lionfishes",
+        "turkeyfish"
+      ],
+      "description": "Venomous scorpaenid with fan-like fins; invasive in the Atlantic/Caribbean.",
+      "id_tips": "Bold striping, elaborate pectoral fins, hovering near structure.",
+      "size_cm_typical": 30,
+      "habitat": "reef / wreck",
+      "danger_notes": "Venomous spines \u2014 look, don't touch.",
+      "tags": [
+        "venomous",
+        "invasive",
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "ray",
+      "common_name": "Ray",
+      "scientific_name": "Batoidea",
+      "taxon_group": "ray",
+      "rank": "superorder",
+      "aliases": [
+        "rays",
+        "sting ray",
+        "stingray",
+        "stingrays",
+        "electric ray"
+      ],
+      "description": "Flattened cartilaginous fishes; many rest on sand or cruise along walls.",
+      "id_tips": "Diamond/disc body, long tail; check sand patches and blue water for pelagic species.",
+      "habitat": "sand / reef / blue water",
+      "danger_notes": "Some stingrays have barbs \u2014 shuffle feet in shallow sand.",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "manta-ray",
+      "common_name": "Manta ray",
+      "scientific_name": "Mobula",
+      "taxon_group": "ray",
+      "rank": "genus",
+      "aliases": [
+        "manta",
+        "mantas",
+        "manta rays",
+        "reef manta",
+        "oceanic manta",
+        "mobula",
+        "mobula rays",
+        "devil ray"
+      ],
+      "description": "Giant filter-feeding rays; often at cleaning stations or plankton blooms.",
+      "id_tips": "Cephalic fins (horns), no stinging barb, huge wingspan, mouth at front.",
+      "size_cm_typical": 400,
+      "habitat": "cleaning station / blue water",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "eagle-ray",
+      "common_name": "Eagle ray",
+      "scientific_name": "Aetobatus",
+      "taxon_group": "ray",
+      "rank": "genus",
+      "aliases": [
+        "eagle rays",
+        "spotted eagle ray",
+        "spotted eagle rays"
+      ],
+      "description": "Elegant spotted rays that fly over sand and reef in pairs or schools.",
+      "id_tips": "White spots on dark dorsal surface, pointed snout, long whip tail.",
+      "size_cm_typical": 180,
+      "habitat": "sand / reef / channel",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "coral",
+      "common_name": "Coral",
+      "scientific_name": "Anthozoa",
+      "taxon_group": "coral",
+      "rank": "class",
+      "aliases": [
+        "corals",
+        "hard coral",
+        "soft coral",
+        "soft corals",
+        "brain coral",
+        "tree coral",
+        "gorgonian",
+        "gorgonian fan",
+        "sea fan"
+      ],
+      "description": "Reef-building and soft anthozoans that structure dive sites.",
+      "id_tips": "Hard corals have stony skeletons; soft corals and gorgonians sway. Brain coral has maze-like valleys.",
+      "habitat": "reef",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "lobster",
+      "common_name": "Lobster",
+      "scientific_name": "Nephropidae / Palinuridae",
+      "taxon_group": "invert",
+      "rank": "species_group",
+      "aliases": [
+        "lobsters",
+        "spiny lobster",
+        "crayfish",
+        "langouste",
+        "langustas",
+        "kreeft"
+      ],
+      "description": "Large crustaceans under ledges and in wrecks; antennae often stick out first.",
+      "id_tips": "Look under overhangs for antennae and armored carapace.",
+      "size_cm_typical": 40,
+      "habitat": "reef / wreck / cave",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-turtle",
+      "common_name": "Sea turtle",
+      "scientific_name": "Cheloniidae",
+      "taxon_group": "reptile",
+      "rank": "family",
+      "aliases": [
+        "turtle",
+        "turtles",
+        "sea turtles",
+        "turltes",
+        "marine turtle"
+      ],
+      "description": "Air-breathing reptiles commonly seen grazing or resting on reefs.",
+      "id_tips": "Shell shape and beak distinguish green vs hawksbill; don't chase or ride.",
+      "size_cm_typical": 90,
+      "habitat": "reef / seagrass / wall",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "hawksbill-turtle",
+      "common_name": "Hawksbill turtle",
+      "scientific_name": "Eretmochelys imbricata",
+      "taxon_group": "reptile",
+      "rank": "species",
+      "aliases": [
+        "hawksbill",
+        "hawksbill sea turtle"
+      ],
+      "description": "Critically endangered reef turtle with overlapping scutes and a hawk-like beak.",
+      "id_tips": "Pointed beak, serrated rear shell edge, overlapping scutes.",
+      "size_cm_typical": 80,
+      "habitat": "reef / sponge gardens",
+      "tags": [
+        "charismatic",
+        "card",
+        "threatened"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "green-turtle",
+      "common_name": "Green turtle",
+      "scientific_name": "Chelonia mydas",
+      "taxon_group": "reptile",
+      "rank": "species",
+      "aliases": [
+        "green sea turtle",
+        "green turtles"
+      ],
+      "description": "Large herbivorous turtle often on seagrass and shallow reefs.",
+      "id_tips": "Rounded head, smooth non-overlapping scutes, often grazing.",
+      "size_cm_typical": 100,
+      "habitat": "seagrass / reef",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "scorpionfish",
+      "common_name": "Scorpionfish",
+      "scientific_name": "Scorpaenidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "scorpion fish",
+        "scorpionfishes",
+        "stonefish",
+        "stone fish"
+      ],
+      "description": "Camouflaged ambush predators; stonefish are among the most venomous fishes.",
+      "id_tips": "Scan sand and rubble for eyes and fin outlines that don't match the substrate.",
+      "size_cm_typical": 25,
+      "habitat": "reef / rubble / sand",
+      "danger_notes": "Venomous dorsal spines \u2014 careful hand/knee placement.",
+      "tags": [
+        "venomous",
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "crab",
+      "common_name": "Crab",
+      "scientific_name": "Brachyura",
+      "taxon_group": "invert",
+      "rank": "infraorder",
+      "aliases": [
+        "crabs",
+        "hermit crab",
+        "hermit crabs"
+      ],
+      "description": "Diverse crustaceans on reef, muck, and night dives.",
+      "id_tips": "Check crevices and anemones at night; hermit crabs carry shells.",
+      "habitat": "reef / muck / night",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "reef-fish",
+      "common_name": "Reef fish",
+      "scientific_name": null,
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "reef fishes",
+        "tropical reef fish",
+        "fish"
+      ],
+      "description": "Generic PADI/label bucket for mixed tropical reef assemblage.",
+      "id_tips": "Use more specific cards (parrotfish, angelfish, etc.) when identifiable.",
+      "habitat": "reef",
+      "tags": [
+        "assemblage"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "shrimp",
+      "common_name": "Shrimp",
+      "scientific_name": "Caridea",
+      "taxon_group": "invert",
+      "rank": "infraorder",
+      "aliases": [
+        "shrimps",
+        "cleaner shrimp",
+        "mantis shrimp"
+      ],
+      "description": "Small crustaceans including cleaners and powerful mantis shrimp.",
+      "id_tips": "Cleaner shrimp in anemones/crevices; mantis shrimp in burrows with stalked eyes.",
+      "habitat": "reef / muck",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "mantis-shrimp",
+      "common_name": "Mantis shrimp",
+      "scientific_name": "Stomatopoda",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "mantis",
+        "mantis shrimps"
+      ],
+      "description": "Powerful stomatopods with extraordinary vision; smashers and spearers.",
+      "id_tips": "Peacock mantis: rainbow carapace at burrow entrance. Don't poke.",
+      "size_cm_typical": 15,
+      "habitat": "rubble / muck / reef",
+      "danger_notes": "Can strike hard \u2014 keep fingers clear of burrows.",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "parrotfish",
+      "common_name": "Parrotfish",
+      "scientific_name": "Scaridae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "parrot fish",
+        "parrotfishes",
+        "bumphead parrotfish"
+      ],
+      "description": "Beak-mouthed herbivores that scrape algae and produce sand.",
+      "id_tips": "Fused beak teeth, bright colors, often scraping coral rock; night mucus cocoons.",
+      "size_cm_typical": 50,
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-anemone",
+      "common_name": "Sea anemone",
+      "scientific_name": "Actiniaria",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "anemone",
+        "anemones",
+        "sea anemones"
+      ],
+      "description": "Flower-like cnidarians that host clownfish and cleaner shrimp.",
+      "id_tips": "Tentacle tips and column color separate species; look for resident fish.",
+      "habitat": "reef",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "angelfish",
+      "common_name": "Angelfish",
+      "scientific_name": "Pomacanthidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "angel fish",
+        "angelfishes",
+        "angel fishes"
+      ],
+      "description": "Laterally compressed reef fish with a distinctive cheek spine.",
+      "id_tips": "Look for the preopercular spine; juveniles often differently patterned.",
+      "size_cm_typical": 25,
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "triggerfish",
+      "common_name": "Triggerfish",
+      "scientific_name": "Balistidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "trigger fish",
+        "triggerfishes",
+        "titan triggerfish"
+      ],
+      "description": "Oval reef fish with a locking dorsal trigger spine; some nest aggressively.",
+      "id_tips": "Small mouth, diamond body; titan triggerfish: yellow-green with dark blotches.",
+      "size_cm_typical": 40,
+      "habitat": "reef / sand",
+      "danger_notes": "Nesting titans can charge \u2014 give wide berth in season.",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "butterflyfish",
+      "common_name": "Butterflyfish",
+      "scientific_name": "Chaetodontidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "butterfly fish",
+        "butterflyfishes",
+        "bannerfish"
+      ],
+      "description": "Small colorful disk-shaped reef fish, often in pairs.",
+      "id_tips": "Pointed snout, bold patterns; false eye spots common.",
+      "size_cm_typical": 15,
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "snapper",
+      "common_name": "Snapper",
+      "scientific_name": "Lutjanidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "snappers",
+        "red snapper",
+        "snaper"
+      ],
+      "description": "Schooling reef predators, often under ledges and wrecks by day.",
+      "id_tips": "Sloping forehead, prominent canine teeth; schools in mid-water at dusk.",
+      "size_cm_typical": 50,
+      "habitat": "reef / wreck",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "jack-trevally",
+      "common_name": "Jack / Trevally",
+      "scientific_name": "Carangidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "jack",
+        "jacks",
+        "jackfish",
+        "trevally",
+        "giant trevally",
+        "gt"
+      ],
+      "description": "Fast silver predators hunting along walls and blue water.",
+      "id_tips": "Forked tail, streamlined body; GTs are thick and dark-finned.",
+      "size_cm_typical": 70,
+      "habitat": "wall / channel / blue water",
+      "tags": [
+        "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "pipefish",
+      "common_name": "Pipefish",
+      "scientific_name": "Syngnathidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "pipefishes",
+        "trumpetfish / pipefish",
+        "ghost pipefish",
+        "ornate ghost pipefish",
+        "pygmy pipehorse"
+      ],
+      "description": "Elongated relatives of seahorses; ghost pipefish are masters of camouflage.",
+      "id_tips": "Scan crinoids and soft coral for matching pipe shapes; trumpetfish hover vertically.",
+      "size_cm_typical": 15,
+      "habitat": "reef / muck / soft coral",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "trumpetfish",
+      "common_name": "Trumpetfish",
+      "scientific_name": "Aulostomus",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "trumpet fish",
+        "trumpetfishes"
+      ],
+      "description": "Long thin ambush predators that hang vertically among gorgonians.",
+      "id_tips": "Pencil-thin body, tiny mouth at end of tubular snout.",
+      "size_cm_typical": 60,
+      "habitat": "reef / gorgonian",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "whitetip-reef-shark",
+      "common_name": "Whitetip reef shark",
+      "scientific_name": "Triaenodon obesus",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "white tip reef shark",
+        "whitetip",
+        "white-tip reef shark",
+        "whitetip reef sharks"
+      ],
+      "description": "Common tropical reef shark resting in caves and under ledges by day.",
+      "id_tips": "White tips on dorsal and caudal fins; slender body; often in pairs in caves.",
+      "size_cm_typical": 140,
+      "habitat": "reef / cave / ledge",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "blacktip-reef-shark",
+      "common_name": "Blacktip reef shark",
+      "scientific_name": "Carcharhinus melanopterus",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "black tip reef shark",
+        "blacktip",
+        "black-tip reef shark"
+      ],
+      "description": "Shallow-water reef shark with distinctive black fin tips.",
+      "id_tips": "Black tips on all fins especially dorsal; often in lagoons and reef flats.",
+      "size_cm_typical": 140,
+      "habitat": "reef flat / lagoon / wall",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "nurse-shark",
+      "common_name": "Nurse shark",
+      "scientific_name": "Ginglymostoma cirratum",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "nurse sharks",
+        "nurse"
+      ],
+      "description": "Sluggish bottom shark often resting under ledges in the Caribbean.",
+      "id_tips": "Two barbels at mouth, tan color, dorsal fins far back.",
+      "size_cm_typical": 250,
+      "habitat": "reef / sand / ledge",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "shark",
+      "common_name": "Shark",
+      "scientific_name": "Selachimorpha",
+      "taxon_group": "shark",
+      "rank": "species_group",
+      "aliases": [
+        "sharks"
+      ],
+      "description": "Generic shark sighting when species not identified.",
+      "habitat": "reef / blue water",
+      "tags": [
+        "shark",
+        "charismatic"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "whale-shark",
+      "common_name": "Whale shark",
+      "scientific_name": "Rhincodon typus",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "whale sharks"
+      ],
+      "description": "Largest fish; filter feeder often at plankton blooms and baitballs.",
+      "id_tips": "Checkerboard white spots, flat head, enormous size \u2014 stay clear of the tail.",
+      "size_cm_typical": 800,
+      "habitat": "blue water / plankton bloom",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "thresher-shark",
+      "common_name": "Thresher shark",
+      "scientific_name": "Alopias",
+      "taxon_group": "shark",
+      "rank": "genus",
+      "aliases": [
+        "thresher",
+        "threshers",
+        "thresher sharks"
+      ],
+      "description": "Pelagic shark with elongated upper caudal lobe used to stun prey.",
+      "id_tips": "Absurdly long upper tail lobe; often at cleaning stations at dawn (e.g. Malapascua).",
+      "size_cm_typical": 350,
+      "habitat": "cleaning station / deep reef",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "leopard-shark",
+      "common_name": "Leopard / Zebra shark",
+      "scientific_name": "Stegostoma tigrinum",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "leopard shark",
+        "zebra shark",
+        "zebra (leopard) shark",
+        "wobbygong shark",
+        "wobbegong",
+        "bamboo shark",
+        "wobbegongs"
+      ],
+      "description": "Spotted/banded bottom sharks resting on sand (taxonomy labels often mixed in field reports).",
+      "id_tips": "Zebra/leopard (Stegostoma): ridges on body, long tail. Wobbegongs: ornate dermal lobes.",
+      "size_cm_typical": 200,
+      "habitat": "sand / reef",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "seahorse",
+      "common_name": "Seahorse",
+      "scientific_name": "Hippocampus",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "seahorses",
+        "sea horse",
+        "sea horses",
+        "pygmy sea hose",
+        "pygmy seahorse"
+      ],
+      "description": "Iconic macro subjects clinging to seagrass, hydroid, and man-made debris.",
+      "id_tips": "Scan carefully \u2014 cryptic. Males have brood pouch.",
+      "size_cm_typical": 12,
+      "habitat": "seagrass / muck / jetty",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "frogfish",
+      "common_name": "Frogfish",
+      "scientific_name": "Antennariidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "frog fish",
+        "frogfishes",
+        "anglerfish"
+      ],
+      "description": "Cryptic ambush predators with a fishing lure (illicium).",
+      "id_tips": "Scan sponges and rubble for mismatched texture; lure above the mouth.",
+      "size_cm_typical": 15,
+      "habitat": "reef / muck / sponge",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "clownfish",
+      "common_name": "Clownfish",
+      "scientific_name": "Amphiprion",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "clown fish",
+        "clownfishes",
+        "anemonefish",
+        "anemone fish"
+      ],
+      "description": "Anemone-associated damselfish; species vary by stripe pattern and host.",
+      "id_tips": "Always with anemone; count stripes and note color for species.",
+      "size_cm_typical": 10,
+      "habitat": "anemone / reef",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "starfish",
+      "common_name": "Starfish / Sea star",
+      "scientific_name": "Asteroidea",
+      "taxon_group": "invert",
+      "rank": "class",
+      "aliases": [
+        "sea star",
+        "sea stars",
+        "starfish",
+        "crown of thorns",
+        "crown of thorns seastar"
+      ],
+      "description": "Echinoderms on reef and sand; crown-of-thorns is a coral predator.",
+      "id_tips": "COTS: many spines, 10\u201320 arms. Blue Linckia common on Indo-Pacific reefs.",
+      "habitat": "reef / sand",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-urchin",
+      "common_name": "Sea urchin",
+      "scientific_name": "Echinoidea",
+      "taxon_group": "invert",
+      "rank": "class",
+      "aliases": [
+        "urchin",
+        "urchins",
+        "sea urchins",
+        "diadema"
+      ],
+      "description": "Spiny echinoderms in crevices and on reef flats.",
+      "id_tips": "Long black Diadema spines common; avoid contact.",
+      "habitat": "reef / rubble",
+      "danger_notes": "Spines puncture easily.",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "boxfish-pufferfish",
+      "common_name": "Boxfish / Pufferfish",
+      "scientific_name": "Ostraciidae / Tetraodontidae",
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "boxfish",
+        "box fish",
+        "pufferfish",
+        "puffer fish",
+        "puffer",
+        "boxfish / pufferfish"
+      ],
+      "description": "Slow reef fish with armor (box) or inflate (puffer); some toxic.",
+      "id_tips": "Boxfish: rigid cubic body. Puffers: inflate when threatened.",
+      "size_cm_typical": 20,
+      "habitat": "reef",
+      "danger_notes": "Some tissues toxic if eaten; don't harass.",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "tuna",
+      "common_name": "Tuna",
+      "scientific_name": "Thunnus",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "tunas",
+        "yellowfin tuna",
+        "skipjack"
+      ],
+      "description": "Fast pelagic predators occasionally seen off walls and seamounts.",
+      "id_tips": "Crescent tail, metallic flanks, high cruising speed.",
+      "habitat": "blue water / seamount",
+      "tags": [
+        "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "cuttlefish",
+      "common_name": "Cuttlefish",
+      "scientific_name": "Sepiida",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "cuttle fish",
+        "cuttlefishes",
+        "giant cuttlefish"
+      ],
+      "description": "Color-changing cephalopods; giant cuttlefish aggregate to breed in South Australia.",
+      "id_tips": "W-shaped pupil, undulating fin skirt, cuttlebone internally.",
+      "size_cm_typical": 30,
+      "habitat": "reef / seagrass / muck",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "squid",
+      "common_name": "Squid",
+      "scientific_name": "Teuthida",
+      "taxon_group": "invert",
+      "rank": "order",
+      "aliases": [
+        "squids",
+        "reef squid",
+        "bigfin reef squid"
+      ],
+      "description": "Schooling cephalopods often seen at night or over sand.",
+      "id_tips": "Torpedo body, triangular fins, color flashes; reef squid hover in groups.",
+      "habitat": "sand / night / blue water",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "garden-eel",
+      "common_name": "Garden eel",
+      "scientific_name": "Heteroconger",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "garden eels"
+      ],
+      "description": "Colonies of eels protruding from sand patches like a garden.",
+      "id_tips": "Approach slowly \u2014 they withdraw into burrows when startled.",
+      "size_cm_typical": 40,
+      "habitat": "sand",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "napoleon-wrasse",
+      "common_name": "Napoleon wrasse",
+      "scientific_name": "Cheilinus undulatus",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "napoleon",
+        "napoleon fish",
+        "humphead wrasse",
+        "maori wrasse",
+        "napolean fish"
+      ],
+      "description": "Huge Indo-Pacific wrasse with a bulbous forehead; threatened.",
+      "id_tips": "Massive lips, hump on forehead of adults, green maze pattern.",
+      "size_cm_typical": 150,
+      "habitat": "reef / pass",
+      "tags": [
+        "charismatic",
+        "card",
+        "threatened"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "wrasse",
+      "common_name": "Wrasse",
+      "scientific_name": "Labridae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "wrasses"
+      ],
+      "description": "Diverse colorful reef fish including cleaners and Napoleon.",
+      "id_tips": "Protrusible jaws, continuous dorsal fin; many change sex/color with age.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sweetlips",
+      "common_name": "Sweetlips",
+      "scientific_name": "Haemulidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "sweet lip",
+        "sweetlip"
+      ],
+      "description": "Thick-lipped reef fish; juveniles often spotted and dance oddly.",
+      "id_tips": "Juveniles: high contrast spots, exaggerated swimming. Adults school under ledges.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "surgeonfish",
+      "common_name": "Surgeonfish / Tang",
+      "scientific_name": "Acanthuridae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "surgeon fish",
+        "surgeonfishes",
+        "tang",
+        "tangs"
+      ],
+      "description": "Oval herbivores with a scalpel-like spine on the caudal peduncle.",
+      "id_tips": "Look for the spine spot near the tail; schools graze algae.",
+      "size_cm_typical": 25,
+      "habitat": "reef",
+      "danger_notes": "Caudal spine can cut.",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "batfish",
+      "common_name": "Batfish",
+      "scientific_name": "Platax",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "bat fish",
+        "batfishes",
+        "spadefish"
+      ],
+      "description": "Tall-bodied curious fish that often approach divers on wrecks.",
+      "id_tips": "Very tall compressed body; juveniles may have long fins.",
+      "size_cm_typical": 40,
+      "habitat": "wreck / reef",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "mola-mola",
+      "common_name": "Ocean sunfish (Mola mola)",
+      "scientific_name": "Mola mola",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "sunfish",
+        "sunfish (mola mola)",
+        "mola",
+        "ocean sunfish",
+        "mola mola"
+      ],
+      "description": "Giant oceanic fish often at cleaning stations in cold upwellings (e.g. Bali).",
+      "id_tips": "Huge truncated body, tall dorsal/anal fins; usually near thermocline.",
+      "size_cm_typical": 250,
+      "habitat": "blue water / cleaning station",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "dolphin",
+      "common_name": "Dolphin",
+      "scientific_name": "Delphinidae",
+      "taxon_group": "mammal",
+      "rank": "family",
+      "aliases": [
+        "dolphins",
+        "bottlenose dolphin",
+        "spinner dolphin"
+      ],
+      "description": "Marine mammals occasionally encountered on blue-water or channel dives.",
+      "id_tips": "Horizontal tail beat (vs fish), social groups, acoustic clicks.",
+      "habitat": "blue water / channel",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "jellyfish",
+      "common_name": "Jellyfish",
+      "scientific_name": "Medusozoa",
+      "taxon_group": "invert",
+      "rank": "species_group",
+      "aliases": [
+        "jelly fish",
+        "jellies",
+        "jellyfish bloom"
+      ],
+      "description": "Drifting cnidarians; blooms can be seasonal hazards or attractions (e.g. stingless lakes).",
+      "id_tips": "Bell + tentacles; give stinging species space.",
+      "habitat": "blue water / lagoon",
+      "danger_notes": "Many species sting \u2014 know local hazards (box jelly, Portuguese man o' war).",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-cucumber",
+      "common_name": "Sea cucumber",
+      "scientific_name": "Holothuroidea",
+      "taxon_group": "invert",
+      "rank": "class",
+      "aliases": [
+        "sea cucumbers",
+        "holothurian"
+      ],
+      "description": "Sausage-shaped echinoderms on sand and reef; important detritivores.",
+      "id_tips": "Slow crawlers on sand; some expel sticky tubules when threatened.",
+      "habitat": "sand / reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "goatfish",
+      "common_name": "Goatfish",
+      "scientific_name": "Mullidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "goat fish",
+        "goatfishes"
+      ],
+      "description": "Barbel-equipped sand foragers often in small groups.",
+      "id_tips": "Two chin barbels actively probing sand.",
+      "habitat": "sand / reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "conger-eel",
+      "common_name": "Conger eel",
+      "scientific_name": "Conger",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "conger",
+        "conger eels"
+      ],
+      "description": "Large temperate/tropical eels in wrecks and rocky holes.",
+      "id_tips": "Grey/brown, no patterned spots like many morays; common in European wrecks.",
+      "habitat": "wreck / rock",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-snake",
+      "common_name": "Sea snake",
+      "scientific_name": "Hydrophiinae",
+      "taxon_group": "reptile",
+      "rank": "subfamily",
+      "aliases": [
+        "sea snakes",
+        "sea serpent"
+      ],
+      "description": "Venomous marine snakes of the Indo-Pacific; generally not aggressive.",
+      "id_tips": "Paddle-like tail, nostrils on top of snout.",
+      "habitat": "reef / sand",
+      "danger_notes": "Highly venomous \u2014 observe only.",
+      "tags": [
+        "venomous",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "humpback-whale",
+      "common_name": "Humpback whale",
+      "scientific_name": "Megaptera novaeangliae",
+      "taxon_group": "mammal",
+      "rank": "species",
+      "aliases": [
+        "humpback",
+        "humpbacks",
+        "humpback whales"
+      ],
+      "description": "Seasonal migratory whale; singers and calves in warm-water breeding grounds.",
+      "id_tips": "Long pectoral fins, knobbly head, bushy blow; seasonal only.",
+      "habitat": "blue water / breeding ground",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "seasonal",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "orca",
+      "common_name": "Orca",
+      "scientific_name": "Orcinus orca",
+      "taxon_group": "mammal",
+      "rank": "species",
+      "aliases": [
+        "killer whale",
+        "killer whales",
+        "orcas"
+      ],
+      "description": "Apex marine mammal; rare but iconic at some cold-water and polar sites.",
+      "id_tips": "Tall dorsal fin (male), black/white pattern, pod structure.",
+      "habitat": "blue water / cold water",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sardine",
+      "common_name": "Sardine",
+      "scientific_name": "Sardinops / Sardinella",
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "sardines",
+        "sardine run",
+        "baitball",
+        "bait ball"
+      ],
+      "description": "Schooling baitfish forming seasonal baitballs pursued by predators.",
+      "id_tips": "Dense silver schools; watch for predators and birds above.",
+      "habitat": "blue water / seasonal run",
+      "tags": [
+        "pelagic",
+        "seasonal",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "damselfish",
+      "common_name": "Damselfish",
+      "scientific_name": "Pomacentridae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "damsel",
+        "damsels",
+        "damselfishes",
+        "chromis"
+      ],
+      "description": "Small territorial reef fish including chromis clouds over coral heads.",
+      "id_tips": "Often defend nest algae patches aggressively.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "clam",
+      "common_name": "Giant clam / Clam",
+      "scientific_name": "Tridacna",
+      "taxon_group": "invert",
+      "rank": "genus",
+      "aliases": [
+        "clams",
+        "giant clam",
+        "giant clams",
+        "tridacna"
+      ],
+      "description": "Large bivalves embedded in reef; colorful mantle.",
+      "id_tips": "Iridescent mantle spots; shell embedded in coral rock.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "pelagic-fish",
+      "common_name": "Pelagic fish",
+      "scientific_name": null,
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "pelagics",
+        "pelagic fishes"
+      ],
+      "description": "Generic open-water fish assemblage (jacks, tuna, sharks, etc.).",
+      "habitat": "blue water",
+      "tags": [
+        "pelagic",
+        "assemblage"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "jawfish",
+      "common_name": "Jawfish",
+      "scientific_name": "Opistognathidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "jaw fish",
+        "yellowhead jawfish"
+      ],
+      "description": "Burrow-dwelling fish that hover above holes; males mouth-brood eggs.",
+      "id_tips": "Large jaw, hovering over a sand burrow entrance.",
+      "habitat": "sand / rubble",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "flounder",
+      "common_name": "Flounder / Flatfish",
+      "scientific_name": "Pleuronectiformes",
+      "taxon_group": "fish",
+      "rank": "order",
+      "aliases": [
+        "flatfish",
+        "flounders",
+        "sole"
+      ],
+      "description": "Camouflaged flatfish on sand; both eyes on one side.",
+      "id_tips": "Scan sand for eye bumps and outline that doesn't match ripples.",
+      "habitat": "sand",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "guitarfish",
+      "common_name": "Guitarfish",
+      "scientific_name": "Rhinobatidae",
+      "taxon_group": "ray",
+      "rank": "family",
+      "aliases": [
+        "guitar fish",
+        "guitarfishes",
+        "shovelnose ray",
+        "guitar shark",
+        "guitar sharks"
+      ],
+      "description": "Ray with a shark-like body resting on sand.",
+      "id_tips": "Pointed snout, ray-like pectoral disc fused to body.",
+      "habitat": "sand",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "leatherback-turtle",
+      "common_name": "Leatherback turtle",
+      "scientific_name": "Dermochelys coriacea",
+      "taxon_group": "reptile",
+      "rank": "species",
+      "aliases": [
+        "leatherback",
+        "leatherback sea turtle"
+      ],
+      "description": "Largest turtle; leathery ridged carapace; mostly pelagic.",
+      "id_tips": "No hard scutes \u2014 ridges on a dark rubbery shell.",
+      "habitat": "blue water",
+      "tags": [
+        "charismatic",
+        "card",
+        "threatened"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "hammerhead-shark",
+      "common_name": "Hammerhead shark",
+      "scientific_name": "Sphyrna",
+      "taxon_group": "shark",
+      "rank": "genus",
+      "aliases": [
+        "hammerhead",
+        "hammerheads",
+        "hammerhead sharks",
+        "great hammerhead",
+        "scalloped hammerhead"
+      ],
+      "description": "Sharks with a distinctive hammer-shaped cephalofoil; often at seamounts and cleaning stations.",
+      "id_tips": "Wide flattened head, tall dorsal fin; often in schools at dawn.",
+      "size_cm_typical": 300,
+      "habitat": "seamount / blue water / cleaning station",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "loggerhead-turtle",
+      "common_name": "Loggerhead turtle",
+      "scientific_name": "Caretta caretta",
+      "taxon_group": "reptile",
+      "rank": "species",
+      "aliases": [
+        "loggerhead",
+        "loggerheads",
+        "loggerhead sea turtle"
+      ],
+      "description": "Large-headed hard-shelled sea turtle common on temperate and subtropical reefs.",
+      "id_tips": "Very large head, heart-shaped carapace, reddish-brown color.",
+      "size_cm_typical": 90,
+      "habitat": "reef / sand",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sea-lion",
+      "common_name": "Sea lion",
+      "scientific_name": "Otariidae",
+      "taxon_group": "mammal",
+      "rank": "family",
+      "aliases": [
+        "sea lions",
+        "sealion",
+        "sealions",
+        "fur seal",
+        "fur seals"
+      ],
+      "description": "Playful pinnipeds at temperate Pacific and Southern Ocean sites.",
+      "id_tips": "External ear flaps, rear flippers can walk on land; curious underwater.",
+      "habitat": "rocky coast / kelp / cold water",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bluespotted-stingray",
+      "common_name": "Bluespotted stingray",
+      "scientific_name": "Taeniura lymma",
+      "taxon_group": "ray",
+      "rank": "species",
+      "aliases": [
+        "blue spotted stingray",
+        "bluespotted ray",
+        "bluespotted stingrays"
+      ],
+      "description": "Small Indo-Pacific stingray with electric blue spots on sand and in caves.",
+      "id_tips": "Oval disc with vivid blue spots and blue-edged tail stripes.",
+      "size_cm_typical": 35,
+      "habitat": "sand / reef / cave",
+      "danger_notes": "Barb on tail \u2014 don't corner.",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "fusilier",
+      "common_name": "Fusilier",
+      "scientific_name": "Caesionidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "fusiliers"
+      ],
+      "description": "Schooling mid-water reef fish, often yellow/blue streaming along walls.",
+      "id_tips": "Forked tail, streamlined; schools in open water near reef edges.",
+      "habitat": "wall / blue water",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "spider-crab",
+      "common_name": "Spider crab",
+      "scientific_name": "Majidae",
+      "taxon_group": "invert",
+      "rank": "family",
+      "aliases": [
+        "spider crabs",
+        "decorator crab",
+        "decorator crabs"
+      ],
+      "description": "Long-legged crabs, often decorated with sponges and algae.",
+      "id_tips": "Spindly legs; check soft coral and wrecks at night.",
+      "habitat": "reef / wreck / night",
+      "tags": [
+        "macro",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "barrel-sponge",
+      "common_name": "Barrel sponge",
+      "scientific_name": "Xestospongia",
+      "taxon_group": "invert",
+      "rank": "genus",
+      "aliases": [
+        "barrel sponges",
+        "giant barrel sponge",
+        "sponges",
+        "sponge"
+      ],
+      "description": "Huge vase-shaped sponges that structure Caribbean and Indo-Pacific reefs.",
+      "id_tips": "Barrel or vase shape large enough to swim beside (don't touch).",
+      "habitat": "reef / wall",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bass",
+      "common_name": "Bass / Seabass",
+      "scientific_name": "Serranidae",
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "basses",
+        "seabass",
+        "sea bass",
+        "european seabass",
+        "striped bass",
+        "stripped bass"
+      ],
+      "description": "Temperate and tropical bass-like fishes often on wrecks and rocky reefs.",
+      "id_tips": "Heavy body, large mouth; species vary widely by region.",
+      "habitat": "wreck / rock / reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bream",
+      "common_name": "Bream",
+      "scientific_name": "Sparidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "breams",
+        "gilthead seabream",
+        "porgy"
+      ],
+      "description": "Laterally compressed temperate reef/coastal fish common in Europe and elsewhere.",
+      "id_tips": "Deep body, forked tail; often in small groups over rock.",
+      "habitat": "rock / wreck",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "grey-reef-shark",
+      "common_name": "Grey reef shark",
+      "scientific_name": "Carcharhinus amblyrhynchos",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "gray reef shark",
+        "grey sharks",
+        "gray sharks",
+        "grey reef sharks"
+      ],
+      "description": "Common Indo-Pacific reef shark patrolling passes and walls.",
+      "id_tips": "Uniform grey, black trailing edge on caudal fin; often mid-water.",
+      "size_cm_typical": 160,
+      "habitat": "pass / wall / reef",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "mackerel",
+      "common_name": "Mackerel",
+      "scientific_name": "Scombridae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "mackerels",
+        "spanish mackerel",
+        "king mackerel"
+      ],
+      "description": "Fast schooling pelagic fish with wavy flank markings.",
+      "id_tips": "Streamlined, spotted or barred flanks, high speed along reef edges.",
+      "habitat": "blue water / reef edge",
+      "tags": [
+        "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "pike",
+      "common_name": "Pike",
+      "scientific_name": null,
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "pikes",
+        "northern pike"
+      ],
+      "description": "Often a PADI mislabel for barracuda or temperate pike in lakes/quarries.",
+      "id_tips": "Long snout and teeth; confirm local species \u2014 may be barracuda on reefs.",
+      "habitat": "reef / lake / quarry",
+      "tags": [
+        "assemblage"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "perch",
+      "common_name": "Perch",
+      "scientific_name": "Percidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "perches",
+        "european perch"
+      ],
+      "description": "Temperate freshwater/brackish fish seen on quarry and lake dives.",
+      "id_tips": "Vertical bars, spiny dorsal fin; freshwater sites.",
+      "habitat": "lake / quarry / river",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "carp",
+      "common_name": "Carp",
+      "scientific_name": "Cyprinus",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "carps",
+        "common carp"
+      ],
+      "description": "Large freshwater fish common in European quarry and lake dives.",
+      "id_tips": "Barbels at mouth, large scales, bronze color.",
+      "habitat": "lake / quarry / river",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "wobbegong",
+      "common_name": "Wobbegong",
+      "scientific_name": "Orectolobidae",
+      "taxon_group": "shark",
+      "rank": "family",
+      "aliases": [
+        "wobbegongs",
+        "wobbegong shark",
+        "wobbegong sharks",
+        "wobbygong shark"
+      ],
+      "description": "Carpet sharks common on Indo-Pacific reefs and under ledges in Raja Ampat/Misool.",
+      "id_tips": "Flattened ornate head with dermal lobes; rests on sand and under overhangs.",
+      "size_cm_typical": 150,
+      "habitat": "reef / ledge / sand",
+      "tags": [
+        "charismatic",
+        "card",
+        "shark"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "pygmy-seahorse",
+      "common_name": "Pygmy seahorse",
+      "scientific_name": "Hippocampus bargibanti",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "pygmy seahorses",
+        "bargibant",
+        "Denise's pygmy seahorse"
+      ],
+      "description": "Tiny seahorses on gorgonian sea fans \u2014 classic Misool / Raja Ampat macro.",
+      "id_tips": "Scan Muricella sea fans carefully; match color to the fan.",
+      "size_cm_typical": 2,
+      "habitat": "gorgonian / soft coral",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "oceanic-manta",
+      "common_name": "Oceanic manta",
+      "scientific_name": "Mobula birostris",
+      "taxon_group": "ray",
+      "rank": "species",
+      "aliases": [
+        "oceanic manta ray",
+        "giant oceanic manta"
+      ],
+      "description": "Larger of the two manta species; visits Misool Magic Mountain with reef mantas.",
+      "id_tips": "Larger disc, black/white ventral morphs, dorsal spot pattern differs from reef manta.",
+      "size_cm_typical": 500,
+      "habitat": "blue water / cleaning station",
+      "tags": [
+        "pelagic",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "mandarinfish",
+      "common_name": "Mandarinfish",
+      "scientific_name": "Synchiropus splendidus",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "mandarin fish",
+        "mandarin dragonet"
+      ],
+      "description": "Tiny psychedelic dragonet \u2014 dusk house-reef classic.",
+      "id_tips": "Look at dusk in rubble; males display.",
+      "size_cm_typical": 6,
+      "habitat": "rubble / house reef",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "flamboyant-cuttlefish",
+      "common_name": "Flamboyant cuttlefish",
+      "scientific_name": "Metasepia pfefferi",
+      "taxon_group": "invert",
+      "rank": "species",
+      "aliases": [
+        "flamboyant cuttle"
+      ],
+      "description": "Walking toxic cuttlefish of muck sites (Mabul, Lembeh, etc.).",
+      "id_tips": "Small, vivid pulsing colors, walks on arms over sand.",
+      "size_cm_typical": 8,
+      "habitat": "muck / sand",
+      "danger_notes": "Toxic \u2014 observe only.",
+      "tags": [
+        "macro",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bumphead-parrotfish",
+      "common_name": "Bumphead parrotfish",
+      "scientific_name": "Bolbometopon muricatum",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "bumphead",
+        "bumpheads",
+        "humphead parrotfish",
+        "humphead parrot"
+      ],
+      "description": "Huge schooling parrotfish that sleep in caves and crunch coral.",
+      "id_tips": "Massive forehead bump, green body, often in groups at dusk.",
+      "size_cm_typical": 100,
+      "habitat": "reef / cave",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "bull-shark",
+      "common_name": "Bull shark",
+      "scientific_name": "Carcharhinus leucas",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "bull sharks"
+      ],
+      "description": "Stocky coastal shark; famous at places like Beqa, Playa del Carmen.",
+      "id_tips": "Stout body, short snout, no distinct fin markings.",
+      "size_cm_typical": 250,
+      "habitat": "reef / blue water",
+      "tags": [
+        "shark",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "silvertip-shark",
+      "common_name": "Silvertip shark",
+      "scientific_name": "Carcharhinus albimarginatus",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "silvertip",
+        "silvertip sharks",
+        "silver tip shark"
+      ],
+      "description": "Indo-Pacific reef/pelagic shark with white-edged fins.",
+      "id_tips": "White margins on all fins; larger than reef whitetips.",
+      "size_cm_typical": 250,
+      "habitat": "pass / seamount",
+      "tags": [
+        "shark",
+        "pelagic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "trout",
+      "common_name": "Trout",
+      "scientific_name": "Salmonidae",
+      "taxon_group": "fish",
+      "rank": "family",
+      "aliases": [
+        "trouts",
+        "rainbow trout",
+        "brown trout"
+      ],
+      "description": "Freshwater salmonids common on quarry, lake, and river dives.",
+      "id_tips": "Spots along flanks; freshwater sites.",
+      "habitat": "lake / river / quarry",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sponge",
+      "common_name": "Sponge",
+      "scientific_name": "Porifera",
+      "taxon_group": "invert",
+      "rank": "phylum",
+      "aliases": [
+        "sponges",
+        "barrel sponge",
+        "giant barrel sponge"
+      ],
+      "description": "Filter-feeding sessile animals that structure reefs.",
+      "id_tips": "Vase, tube, or encrusting forms; barrel sponges can be huge.",
+      "habitat": "reef / wall",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "seal",
+      "common_name": "Seal",
+      "scientific_name": "Phocidae",
+      "taxon_group": "mammal",
+      "rank": "family",
+      "aliases": [
+        "seals",
+        "harbour seal",
+        "harbor seal",
+        "grey seal"
+      ],
+      "description": "True seals (no external ear flaps) in temperate/cold waters.",
+      "id_tips": "No external ears (vs sea lions); awkward on land.",
+      "habitat": "rocky coast / kelp / cold water",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "guitar-shark",
+      "common_name": "Guitar shark",
+      "scientific_name": "Rhinobatidae",
+      "taxon_group": "ray",
+      "rank": "family",
+      "aliases": [
+        "guitar sharks",
+        "shovelnose guitarfish"
+      ],
+      "description": "Often used interchangeably with guitarfish in field reports.",
+      "id_tips": "Shark-like body with ray pectoral disc.",
+      "habitat": "sand",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "cownose-ray",
+      "common_name": "Cownose ray",
+      "scientific_name": "Rhinoptera",
+      "taxon_group": "ray",
+      "rank": "genus",
+      "aliases": [
+        "cownose",
+        "cownose rays"
+      ],
+      "description": "Schooling eagle-ray relative with a indented snout.",
+      "id_tips": "Indented nose, migratory schools.",
+      "habitat": "sand / blue water",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "sheepshead",
+      "common_name": "Sheepshead",
+      "scientific_name": "Archosargus probatocephalus",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "sheepsheads"
+      ],
+      "description": "Striped sparid of the western Atlantic \u2014 docks and reefs.",
+      "id_tips": "Black vertical bars, human-like teeth.",
+      "habitat": "reef / pier / wreck",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "staghorn-coral",
+      "common_name": "Staghorn coral",
+      "scientific_name": "Acropora",
+      "taxon_group": "coral",
+      "rank": "genus",
+      "aliases": [
+        "staghorn",
+        "staghorn corals",
+        "acropora"
+      ],
+      "description": "Branching reef-building coral.",
+      "id_tips": "Antler-like branches; fragile.",
+      "habitat": "reef",
+      "tags": [
+        "habitat",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "catfish",
+      "common_name": "Catfish",
+      "scientific_name": "Siluriformes",
+      "taxon_group": "fish",
+      "rank": "order",
+      "aliases": [
+        "catfishes",
+        "eel catfish",
+        "striped eel catfish"
+      ],
+      "description": "Includes reef eel-catfish schools and freshwater species.",
+      "id_tips": "Barbels around mouth; striped eel catfish school as juveniles.",
+      "habitat": "reef / sand / freshwater",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "tiger-shark",
+      "common_name": "Tiger shark",
+      "scientific_name": "Galeocerdo cuvier",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "tiger sharks"
+      ],
+      "description": "Large coastal shark with vertical flank bars (especially juveniles).",
+      "id_tips": "Blunt snout, tiger stripes fading with age.",
+      "size_cm_typical": 400,
+      "habitat": "reef / blue water",
+      "tags": [
+        "shark",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "reef-shark",
+      "common_name": "Reef shark",
+      "scientific_name": "Carcharhinus",
+      "taxon_group": "shark",
+      "rank": "species_group",
+      "aliases": [
+        "reef sharks"
+      ],
+      "description": "Generic field label when species not separated.",
+      "habitat": "reef",
+      "tags": [
+        "shark"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "humphead-parrotfish",
+      "common_name": "Humphead parrotfish",
+      "scientific_name": "Bolbometopon muricatum",
+      "taxon_group": "fish",
+      "rank": "species",
+      "aliases": [
+        "humphead parrot"
+      ],
+      "description": "Same species as bumphead parrotfish \u2014 alternate common name.",
+      "id_tips": "Huge forehead bump, green body.",
+      "habitat": "reef",
+      "tags": [
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "rainbow-wrasse",
+      "common_name": "Rainbow wrasse",
+      "scientific_name": "Thalassoma",
+      "taxon_group": "fish",
+      "rank": "genus",
+      "aliases": [
+        "rainbow wrasses"
+      ],
+      "description": "Colorful mid-sized wrasses of temperate and tropical reefs.",
+      "id_tips": "Elongated body, bright terminal-phase colors.",
+      "habitat": "reef",
+      "tags": [
+        "card"
+      ],
+      "card_worthy": true
+    },
+    {
+      "slug": "freshwater-fish",
+      "common_name": "Freshwater fish",
+      "scientific_name": null,
+      "taxon_group": "fish",
+      "rank": "species_group",
+      "aliases": [
+        "fresh water fish"
+      ],
+      "description": "Generic assemblage for quarry/lake/cenote freshwater sites.",
+      "habitat": "lake / quarry / cenote",
+      "tags": [
+        "assemblage"
+      ],
+      "card_worthy": false
+    },
+    {
+      "slug": "galapagos-shark",
+      "common_name": "Galapagos shark",
+      "scientific_name": "Carcharhinus galapagensis",
+      "taxon_group": "shark",
+      "rank": "species",
+      "aliases": [
+        "galapagos sharks"
+      ],
+      "description": "Large reef shark of oceanic islands including the Gal\u00e1pagos.",
+      "id_tips": "Uniform brown-grey, tall dorsal; often in schools at Darwin/Wolf.",
+      "size_cm_typical": 300,
+      "habitat": "island reef / seamount",
+      "tags": [
+        "shark",
+        "charismatic",
+        "card"
+      ],
+      "card_worthy": true
+    }
+  ]
+}

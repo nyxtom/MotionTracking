@@ -1,0 +1,113 @@
+{
+  "regions": [
+    {
+      "slug": "florida",
+      "name": "Florida",
+      "kind": "state",
+      "country_code": "US",
+      "aliases": ["FL"]
+    },
+    {
+      "slug": "florida-keys",
+      "name": "Florida Keys",
+      "kind": "archipelago",
+      "parent_slug": "florida",
+      "country_code": "US",
+      "aliases": ["Keys", "FKNMS"]
+    },
+    {
+      "slug": "conch-reef",
+      "name": "Conch Reef",
+      "kind": "reef",
+      "parent_slug": "florida-keys",
+      "country_code": "US",
+      "description": "Florida Keys National Marine Sanctuary — includes Conch Reef SPA and adjacent Research Only Area (Aquarius)."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "us-aquarius-reef-base",
+      "name": "Aquarius Reef Base",
+      "aliases": [
+        "FIU Aquarius",
+        "Aquarius Undersea Laboratory",
+        "George F. Bond habitat",
+        "NOAA Aquarius"
+      ],
+      "site_types": ["reef", "artificial_reef"],
+      "water_type": "salt",
+      "entry_type": "boat",
+      "skill_level": "advanced",
+      "diveable": true,
+      "access": "research_only",
+      "region_slug": "conch-reef",
+      "country_code": "US",
+      "locality": "Conch Reef, Key Largo / Islamorada, Florida Keys",
+      "description": "World's only undersea research laboratory (FIU), on the seafloor at ~19 m next to Conch Reef in FKNMS. The Conch Reef Research Only Area is closed to public diving, snorkeling, and fishing; access is limited to authorized scientific / aquanaut missions (including historical NEEMO). Nearby recreational Conch Reef SPA sites are separate atlas entries.",
+      "depth_min_m": 15,
+      "depth_max_m": 20,
+      "typical_visibility_m": 20,
+      "lon": -80.45361,
+      "lat": 24.95,
+      "tags": [
+        "habitat",
+        "research",
+        "undersea-lab",
+        "fiu",
+        "fknms",
+        "conch-reef",
+        "neemo",
+        "florida-keys"
+      ],
+      "confidence": 0.98,
+      "properties": {
+        "operator": "Florida International University",
+        "website": "https://aquarius.fiu.edu",
+        "sanctuary_zone": "Conch Reef Research Only Area",
+        "atlas_note": "Included as a place in the undersea atlas; not a recreational charter site."
+      },
+      "external_id": "seed:us-aquarius-reef-base",
+      "external_url": "https://en.wikipedia.org/wiki/Aquarius_Reef_Base"
+    },
+    {
+      "slug": "padi-24374-jules-undersea-lab",
+      "name": "Jules' Undersea Lodge",
+      "aliases": [
+        "Jules' Undersea Lab",
+        "Jules Undersea Lodge",
+        "Key Largo Undersea Park"
+      ],
+      "site_types": ["reef", "artificial_reef"],
+      "water_type": "salt",
+      "entry_type": "shore",
+      "skill_level": "beginner",
+      "diveable": true,
+      "access": "recreational",
+      "region_slug": "florida-keys",
+      "country_code": "US",
+      "locality": "Key Largo Undersea Park, Florida Keys",
+      "description": "Underwater hotel in a lagoon at Key Largo Undersea Park (formerly marketed as Jules' Undersea Lab on PADI Travel). Guests scuba in; the lodge is famous for underwater pizza delivery to aquanaut overnight stays. Recreational / tourist access via the park — distinct from FIU Aquarius Reef Base on Conch Reef.",
+      "depth_min_m": 5,
+      "depth_max_m": 9,
+      "typical_visibility_m": 10,
+      "lon": -80.3985,
+      "lat": 25.1235,
+      "tags": [
+        "habitat",
+        "undersea-hotel",
+        "jules",
+        "key-largo",
+        "florida-keys",
+        "pizza",
+        "recreational"
+      ],
+      "confidence": 0.9,
+      "properties": {
+        "atlas_note": "Recreational undersea lodge; not a research habitat.",
+        "lore": "Underwater pizza delivery to overnight guests."
+      },
+      "external_id": "seed:jules-undersea-lodge",
+      "external_url": "https://jul.com"
+    }
+  ]
+}

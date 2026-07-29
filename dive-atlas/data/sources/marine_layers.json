@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "description": "Marine / nautical data layers for the dive atlas — the 'Google Maps for boats' stack under dive flags.",
+  "layers": [
+    {
+      "slug": "openseamap",
+      "name": "OpenSeaMap seamarks",
+      "adapter": "openseamap",
+      "kind": "seamark_points",
+      "status": "active",
+      "provides": ["mooring", "wreck", "rock", "anchorage", "natural=reef"],
+      "license": "ODbL"
+    },
+    {
+      "slug": "gebco",
+      "name": "GEBCO bathymetry (via OpenTopoData gebco2020)",
+      "cli": "dive-atlas enrich-gebco",
+      "kind": "raster_sample",
+      "status": "active",
+      "provides": ["depth_m at site points"],
+      "license": "GEBCO public domain; OpenTopoData ToS"
+    },
+    {
+      "slug": "coral-reefs",
+      "name": "WRI/UNEP coral reef locations + cold-water corals",
+      "adapter": "coral-reefs",
+      "kind": "reef_habitat_points",
+      "status": "active",
+      "provides": ["shallow reef centroids", "cold-water coral points"],
+      "note": "Proxy until Allen Coral Atlas GEE credentials are configured",
+      "allen_coral_atlas": "ACA/reef_habitat/v2_0 on Google Earth Engine",
+      "license": "WRI Resource Watch / UNEP-WCMC terms"
+    },
+    {
+      "slug": "osm-mpa",
+      "name": "OSM protected areas / national parks",
+      "adapter": "osm-mpa",
+      "kind": "mpa_regions",
+      "status": "active",
+      "provides": ["MPA/park regions"],
+      "note": "WDPA Protected Planet API needs token — OSM used as open stand-in",
+      "license": "ODbL"
+    },
+    {
+      "slug": "operator-maps",
+      "name": "Operator / marine-park dive maps",
+      "adapter": "operator-maps",
+      "kind": "named_dive_sites",
+      "status": "active"
+    },
+    {
+      "slug": "opendivemap",
+      "name": "OpenDiveMap community sites",
+      "adapter": "opendivemap",
+      "kind": "named_dive_sites",
+      "status": "active"
+    }
+  ]
+}

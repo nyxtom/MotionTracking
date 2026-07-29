@@ -1,0 +1,100 @@
+{
+  "regions": [
+    {
+      "slug": "sipadan-mabul",
+      "name": "Sipadan / Mabul",
+      "kind": "island",
+      "country_code": "MY",
+      "aliases": ["sipadan", "mabul", "kapalai"],
+      "description": "Borneo oceanic island — turtles, sharks, barracuda tornadoes; Mabul/Kapalai for macro."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "sipadan-barracuda-point",
+      "name": "Barracuda Point",
+      "site_types": ["reef", "wall", "drift"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "description": "Famous barracuda tornado wall corner on Sipadan.",
+      "depth_min_m": 5,
+      "depth_max_m": 40,
+      "lon": 118.63,
+      "lat": 4.115,
+      "tags": ["sipadan", "pelagic", "barracuda"],
+      "confidence": 0.85,
+      "properties": {
+        "marine_life": ["Barracuda", "Trevally", "Turtle", "White tip reef shark", "Reef fish"]
+      }
+    },
+    {
+      "slug": "sipadan-drop-off",
+      "name": "Drop Off",
+      "site_types": ["wall", "reef"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "lon": 118.628,
+      "lat": 4.12,
+      "tags": ["sipadan", "wall"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Turtle", "Sharks", "Fusilier", "Trevally"]}
+    },
+    {
+      "slug": "sipadan-coral-garden",
+      "name": "Coral Garden",
+      "site_types": ["reef"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "lon": 118.625,
+      "lat": 4.118,
+      "tags": ["sipadan"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Turtle", "Hard Coral", "Reef fish", "Clownfish"]}
+    },
+    {
+      "slug": "sipadan-south-point",
+      "name": "South Point",
+      "site_types": ["reef", "wall"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "lon": 118.635,
+      "lat": 4.105,
+      "tags": ["sipadan"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Turtle", "Sharks", "Trevally", "Bumphead parrotfish"]}
+    },
+    {
+      "slug": "mabul-seaventures",
+      "name": "Seaventures House Reef",
+      "site_types": ["reef", "muck"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "description": "Mabul macro / artificial reef around the oil-rig resort.",
+      "lon": 118.63,
+      "lat": 4.245,
+      "tags": ["mabul", "macro"],
+      "confidence": 0.75,
+      "properties": {
+        "marine_life": ["Frogfish", "Nudibranch", "Octopus", "Seahorse", "Flamboyant cuttlefish"]
+      }
+    },
+    {
+      "slug": "kapalai-house-reef",
+      "name": "Kapalai House Reef",
+      "site_types": ["reef", "muck"],
+      "region_slug": "sipadan-mabul",
+      "country_code": "MY",
+      "locality": "Sipadan / Mabul",
+      "lon": 118.70,
+      "lat": 4.22,
+      "tags": ["kapalai", "macro"],
+      "confidence": 0.75,
+      "properties": {"marine_life": ["Nudibranch", "Mandarinfish", "Frogfish", "Ghost Pipefish"]}
+    }
+  ]
+}

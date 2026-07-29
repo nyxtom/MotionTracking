@@ -1,0 +1,229 @@
+{
+  "phenomena": [
+    {
+      "slug": "sa-sardine-run",
+      "name": "Sardine Run",
+      "phenomenon_type": "sardine_run",
+      "description": "Annual sardine migration along the Wild Coast / KwaZulu-Natal — baitballs, sharks, dolphins, birds.",
+      "typical_months": [5, 6, 7],
+      "region_slug": "south-africa"
+    },
+    {
+      "slug": "maldives-hanifaru-mantas",
+      "name": "Hanifaru Bay manta aggregation",
+      "phenomenon_type": "manta_aggregation",
+      "description": "Seasonal manta (and occasional whale shark) feeding aggregation in Baa Atoll.",
+      "typical_months": [6, 7, 8, 9, 10, 11],
+      "region_slug": "maldives"
+    },
+    {
+      "slug": "okinawa-humpbacks",
+      "name": "Okinawa / Kerama humpback season",
+      "phenomenon_type": "humpback",
+      "description": "Humpback whales winter around Kerama and southern Okinawa.",
+      "typical_months": [1, 2, 3],
+      "region_slug": "okinawa"
+    },
+    {
+      "slug": "mexico-cenote-clarity",
+      "name": "Yucatán cenote dry-season clarity",
+      "phenomenon_type": "other",
+      "description": "Typically clearer, more stable cenote conditions in the dry season.",
+      "typical_months": [11, 12, 1, 2, 3, 4],
+      "region_slug": "yucatan-cenotes"
+    },
+    {
+      "slug": "komodo-plankton-mantas",
+      "name": "Komodo manta / plankton pulses",
+      "phenomenon_type": "manta_cleaning",
+      "description": "Manta cleaning stations and plankton-driven visibility swings.",
+      "typical_months": [12, 1, 2, 3],
+      "region_slug": "indo-pacific"
+    },
+    {
+      "slug": "bioluminescence-night",
+      "name": "Bioluminescence night dives",
+      "phenomenon_type": "bioluminescence",
+      "description": "Seasonal / local bioluminescent displays on night dives (varies widely by site).",
+      "typical_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "region_slug": null
+    }
+  ],
+  "routes": [
+    {
+      "slug": "yucatan-cenote-spine",
+      "name": "Cenote spine of Yucatán",
+      "kind": "cenote_spine",
+      "description": "Classic Riviera Maya cavern/cenote progression from Dos Ojos through deep pits.",
+      "estimated_days": 7,
+      "cert_required": ["aow", "cavern"],
+      "tags": ["cenote", "cave", "mexico"],
+      "stops": [
+        {"position": 1, "site_slug": "mx-dos-ojos", "title": "Dos Ojos", "days_suggested": 1, "narrative": "Gateway cavern lines."},
+        {"position": 2, "site_slug": "mx-the-pit", "title": "The Pit", "days_suggested": 1, "narrative": "Deep light beams; advanced."},
+        {"position": 3, "site_slug": "mx-angelita", "title": "Angelita", "days_suggested": 1, "narrative": "H2S layer drama."}
+      ]
+    },
+    {
+      "slug": "ring-of-fire-wrecks",
+      "name": "Ring of Fire wrecks",
+      "kind": "wreck_trail",
+      "description": "Pacific WWII and historic wreck arc — Truk, Yongala, and Pacific theater icons.",
+      "estimated_days": 14,
+      "cert_required": ["aow", "deep"],
+      "tags": ["wreck", "history", "pacific"],
+      "stops": [
+        {"position": 1, "site_slug": "fm-san-francisco-maru", "title": "San Francisco Maru", "days_suggested": 3},
+        {"position": 2, "site_slug": "au-ss-yongala", "title": "SS Yongala", "days_suggested": 2},
+        {"position": 3, "site_slug": "eg-ss-thistlegorm", "title": "SS Thistlegorm", "days_suggested": 2, "narrative": "Red Sea classic — often paired on a longer wreck tour."}
+      ]
+    },
+    {
+      "slug": "pacific-atoll-chain",
+      "name": "Pacific atoll chain",
+      "kind": "atoll_chain",
+      "description": "Atoll and pass diving across the central Indo-Pacific.",
+      "estimated_days": 12,
+      "cert_required": ["aow"],
+      "tags": ["atoll", "pelagics", "pass"],
+      "stops": [
+        {"position": 1, "site_slug": "mv-hanifaru-bay", "title": "Hanifaru Bay", "days_suggested": 3},
+        {"position": 2, "site_slug": "id-cape-kri", "title": "Cape Kri", "days_suggested": 4}
+      ]
+    },
+    {
+      "slug": "florida-cave-circuit",
+      "name": "Florida cave circuit",
+      "kind": "cave_system",
+      "description": "North Florida spring/cave progression for trained cave divers.",
+      "estimated_days": 5,
+      "cert_required": ["full_cave"],
+      "tags": ["cave", "freshwater", "florida"],
+      "stops": [
+        {"position": 1, "site_slug": "us-ginnie-springs", "title": "Ginnie Springs", "days_suggested": 2},
+        {"position": 2, "site_slug": "us-peacock-springs", "title": "Peacock Springs", "days_suggested": 2},
+        {"position": 3, "site_slug": "us-vortex-spring", "title": "Vortex Spring", "days_suggested": 1}
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "site_slug": "mx-dos-ojos",
+      "cert_required": ["ow", "cavern"],
+      "cert_recommended": ["aow"],
+      "overhead_class": "cavern",
+      "deco_likely": false,
+      "max_depth_advisory_m": 10,
+      "current_class": "none",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": false,
+      "experiences": ["cenote", "cave", "cavern"],
+      "best_months": [11, 12, 1, 2, 3, 4],
+      "monsoon_months": [6, 7, 8, 9]
+    },
+    {
+      "site_slug": "mx-the-pit",
+      "cert_required": ["aow"],
+      "overhead_class": "cavern",
+      "deco_likely": false,
+      "max_depth_advisory_m": 40,
+      "current_class": "none",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": false,
+      "experiences": ["cenote", "cave", "deep"],
+      "best_months": [11, 12, 1, 2, 3, 4],
+      "monsoon_months": [6, 7, 8, 9]
+    },
+    {
+      "site_slug": "us-ginnie-springs",
+      "cert_required": ["full_cave"],
+      "overhead_class": "cave",
+      "deco_likely": false,
+      "current_class": "mild",
+      "gas_mixes": ["air", "nitrox"],
+      "surface_support_required": false,
+      "beginner_ok": false,
+      "experiences": ["cave", "freshwater"]
+    },
+    {
+      "site_slug": "jp-kerama-islands",
+      "cert_required": ["ow"],
+      "overhead_class": "none",
+      "current_class": "mild",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": true,
+      "experiences": ["reef", "pelagics"],
+      "best_months": [1, 2, 3, 7, 8],
+      "monsoon_months": [8, 9]
+    },
+    {
+      "site_slug": "mv-hanifaru-bay",
+      "cert_required": ["ow"],
+      "overhead_class": "none",
+      "current_class": "mild",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": true,
+      "experiences": ["pelagics", "manta", "atoll"],
+      "best_months": [6, 7, 8, 9, 10]
+    },
+    {
+      "site_slug": "eg-ss-thistlegorm",
+      "cert_required": ["aow", "deep"],
+      "overhead_class": "light",
+      "deco_likely": false,
+      "max_depth_advisory_m": 30,
+      "current_class": "moderate",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": false,
+      "experiences": ["wreck", "history"]
+    },
+    {
+      "site_slug": "bz-great-blue-hole",
+      "cert_required": ["aow", "deep"],
+      "overhead_class": "none",
+      "deco_likely": false,
+      "max_depth_advisory_m": 40,
+      "current_class": "mild",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": false,
+      "experiences": ["blue_hole", "deep", "reef"]
+    },
+    {
+      "site_slug": "id-cape-kri",
+      "cert_required": ["ow"],
+      "overhead_class": "none",
+      "current_class": "moderate",
+      "gas_mixes": ["air", "nitrox"],
+      "beginner_ok": true,
+      "experiences": ["reef", "biodiversity", "drift"],
+      "best_months": [10, 11, 12, 1, 2, 3, 4]
+    }
+  ],
+  "briefings": [
+    {
+      "site_slug": "us-ginnie-springs",
+      "entry_exit": "Shore entry via park; Devil's Ear/Eye for cave-trained only.",
+      "overhead_rules": "Full cave certification, continuous guideline, redundant gas, no solo.",
+      "hazards": ["overhead", "current", "silt_out"],
+      "hazard_notes": "Strong outflow at Ear; silt-out risk in tunnels.",
+      "nearest_chamber": "Gainesville / North Florida chamber network",
+      "local_regs": "Park rules; cave diving only with proper cert card."
+    },
+    {
+      "site_slug": "mx-dos-ojos",
+      "entry_exit": "Shore cenote ladders; cavern lines marked.",
+      "overhead_rules": "Cavern certified or guided cavern tour; no cave penetration without cave cert.",
+      "hazards": ["overhead", "silt_out"],
+      "nearest_chamber": "Playa del Carmen / Cancún",
+      "marine_park_notes": "Private cenote park fees; follow guide instructions."
+    },
+    {
+      "site_slug": "eg-ss-thistlegorm",
+      "entry_exit": "Boat mooring; can be surge at descent line.",
+      "currents": "Often moderate; plan drift/exit to shot line.",
+      "hazards": ["boat_traffic", "depth", "current", "entanglement"],
+      "hazard_notes": "Crowded classic; entanglement in wreck structure possible.",
+      "nearest_chamber": "Sharm el-Sheikh"
+    }
+  ]
+}

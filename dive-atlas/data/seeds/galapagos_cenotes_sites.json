@@ -1,0 +1,163 @@
+{
+  "regions": [
+    {
+      "slug": "galapagos",
+      "name": "Galápagos",
+      "kind": "archipelago",
+      "country_code": "EC",
+      "aliases": ["galapagos", "darwin", "wolf"],
+      "description": "Volcanic islands — hammerheads, whale sharks, schooling fish at Darwin/Wolf."
+    },
+    {
+      "slug": "tulum-cenotes",
+      "name": "Tulum Cenotes",
+      "kind": "karst",
+      "country_code": "MX",
+      "aliases": ["riviera maya cenotes", "yucatan cenotes"],
+      "description": "Freshwater cave/cavern systems of the Yucatán."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "galapagos-darwin-arch",
+      "name": "Darwin Arch",
+      "site_types": ["reef", "drift"],
+      "region_slug": "galapagos",
+      "country_code": "EC",
+      "locality": "Darwin / Wolf",
+      "description": "Hammerhead schools and seasonal whale sharks at Darwin Island.",
+      "lon": -91.99,
+      "lat": 1.67,
+      "depth_min_m": 10,
+      "depth_max_m": 40,
+      "tags": ["galapagos", "darwin", "pelagic", "hammerhead"],
+      "confidence": 0.85,
+      "properties": {
+        "marine_life": ["Hammerhead shark", "Whale shark", "Galapagos shark", "Turtle", "Trevally", "Dolphin"]
+      },
+      "seasonality": [
+        {"month": 6, "score": 0.9, "highlights": ["whale sharks", "hammerheads"]},
+        {"month": 7, "score": 0.95, "highlights": ["whale sharks", "hammerheads"]},
+        {"month": 8, "score": 0.95, "highlights": ["whale sharks"]},
+        {"month": 9, "score": 0.9, "highlights": ["whale sharks"]},
+        {"month": 10, "score": 0.85, "highlights": ["whale sharks"]}
+      ]
+    },
+    {
+      "slug": "galapagos-wolf-island",
+      "name": "Wolf Island",
+      "site_types": ["reef", "drift"],
+      "region_slug": "galapagos",
+      "country_code": "EC",
+      "locality": "Darwin / Wolf",
+      "lon": -91.82,
+      "lat": 1.38,
+      "tags": ["galapagos", "wolf", "pelagic"],
+      "confidence": 0.85,
+      "properties": {
+        "marine_life": ["Hammerhead shark", "Galapagos shark", "Turtle", "Dolphin", "Trevally", "Barracuda"]
+      }
+    },
+    {
+      "slug": "galapagos-gordon-rocks",
+      "name": "Gordon Rocks",
+      "site_types": ["reef", "drift"],
+      "region_slug": "galapagos",
+      "country_code": "EC",
+      "locality": "Galápagos",
+      "lon": -90.165,
+      "lat": -0.555,
+      "tags": ["galapagos", "hammerhead"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Hammerhead shark", "Sea lion", "Turtle", "Eagle ray"]}
+    },
+    {
+      "slug": "galapagos-cousin-rock",
+      "name": "Cousin Rock",
+      "site_types": ["reef", "wall"],
+      "region_slug": "galapagos",
+      "country_code": "EC",
+      "locality": "Galápagos",
+      "lon": -90.72,
+      "lat": -0.24,
+      "tags": ["galapagos"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Sea horse", "Frogfish", "Sea lion", "Turtle", "Mola mola"]}
+    },
+    {
+      "slug": "cenote-dos-ojos",
+      "name": "Dos Ojos",
+      "site_types": ["cenote", "cave", "cavern"],
+      "region_slug": "tulum-cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "water_type": "fresh",
+      "lon": -87.475,
+      "lat": 20.325,
+      "depth_min_m": 5,
+      "depth_max_m": 30,
+      "tags": ["cenote", "tulum", "cavern"],
+      "confidence": 0.95,
+      "properties": {"marine_life": ["Freshwater fish", "Bat"]}
+    },
+    {
+      "slug": "cenote-gran-cenote",
+      "name": "Gran Cenote",
+      "site_types": ["cenote", "cavern"],
+      "region_slug": "tulum-cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "water_type": "fresh",
+      "lon": -87.465,
+      "lat": 20.247,
+      "tags": ["cenote", "tulum"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Freshwater fish", "Turtle"]}
+    },
+    {
+      "slug": "cenote-angelita",
+      "name": "Cenote Angelita",
+      "site_types": ["cenote", "cave"],
+      "region_slug": "tulum-cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "water_type": "fresh",
+      "lon": -87.388,
+      "lat": 20.146,
+      "depth_max_m": 60,
+      "tags": ["cenote", "tulum", "halocline"],
+      "confidence": 0.9,
+      "skill_level": "advanced",
+      "properties": {"marine_life": []}
+    },
+    {
+      "slug": "cenote-the-pit",
+      "name": "The Pit",
+      "site_types": ["cenote", "cave"],
+      "region_slug": "tulum-cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "water_type": "fresh",
+      "lon": -87.476,
+      "lat": 20.331,
+      "depth_max_m": 40,
+      "tags": ["cenote", "tulum"],
+      "confidence": 0.9,
+      "properties": {"marine_life": ["Freshwater fish"]}
+    },
+    {
+      "slug": "cenote-calavera",
+      "name": "Calavera (Temple of Doom)",
+      "site_types": ["cenote", "cavern"],
+      "region_slug": "tulum-cenotes",
+      "country_code": "MX",
+      "locality": "Tulum Cenotes",
+      "water_type": "fresh",
+      "lon": -87.456,
+      "lat": 20.24,
+      "tags": ["cenote", "tulum"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Freshwater fish"]}
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "regions": [
+    {
+      "slug": "komodo",
+      "name": "Komodo",
+      "kind": "archipelago",
+      "country_code": "ID",
+      "aliases": ["komodo national park", "labuan bajo"],
+      "description": "Current-swept reefs, mantas, dragons topside — classic Indonesia liveaboard circuit."
+    }
+  ],
+  "sites": [
+    {
+      "slug": "komodo-batu-bolong",
+      "name": "Batu Bolong",
+      "site_types": ["reef", "pinnacle", "drift"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "description": "Iconic current-swept pinnacle — sharks, trevally, turtles.",
+      "depth_min_m": 5,
+      "depth_max_m": 40,
+      "lon": 119.599,
+      "lat": -8.568,
+      "tags": ["komodo", "pelagic", "current"],
+      "confidence": 0.9,
+      "properties": {
+        "marine_life": ["Sharks", "Trevally", "Turtle", "Fusilier", "Napolean fish", "Barracuda"]
+      }
+    },
+    {
+      "slug": "komodo-crystal-rock",
+      "name": "Crystal Rock",
+      "site_types": ["reef", "pinnacle", "drift"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "lon": 119.562,
+      "lat": -8.527,
+      "tags": ["komodo", "pelagic"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Sharks", "Trevally", "Fusilier", "Turtle"]}
+    },
+    {
+      "slug": "komodo-castle-rock",
+      "name": "Castle Rock",
+      "site_types": ["reef", "pinnacle", "drift"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "lon": 119.555,
+      "lat": -8.520,
+      "tags": ["komodo", "pelagic"],
+      "confidence": 0.85,
+      "properties": {"marine_life": ["Sharks", "Trevally", "Barracuda", "Fusilier"]}
+    },
+    {
+      "slug": "komodo-manta-alley",
+      "name": "Manta Alley",
+      "site_types": ["reef", "drift"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "description": "Southern Komodo manta highway / cleaning area.",
+      "lon": 119.45,
+      "lat": -8.85,
+      "tags": ["komodo", "manta"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Manta ray", "Reef fish", "Turtle"]},
+      "seasonality": [
+        {"month": 12, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 1, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 2, "score": 0.9, "highlights": ["mantas"]},
+        {"month": 3, "score": 0.85, "highlights": ["mantas"]}
+      ]
+    },
+    {
+      "slug": "komodo-shotgun",
+      "name": "Shotgun",
+      "site_types": ["drift", "reef"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "description": "High-speed channel drift between islands.",
+      "lon": 119.58,
+      "lat": -8.60,
+      "tags": ["komodo", "drift", "current"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Trevally", "Fusilier", "Sharks", "Turtle"]}
+    },
+    {
+      "slug": "komodo-cannibal-rock",
+      "name": "Cannibal Rock",
+      "site_types": ["reef", "muck"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "description": "Horseshoe Bay macro / soft coral site near Rinca.",
+      "lon": 119.70,
+      "lat": -8.73,
+      "tags": ["komodo", "macro"],
+      "confidence": 0.85,
+      "properties": {
+        "marine_life": ["Nudibranch", "Frogfish", "Pygmy seahorse", "Soft Coral", "Cuttlefish"]
+      }
+    },
+    {
+      "slug": "komodo-siaba-besar",
+      "name": "Siaba Besar",
+      "site_types": ["reef"],
+      "region_slug": "komodo",
+      "country_code": "ID",
+      "locality": "Komodo",
+      "lon": 119.65,
+      "lat": -8.55,
+      "tags": ["komodo", "turtle"],
+      "confidence": 0.8,
+      "properties": {"marine_life": ["Turtle", "Reef fish", "Soft Coral"]}
+    }
+  ]
+}

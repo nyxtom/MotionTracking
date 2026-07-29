@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: dive-atlas-db
+    environment:
+      POSTGRES_USER: dive
+      POSTGRES_PASSWORD: dive
+      POSTGRES_DB: dive_atlas
+    ports:
+      - "5432:5432"
+    volumes:
+      - dive_atlas_pgdata:/var/lib/postgresql/data
+      - ./scripts/init-postgis.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dive -d dive_atlas"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dive_atlas_pgdata:

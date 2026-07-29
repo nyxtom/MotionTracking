@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "description": "Curated worldwide operator / marine-park dive maps. Goal: every shop Google My Map, every marine-park mooring GPS file, every resort site list we can legally fetch. Prefer official park KML/GPX, then public Google My Maps (mid + forcekml), then GeoJSON endpoints. OpenDiveMap + PADI remain separate bulk adapters.",
+  "strategy": [
+    "1. Bulk baselines: opendivemap, padi-travel, osm-overpass (adapters)",
+    "2. Official marine-park / sanctuary mooring GPS (this registry, kind=marine_park)",
+    "3. Public Google My Maps from operators (format=google_my_maps, mid=...)",
+    "4. Discover more: OSM operators.website → find embedded maps (future crawler)",
+    "5. Never scrape closed travel portals without license; prefer open/public map exports"
+  ],
+  "maps": [
+    {
+      "slug": "roatan-marine-park",
+      "name": "Roatán Marine Park dive sites",
+      "operator": "Roatán Marine Park",
+      "kind": "marine_park",
+      "format": "google_my_maps",
+      "mid": "1VAAlEKHNYaqEzG1-mQVxQSmVTYVjdyfA",
+      "page_url": "https://www.roatanmarinepark.org/marine-infrastructure",
+      "country_code": "HN",
+      "locality": "Roatán",
+      "default_types": ["reef"],
+      "tags": ["bay-islands", "marine-park", "mooring"],
+      "confidence": 0.9,
+      "status": "active",
+      "priority": 1,
+      "notes": "Official RMP Google My Map (~400+ moorings/sites). Public KML via forcekml=1."
+    },
+    {
+      "slug": "utila-deep-blue-placeholder",
+      "name": "Utila Deep Blue Resort interactive map",
+      "operator": "Deep Blue Resort",
+      "kind": "operator",
+      "format": "google_my_maps",
+      "mid": null,
+      "page_url": "https://www.utilaguide.com/utila-dive-site-maps/",
+      "country_code": "HN",
+      "locality": "Utila",
+      "default_types": ["reef"],
+      "tags": ["bay-islands", "utila"],
+      "confidence": 0.75,
+      "status": "needs_mid",
+      "priority": 2,
+      "notes": "Find public Google My Maps mid from Deep Blue / Laguna Beach / Utila Lodge maps and set mid."
+    },
+    {
+      "slug": "kerama-joyjoy-placeholder",
+      "name": "Kerama JOYJOY dive point map",
+      "operator": "JOYJOY Zamami",
+      "kind": "operator",
+      "format": "html_map",
+      "url": "https://keramajoyjoy.com/divingmap.html",
+      "country_code": "JP",
+      "locality": "Kerama",
+      "default_types": ["reef"],
+      "tags": ["okinawa", "kerama"],
+      "confidence": 0.7,
+      "status": "needs_export",
+      "priority": 2,
+      "notes": "Operator HTML map — needs GeoJSON/KML export or manual digitization."
+    }
+  ]
+}

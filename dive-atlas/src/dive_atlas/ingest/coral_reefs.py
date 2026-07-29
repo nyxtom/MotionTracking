@@ -17,6 +17,7 @@ from dive_atlas.services.geo_enrich import area_for_point, country_bbox_for_poin
 from dive_atlas.taxonomy import SourceKind, WaterType
 
 RW_QUERY = "https://api.resourcewatch.org/v1/query/{dataset_id}"
+CARTO_SQL = "https://wri-rw.carto.com/api/v2/sql"
 
 # WRI Resource Watch datasets (Carto-backed, public SQL)
 SHALLOW_CORAL_DS = "1d23838e-40da-4cf3-b61c-56258d3a5c56"
@@ -29,7 +30,7 @@ PAGE = 500
 
 @register_adapter
 class CoralReefsAdapter(CrawlerAdapter):
-    """Global coral reef centroids + cold-water coral points (Resource Watch)."""
+    """Global coral reef centroids + cold-water coral points (Resource Watch / Carto)."""
 
     slug = "coral-reefs"
     name = "Global coral reefs (WRI / UNEP Resource Watch)"
@@ -42,7 +43,7 @@ class CoralReefsAdapter(CrawlerAdapter):
     def fetch(self) -> IngestBatch:
         sites: list[DiveSiteIn] = []
         with HttpFetcher(
-            min_interval_s=0.35,
+            min_interval_s=0.25,
             timeout=90.0,
             headers={"User-Agent": "DiveAtlas/0.1 (https://github.com/nyxtom; research)"},
         ) as http:
@@ -58,6 +59,11 @@ class CoralReefsAdapter(CrawlerAdapter):
             meta={"sites": len(sites)},
         )
 
+    def _carto_rows(self, http: HttpFetcher, sql: str) -> list[dict]:
+        # Prefer direct Carto SQL — Resource Watch /query is flaky for OFFSET pages.
+        data = http.get_json(CARTO_SQL, params={"q": sql})
+        return list(data.get("rows") or [])
+
     def _fetch_shallow(self, http: HttpFetcher) -> list[DiveSiteIn]:
         out: list[DiveSiteIn] = []
         offset = 0
@@ -72,8 +78,7 @@ class CoralReefsAdapter(CrawlerAdapter):
                 f"ORDER BY cartodb_id "
                 f"LIMIT {PAGE} OFFSET {offset}"
             )
-            data = http.get_json(RW_QUERY.format(dataset_id=SHALLOW_CORAL_DS), params={"sql": sql})
-            rows = data.get("data") or []
+            rows = self._carto_rows(http, sql)
             if not rows:
                 break
             for row in rows:
@@ -98,8 +103,7 @@ class CoralReefsAdapter(CrawlerAdapter):
                 f"ORDER BY cartodb_id "
                 f"LIMIT {PAGE} OFFSET {offset}"
             )
-            data = http.get_json(RW_QUERY.format(dataset_id=COLD_CORAL_DS), params={"sql": sql})
-            rows = data.get("data") or []
+            rows = self._carto_rows(http, sql)
             if not rows:
                 break
             for row in rows:

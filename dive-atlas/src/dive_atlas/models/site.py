@@ -49,7 +49,11 @@ class Region(Base, TimestampMixin):
 
 
 class DiveSite(Base, TimestampMixin):
-    """A diveable place: reef, cave, cenote, wreck, atoll pass, quarry, etc."""
+    """An underwater place: reef, cave, cenote, wreck, habitat, quarry, etc.
+
+    Dry terrestrial caves / archaeology sites do not belong here. Research
+    habitats and deep coral points do — set ``diveable`` / ``access`` accordingly.
+    """
 
     __tablename__ = "dive_sites"
     __table_args__ = (

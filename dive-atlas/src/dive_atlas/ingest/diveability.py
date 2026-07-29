@@ -1,8 +1,12 @@
-"""Heuristics for whether an open-data place is a *diveable* site.
+"""Heuristics for whether an open-data place belongs in the *underwater* atlas.
 
-Wikidata's generic ``cave`` (Q35509) class includes archaeology, dry show caves,
-mines, and bunkers. Only keep caves that look scuba / underwater / sea-cave
-related — never random terrestrial caves (e.g. Amud / Tabun in Israel).
+Inclusion rule (duh):
+  • Underwater / flooded / marine places → keep (flag ``diveable`` + ``access``).
+  • Dry terrestrial places → drop (e.g. archaeology caves like Amud / Tabun).
+
+Wikidata's generic ``cave`` (Q35509) class mixes sea caves with show caves,
+mines, bunkers, and heritage sites. Only keep caves that look scuba /
+flooded / sea-cave related.
 
 Also gates Wikidata shipwreck dumps (Canmore / Unnamed) and OSM dive shops
 mis-tagged as sites.

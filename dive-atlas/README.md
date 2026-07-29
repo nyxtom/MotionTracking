@@ -1,10 +1,15 @@
 # Dive Atlas
 
-Global dive site atlas: a PostGIS knowledge graph of **everywhere under the sea that matters** —
-reefs, walls, wrecks, caves, caverns, cenotes, atolls, blue holes, springs, muck,
-quarries, ice, **and research habitats / undersea labs**. Sites carry `diveable` +
-`access` (`recreational` | `restricted` | `research_only` | `private` | `closed` | `unknown`)
-so the atlas can include Aquarius-class places without pretending they’re charter drops.
+Global dive site atlas: a PostGIS knowledge graph of **underwater places** —
+reefs, walls, wrecks, flooded caves, caverns, cenotes, atolls, blue holes, springs,
+muck, quarries, ice, research habitats / undersea labs, coral occurrence points.
+
+**In:** anything under (or flooded by) water. Flag `diveable` + `access`
+(`recreational` | `restricted` | `research_only` | `private` | `closed` | `unknown`)
+so Aquarius-class labs sit next to charter reefs without confusion.
+
+**Out:** dry terrestrial caves, archaeology sites, show caves, dive shops-as-sites,
+indoor pools — e.g. Amud / Tabun in Israel never belong here.
 
 PADI-style catalogs that only expose ~bookable inventory are intentionally *not*
 the source of truth. This atlas aims for complete geographic coverage first;

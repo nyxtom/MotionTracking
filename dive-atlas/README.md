@@ -48,6 +48,8 @@ They never write SQL directly — `services.ingest` upserts with provenance.
 | `padi-travel` | Full PADI Travel catalog (~4.8k) via public travel API + adaptive map tiles |
 | `osm-overpass` | OSM scuba / wreck / dive nodes by region (Overpass) |
 | `wikidata` | Wikidata wrecks, cenotes, reefs, **sea / flooded caves** (not terrestrial caves), blue holes |
+| `opendivemap` | OpenDiveMap open GeoJSON API (community sites, no auth) |
+| `operator-maps` | Curated marine-park / shop maps (`data/sources/operator_maps.json` — KML/GPX/My Maps) |
 | `open-data-stub` | Placeholder |
 
 ```bash
@@ -60,8 +62,21 @@ dive-atlas purge-junk               # caves / Canmore wrecks / OSM shops / pools
 dive-atlas map --region roatan      # OSM basemap + dive flags → PNG
 dive-atlas map --region japan --no-labels
 dive-atlas map --all
+dive-atlas ingest opendivemap       # OpenDiveMap community GeoJSON (~3k+)
+dive-atlas ingest operator-maps     # marine-park / shop Google My Maps (registry)
 dive-atlas stats
 ```
+
+### Operator maps (worldwide)
+
+There is no single “all shop maps” API. The atlas grows coverage in layers:
+
+1. **Bulk baselines** — `opendivemap`, `padi-travel`, `osm-overpass`
+2. **Official park GPS** — add KML/GPX/`google_my_maps` entries to `data/sources/operator_maps.json`
+3. **Public shop My Maps** — same registry (`mid` + `forcekml=1`)
+4. **Later** — crawl known `operators.website` for embedded map IDs
+
+Example (Roatán Marine Park, ~400 sites): already in the registry as `roatan-marine-park`.
 
 Add a new source:
 

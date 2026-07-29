@@ -64,3 +64,9 @@ class HttpFetcher:
         resp = self._client.get(url, params=params)
         resp.raise_for_status()
         return resp.text
+
+    def get_bytes(self, url: str, *, params: dict[str, Any] | None = None) -> bytes:
+        self._throttle()
+        resp = self._client.get(url, params=params)
+        resp.raise_for_status()
+        return resp.content

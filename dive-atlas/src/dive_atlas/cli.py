@@ -103,15 +103,17 @@ def ingest_cmd(
     priority = {
         "open-data-stub": 0,
         "wikidata": 1,
-        "osm-overpass": 2,
-        "dense-hotspots": 3,
-        "padi-travel": 4,
-        "seed-raja-ampat": 5,
-        "seed-komodo": 5,
-        "seed-palau-truk": 5,
-        "seed-sipadan": 5,
-        "seed-galapagos-cenotes": 5,
-        "seed-famous": 6,
+        "opendivemap": 2,
+        "osm-overpass": 3,
+        "dense-hotspots": 4,
+        "operator-maps": 5,
+        "padi-travel": 6,
+        "seed-raja-ampat": 7,
+        "seed-komodo": 7,
+        "seed-palau-truk": 7,
+        "seed-sipadan": 7,
+        "seed-galapagos-cenotes": 7,
+        "seed-famous": 8,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
     total_sites = 0

@@ -3,11 +3,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from geoalchemy2 import Geometry
-from sqlalchemy import Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, Float, ForeignKey, Index, Integer, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from dive_atlas.models.base import UUID_PK, Base, TimestampMixin, new_uuid
+from dive_atlas.taxonomy import AccessKind
 
 if TYPE_CHECKING:
     from dive_atlas.models.site import DiveSite
@@ -69,6 +70,11 @@ class DiveSite(Base, TimestampMixin):
     water_type: Mapped[str] = mapped_column(String(20), nullable=False, default="salt")
     entry_type: Mapped[str] = mapped_column(String(20), nullable=False, default="unknown")
     skill_level: Mapped[str] = mapped_column(String(30), nullable=False, default="unknown")
+    # Atlas includes research habitats / restricted sites — flag recreational use.
+    diveable: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    access: Mapped[str] = mapped_column(
+        String(40), nullable=False, default=AccessKind.RECREATIONAL.value
+    )
     region_id: Mapped[Optional[str]] = mapped_column(
         UUID_PK, ForeignKey("regions.id", ondelete="SET NULL"), nullable=True
     )

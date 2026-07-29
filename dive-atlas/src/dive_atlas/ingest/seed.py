@@ -100,3 +100,15 @@ class SeedGalapagosCenotesAdapter(SeedAtlasAdapter):
 
     def __init__(self, path: Path | None = None) -> None:
         super().__init__(path=path or (SEED_DIR / "galapagos_cenotes_sites.json"))
+
+
+@register_adapter
+class SeedHabitatsAdapter(SeedAtlasAdapter):
+    """Research habitats / undersea labs — diveable flagged via access kind."""
+
+    slug = "seed-habitats"
+    name = "Undersea habitats & labs seed"
+    kind = SourceKind.SEED
+
+    def __init__(self, path: Path | None = None) -> None:
+        super().__init__(path=path or (SEED_DIR / "habitats_sites.json"))

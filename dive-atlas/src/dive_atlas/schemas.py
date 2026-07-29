@@ -43,6 +43,8 @@ class DiveSiteIn(BaseModel):
     water_type: str = "salt"
     entry_type: str = "unknown"
     skill_level: str = "unknown"
+    diveable: bool = True
+    access: str = "recreational"  # recreational|restricted|research_only|private|closed|unknown
     region_slug: Optional[str] = None
     country_code: Optional[str] = None
     locality: Optional[str] = None
@@ -74,6 +76,8 @@ class DiveSiteOut(BaseModel):
     depth_min_m: Optional[float]
     depth_max_m: Optional[float]
     skill_level: str
+    diveable: bool = True
+    access: str = "recreational"
     confidence: float
     tags: list[str]
 

@@ -81,6 +81,7 @@ TRUSTED_SITE_SOURCES: frozenset[str] = frozenset(
         "dense-hotspots",
         "seed-famous",
         "seed-galapagos-cenotes",
+        "seed-habitats",
         "seed-palau-truk",
         "seed-raja-ampat",
         "seed-komodo",

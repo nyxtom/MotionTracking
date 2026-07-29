@@ -99,6 +99,13 @@ def upsert_site(
     site.water_type = payload.water_type
     site.entry_type = payload.entry_type
     site.skill_level = payload.skill_level
+    # Seeds / curated payloads may set these; bulk open-data keeps defaults unless explicit.
+    if "diveable" in payload.model_fields_set or payload.diveable is False:
+        site.diveable = payload.diveable
+    if "access" in payload.model_fields_set or (
+        payload.access and payload.access != "recreational"
+    ):
+        site.access = payload.access
     site.region_id = region_id
     # Prefer non-null geo fields; keep richer locality over vague tile hints
     if payload.country_code:

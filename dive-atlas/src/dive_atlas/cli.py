@@ -117,6 +117,7 @@ def ingest_cmd(
         "seed-palau-truk": 9,
         "seed-sipadan": 9,
         "seed-galapagos-cenotes": 9,
+        "seed-habitats": 9,
         "seed-famous": 10,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
@@ -151,6 +152,14 @@ def search_cmd(
         None, "--near", help="lon,lat for radius search (e.g. -87.45,20.32)"
     ),
     radius_km: float = typer.Option(50.0, "--radius-km", help="Radius for --near"),
+    diveable: Optional[bool] = typer.Option(
+        None, "--diveable/--not-diveable", help="Filter recreational/authorized diveability"
+    ),
+    access: Optional[str] = typer.Option(
+        None,
+        "--access",
+        help="recreational|restricted|research_only|private|closed|unknown",
+    ),
     limit: int = typer.Option(25, "--limit", "-n"),
 ) -> None:
     """Search the atlas."""
@@ -170,12 +179,16 @@ def search_cmd(
             near_lon=near_lon,
             near_lat=near_lat,
             radius_m=radius_km * 1000,
+            diveable=diveable,
+            access=access,
             limit=limit,
         )
 
     table = Table(title="Dive sites")
     table.add_column("Name")
     table.add_column("Types")
+    table.add_column("Diveable")
+    table.add_column("Access")
     table.add_column("Country")
     table.add_column("Locality")
     table.add_column("Depth m")
@@ -188,6 +201,8 @@ def search_cmd(
         table.add_row(
             r.name,
             ", ".join(r.site_types),
+            "yes" if r.diveable else "no",
+            r.access or "",
             r.country_code or "",
             r.locality or "",
             depth,

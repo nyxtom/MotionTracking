@@ -1,8 +1,10 @@
 # Dive Atlas
 
-Global dive site atlas: a PostGIS knowledge graph of **everywhere you can dive** —
+Global dive site atlas: a PostGIS knowledge graph of **everywhere under the sea that matters** —
 reefs, walls, wrecks, caves, caverns, cenotes, atolls, blue holes, springs, muck,
-quarries, ice — not just the subset a travel desk can book.
+quarries, ice, **and research habitats / undersea labs**. Sites carry `diveable` +
+`access` (`recreational` | `restricted` | `research_only` | `private` | `closed` | `unknown`)
+so the atlas can include Aquarius-class places without pretending they’re charter drops.
 
 PADI-style catalogs that only expose ~bookable inventory are intentionally *not*
 the source of truth. This atlas aims for complete geographic coverage first;
@@ -13,7 +15,7 @@ shops and operators are enriched later with GIS proximity (Places / OSM / etc.).
 | Layer | Role |
 |-------|------|
 | **Regions** | Hierarchical containers (ocean → country → coast → park) |
-| **Dive sites** | Point (+ optional footprint) with types, depths, skill, tags |
+| **Dive sites** | Point (+ optional footprint) with types, depths, skill, **diveable/access**, tags |
 | **Seasonality** | Per-month scores, temps, wildlife highlights |
 | **Sources** | Provenance for every ingest (seed, open data, magazine, API…) |
 | **Operators** | Dive shops / liveaboards — linked *after* via `ST_DWithin` |
@@ -30,9 +32,12 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 dive-atlas init-db
 dive-atlas ingest seed-famous
+dive-atlas ingest seed-habitats   # Aquarius Reef Base (research_only), Jules' Lodge, …
 dive-atlas stats
 dive-atlas search --type cenote
 dive-atlas search -q Okinawa
+dive-atlas search --access research_only
+dive-atlas search --not-diveable -n 20
 dive-atlas search --near 126.56,33.24 --radius-km 200
 dive-atlas export-geojson -o sites.geojson
 ```
@@ -45,6 +50,7 @@ They never write SQL directly — `services.ingest` upserts with provenance.
 | Slug | Status |
 |------|--------|
 | `seed-famous` | Curated world seed (Florida caves, Yucatán cenotes, wrecks, atolls…) |
+| `seed-habitats` | Undersea labs / habitats with `diveable` + `access` flags (Aquarius, Jules’) |
 | `padi-travel` | Full PADI Travel catalog (~4.8k) via public travel API + adaptive map tiles |
 | `osm-overpass` | OSM scuba / wreck / dive nodes by region (Overpass) |
 | `wikidata` | Wikidata wrecks, cenotes, reefs, **sea / flooded caves** (not terrestrial caves), blue holes |

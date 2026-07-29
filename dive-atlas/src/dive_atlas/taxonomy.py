@@ -48,6 +48,17 @@ class WaterType(StrEnum):
     MIXED = "mixed"
 
 
+class AccessKind(StrEnum):
+    """Who can dive here — atlas includes non-recreational places too."""
+
+    RECREATIONAL = "recreational"  # normal public / charter dive site
+    RESTRICTED = "restricted"  # permit, guide-only, military, etc.
+    RESEARCH_ONLY = "research_only"  # habitats / labs (e.g. Aquarius)
+    PRIVATE = "private"  # private property / resort house reef locked
+    CLOSED = "closed"  # historically diveable, now closed
+    UNKNOWN = "unknown"
+
+
 class EntryType(StrEnum):
     BOAT = "boat"
     SHORE = "shore"

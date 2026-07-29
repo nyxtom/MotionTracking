@@ -131,6 +131,9 @@ class CoralReefsAdapter(CrawlerAdapter):
                         name=name,
                         site_types=normalize_site_types("reef"),
                         water_type=WaterType.SALT.value,
+                        # Deep / scientific habitat points — atlas place, not recreational.
+                        diveable=False,
+                        access="unknown",
                         country_code=country,
                         locality=locality,
                         lon=lon_f,
@@ -143,6 +146,7 @@ class CoralReefsAdapter(CrawlerAdapter):
                             "coral_kind": "cold_water",
                             "status": row.get("status_of_"),
                             "determiner": row.get("determiner"),
+                            "atlas_note": "Cold-water coral occurrence point; typically too deep for recreational diving.",
                         },
                         raw=row,
                     )

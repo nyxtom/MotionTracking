@@ -24,6 +24,8 @@ def _to_out(row: DiveSite, lon: float, lat: float) -> DiveSiteOut:
         depth_min_m=row.depth_min_m,
         depth_max_m=row.depth_max_m,
         skill_level=row.skill_level,
+        diveable=bool(getattr(row, "diveable", True)),
+        access=getattr(row, "access", None) or "recreational",
         confidence=row.confidence,
         tags=list(row.tags or []),
     )
@@ -38,6 +40,8 @@ def search_sites(
     near_lon: Optional[float] = None,
     near_lat: Optional[float] = None,
     radius_m: float = 50_000,
+    diveable: Optional[bool] = None,
+    access: Optional[str] = None,
     limit: int = 50,
 ) -> list[DiveSiteOut]:
     lon_col = ST_X(DiveSite.geom)
@@ -57,6 +61,10 @@ def search_sites(
         stmt = stmt.where(DiveSite.site_types.any(site_type))
     if country_code:
         stmt = stmt.where(DiveSite.country_code == country_code.upper())
+    if diveable is not None:
+        stmt = stmt.where(DiveSite.diveable.is_(diveable))
+    if access:
+        stmt = stmt.where(DiveSite.access == access)
     if near_lon is not None and near_lat is not None:
         point = ST_SetSRID(ST_MakePoint(near_lon, near_lat), 4326)
         stmt = stmt.where(

@@ -45,6 +45,7 @@ from dive_atlas.services.fauna import (
     sync_fauna_seed,
 )
 from dive_atlas.services.geo_enrich import enrich_sites_geo
+from dive_atlas.services.gebco import enrich_sites_gebco
 from dive_atlas.services.ingest import ingest_batch
 from dive_atlas.services.magazines import ingest_magazine_crawl, sync_registry
 from dive_atlas.services.ontology_seed import seed_product_ontology
@@ -103,17 +104,20 @@ def ingest_cmd(
     priority = {
         "open-data-stub": 0,
         "wikidata": 1,
-        "opendivemap": 2,
-        "osm-overpass": 3,
-        "dense-hotspots": 4,
-        "operator-maps": 5,
-        "padi-travel": 6,
-        "seed-raja-ampat": 7,
-        "seed-komodo": 7,
-        "seed-palau-truk": 7,
-        "seed-sipadan": 7,
-        "seed-galapagos-cenotes": 7,
-        "seed-famous": 8,
+        "coral-reefs": 2,
+        "openseamap": 3,
+        "opendivemap": 4,
+        "osm-overpass": 5,
+        "osm-mpa": 5,
+        "dense-hotspots": 6,
+        "operator-maps": 7,
+        "padi-travel": 8,
+        "seed-raja-ampat": 9,
+        "seed-komodo": 9,
+        "seed-palau-truk": 9,
+        "seed-sipadan": 9,
+        "seed-galapagos-cenotes": 9,
+        "seed-famous": 10,
     }
     slugs = sorted(slugs, key=lambda s: priority.get(s, 10))
     total_sites = 0
@@ -319,6 +323,26 @@ def enrich_geo_cmd(
     with session_scope() as session:
         stats = enrich_sites_geo(session, limit=limit)
     console.print(f"[green]Geo enrich[/green] {stats}")
+
+
+@app.command("enrich-gebco")
+def enrich_gebco_cmd(
+    limit: Optional[int] = typer.Option(None, "--limit", "-n", help="Cap sites (testing)"),
+    all_sites: bool = typer.Option(
+        False, "--all", help="Re-sample even if gebco_* already present"
+    ),
+) -> None:
+    """Sample GEBCO bathymetry at each site (OpenTopoData gebco2020)."""
+    with session_scope() as session:
+        stats = enrich_sites_gebco(
+            session, limit=limit, only_missing=not all_sites
+        )
+    console.print(
+        f"[green]GEBCO enrich[/green] scanned={stats.scanned} updated={stats.updated} "
+        f"underwater={stats.underwater} land={stats.land} errors={len(stats.errors)}"
+    )
+    for err in stats.errors[:5]:
+        console.print(f"  [red]{err}[/red]")
 
 
 @app.command("seed-ontology")

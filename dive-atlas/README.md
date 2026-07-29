@@ -50,6 +50,9 @@ They never write SQL directly — `services.ingest` upserts with provenance.
 | `wikidata` | Wikidata wrecks, cenotes, reefs, **sea / flooded caves** (not terrestrial caves), blue holes |
 | `opendivemap` | OpenDiveMap open GeoJSON API (community sites, no auth) |
 | `operator-maps` | Curated marine-park / shop maps (`data/sources/operator_maps.json` — KML/GPX/My Maps) |
+| `openseamap` | OpenSeaMap seamarks: mooring / wreck / rock / reef (boat-chart points) |
+| `osm-mpa` | OSM protected areas / national parks → atlas regions |
+| `coral-reefs` | WRI/UNEP global coral reef centroids + cold-water coral points |
 | `open-data-stub` | Placeholder |
 
 ```bash
@@ -64,6 +67,10 @@ dive-atlas map --region japan --no-labels
 dive-atlas map --all
 dive-atlas ingest opendivemap       # OpenDiveMap community GeoJSON (~3k+)
 dive-atlas ingest operator-maps     # marine-park / shop Google My Maps (registry)
+dive-atlas ingest openseamap        # boat-chart seamarks (mooring/wreck/rock/reef)
+dive-atlas ingest osm-mpa           # protected areas → regions
+dive-atlas ingest coral-reefs       # global coral habitat points
+dive-atlas enrich-gebco             # GEBCO depth sample at every site
 dive-atlas stats
 ```
 

@@ -62,10 +62,13 @@ def get_adapter(slug: str, **kwargs: Any) -> CrawlerAdapter:
 
 def load_all_adapters() -> Iterable[str]:
     # Import side-effect registration
+    from dive_atlas.ingest import coral_reefs  # noqa: F401
     from dive_atlas.ingest import dense  # noqa: F401
     from dive_atlas.ingest import opendivemap  # noqa: F401
+    from dive_atlas.ingest import openseamap  # noqa: F401
     from dive_atlas.ingest import operator_maps  # noqa: F401
     from dive_atlas.ingest import osm  # noqa: F401
+    from dive_atlas.ingest import osm_mpa  # noqa: F401
     from dive_atlas.ingest import open_data_stub  # noqa: F401
     from dive_atlas.ingest import padi  # noqa: F401
     from dive_atlas.ingest import seed  # noqa: F401

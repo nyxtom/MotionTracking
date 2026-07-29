@@ -219,6 +219,96 @@ def dense_cmd(
     )
 
 
+@app.command("map")
+def map_cmd(
+    region: Optional[str] = typer.Option(
+        None,
+        "--region",
+        "-r",
+        help="Preset: roatan, bay-islands, okinawa, yaeyama, japan, izu",
+    ),
+    bbox: Optional[str] = typer.Option(
+        None, "--bbox", help="south,west,north,east (decimal degrees)"
+    ),
+    title: Optional[str] = typer.Option(None, "--title", help="Map title"),
+    out: Optional[str] = typer.Option(
+        None, "--out", "-o", help="Output PNG path"
+    ),
+    labels: bool = typer.Option(True, "--labels/--no-labels"),
+    heatmap: bool = typer.Option(True, "--heatmap/--no-heatmap"),
+    all_presets: bool = typer.Option(False, "--all", help="Render every preset region"),
+) -> None:
+    """Render a static OSM map with dive-flag markers for a region."""
+    from pathlib import Path
+
+    from dive_atlas.viz.maps import PRESET_REGIONS, render_dive_map, render_preset, sites_in_bbox
+
+    out_dir = Path("/opt/cursor/artifacts/maps")
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    with session_scope() as session:
+        if all_presets:
+            for slug in PRESET_REGIONS:
+                info = render_preset(
+                    session, slug, out_dir=out_dir, show_labels=labels, heatmap=heatmap
+                )
+                console.print(
+                    f"[green]Map[/green] {slug}: {info['sites']} sites → {info['path']}"
+                )
+            return
+        if region:
+            reg = PRESET_REGIONS.get(region)
+            if reg is None:
+                console.print("Presets: " + ", ".join(sorted(PRESET_REGIONS)))
+                raise typer.BadParameter(f"Unknown region {region!r}")
+            pins = sites_in_bbox(
+                session,
+                south=reg.south,
+                west=reg.west,
+                north=reg.north,
+                east=reg.east,
+            )
+            path = Path(out) if out else out_dir / f"dive-map-{reg.slug}.png"
+            info = render_dive_map(
+                pins,
+                south=reg.south,
+                west=reg.west,
+                north=reg.north,
+                east=reg.east,
+                title=title or reg.title,
+                out_path=path,
+                zoom=reg.zoom,
+                show_labels=labels and len(pins) <= 80,
+                heatmap=heatmap,
+            )
+            console.print(f"[green]Map[/green] {info['sites']} sites → {info['path']}")
+            return
+        if bbox:
+            parts = [float(x.strip()) for x in bbox.split(",")]
+            if len(parts) != 4:
+                raise typer.BadParameter("bbox must be south,west,north,east")
+            south, west, north, east = parts
+            pins = sites_in_bbox(
+                session, south=south, west=west, north=north, east=east
+            )
+            path = Path(out) if out else out_dir / "dive-map-custom.png"
+            info = render_dive_map(
+                pins,
+                south=south,
+                west=west,
+                north=north,
+                east=east,
+                title=title or "Dive sites",
+                out_path=path,
+                show_labels=labels and len(pins) <= 80,
+                heatmap=heatmap,
+            )
+            console.print(f"[green]Map[/green] {info['sites']} sites → {info['path']}")
+            return
+        console.print("Presets: " + ", ".join(sorted(PRESET_REGIONS)))
+        raise typer.BadParameter("Pass --region, --bbox, or --all")
+
+
 @app.command("enrich-geo")
 def enrich_geo_cmd(
     limit: Optional[int] = typer.Option(None, "--limit", "-n", help="Cap sites scanned"),

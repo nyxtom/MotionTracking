@@ -57,6 +57,9 @@ dive-atlas ingest osm-overpass
 dive-atlas ingest wikidata
 dive-atlas analyze-quality          # corpus diveability audit
 dive-atlas purge-junk               # caves / Canmore wrecks / OSM shops / pools
+dive-atlas map --region roatan      # OSM basemap + dive flags → PNG
+dive-atlas map --region japan --no-labels
+dive-atlas map --all
 dive-atlas stats
 ```
 
